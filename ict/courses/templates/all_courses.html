@@ -1,15 +1,12 @@
-<!DOCTYPE html>
-<html>
-<body>
+{% extends 'master.html' %}
 
-<h1>Courses</h1>
+{% block title %}All Courses{% endblock title %}
   
+{% block content %}
 <ul>
   {% for x in myCourses %}
     <!--<li>{{ x.course_name }} {{ x.course_duration }}</li>-->
-    <li><a href="course_details/{{ x.id }}">{{ x.course_name }} {{ x.course_duration }}</a></li>
+    <li><a href="details/{{ x.id }}">{{ x.course_name }} {{ x.course_duration }}</a></li>
   {% endfor %}
 </ul>
-
-</body>
-</html>
+{% endblock content %}

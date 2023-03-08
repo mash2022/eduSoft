@@ -1,14 +1,11 @@
-<!DOCTYPE html>
-<html>
+{% extends 'master.html' %}
 
-<body>
+{% block title %}Details about {{ myCourses.course_name }}{% endblock title %}
 
+{% block content %}
 <h1>{{ myCourses.course_name }} {{ myCourses.course_duration }}</h1>
-  
-<p>Phone: {{ myCourses.course_code }}</p>
-<p>Member since: {{ myCourses.course.credit }}</p>
+<p>Course code: {{ myCourses.course_code }}</p>
+<p>Number of credits: {{ myCourses.course.credit }}</p>
 
 <p>Back to <a href="/courses">Courses</a></p>
-
-</body>
-</html>
+{% endblock content %}
