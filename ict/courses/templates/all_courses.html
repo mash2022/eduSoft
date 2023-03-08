@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>Courses</h1>
+  
+<ul>
+  {% for x in myCourses %}
+    <!--<li>{{ x.course_name }} {{ x.course_duration }}</li>-->
+    <li><a href="course_details/{{ x.id }}">{{ x.course_name }} {{ x.course_duration }}</a></li>
+  {% endfor %}
+</ul>
+
+</body>
+</html>
