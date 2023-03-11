@@ -12,6 +12,14 @@ def courses(request):
     }
     return HttpResponse(template.render(context, request))
 
+def courses2(request):
+   myCourses = Course.objects.all().values()
+   template=loader.get_template('courses.html')
+   context={
+      'course':myCourses
+   }
+   return HttpResponse(template.render(context, request))
+
 def details(request, id):
   myCourses = Course.objects.get(id=id)
   template = loader.get_template('details.html')
@@ -20,8 +28,8 @@ def details(request, id):
   }
   return HttpResponse(template.render(context, request))
 
-def index(request):
-  template = loader.get_template('index.html')
+def main(request):
+  template = loader.get_template('main.html')
   return HttpResponse(template.render())
 
 def testing(request):
