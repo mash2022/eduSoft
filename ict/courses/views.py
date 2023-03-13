@@ -20,6 +20,26 @@ def courses2(request):
    }
    return HttpResponse(template.render(context, request))
 
+def teachers(request):
+   template=loader.get_template('teachers.html')
+   return HttpResponse(template.render())
+
+def about(request):
+   template=loader.get_template('about.html')
+   return HttpResponse(template.render())
+
+def events(request):
+   template=loader.get_template('events.html')
+   return HttpResponse(template.render())
+
+def admission(request):
+   template=loader.get_template('admission.html')
+   return HttpResponse(template.render())
+
+def contact(request):
+   template=loader.get_template('contact.html')
+   return HttpResponse(template.render())
+
 def details(request, id):
   myCourses = Course.objects.get(id=id)
   template = loader.get_template('details.html')
