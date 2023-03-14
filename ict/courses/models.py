@@ -10,4 +10,12 @@ class Course(models.Model):
     def __str__(self):
         return f"{self.course_name} {self.course_duration}"
 
+class Teacher(models.Model):
+    teacher_name=models.CharField(max_length=255)
+    teacher_details=models.TextField()
+    teacher_image=models.ImageField()
+
+    def __str__(self):
+        return self.teacher_name
+    
 
