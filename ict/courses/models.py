@@ -19,3 +19,5 @@ class Teacher(models.Model):
         return self.teacher_name
     
 
+    
+

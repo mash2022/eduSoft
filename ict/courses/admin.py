@@ -1,5 +1,6 @@
 from django.contrib import admin
 from .models import Course
+from .models import Teacher
 
 # Register your models here.
 class CourseAdmin(admin.ModelAdmin):
