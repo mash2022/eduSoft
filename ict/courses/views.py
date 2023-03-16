@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.template import loader
 from .models import Course
+from. models import Teacher
 
 # Create your views here.
 def courses(request):
@@ -21,8 +22,12 @@ def courses2(request):
    return HttpResponse(template.render(context, request))
 
 def teachers(request):
+   myTeacher=Teacher.objects.all().values()
+   context={
+      'teacher':myTeacher
+   }
    template=loader.get_template('teachers.html')
-   return HttpResponse(template.render())
+   return HttpResponse(template.render(context, request))
 
 def about(request):
    template=loader.get_template('about.html')
