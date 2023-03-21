@@ -33,7 +33,7 @@
               {% for x in teacher %}
               <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
                 <div class="member">
-                  <img src="/media/{{ BASE_DIR }}/{{ x.teacher_image }}" class="img-fluid" alt="">
+                  <img src="{{ x.teacher_image.url }}" class="img-fluid" alt="">
                   <div class="member-content">
                     <h4><a href="details/{{ x.id }}">{{ x.teacher_name }}</a></h4>
                     <span>Web Development</span>

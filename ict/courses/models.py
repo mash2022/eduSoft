@@ -13,7 +13,7 @@ class Course(models.Model):
 class Teacher(models.Model):
     teacher_name=models.CharField(max_length=255)
     teacher_details=models.TextField()
-    teacher_image=models.ImageField(upload_to='images/')
+    teacher_image=models.ImageField(upload_to='pics')
 
     def __str__(self):
         return self.teacher_name
