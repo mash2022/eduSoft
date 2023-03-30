@@ -50,6 +50,21 @@
       </div>
     </section><!-- End Events Section -->
 
+    <div class="row">
+      {% for x in data %}
+      <div class="col-md-4">
+        <div class="thumbnail">
+          <a href="{{ x.photo.url }}">
+            <img src="/media/{{ x.photo.url }}" alt="Lights" style="width:100%">
+            <div class="caption">
+              <p>{{ x.title }}</p>
+            </div>
+          </a>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+
   </main><!-- End #main -->
 
     {% include 'footer.html' %}

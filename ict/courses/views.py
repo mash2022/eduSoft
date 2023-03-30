@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.template import loader
-from .models import Course
+from .models import Course, Event
 from. models import Teacher
 
 # Create your views here.
@@ -35,7 +35,11 @@ def about(request):
 
 def events(request):
    template=loader.get_template('events.html')
-   return HttpResponse(template.render())
+   data = Event.objects.all()
+   context = {
+      'data' : data
+   }
+   return HttpResponse(template.render(context, request))
 
 def admission(request):
    template=loader.get_template('admission.html')
