@@ -22,9 +22,9 @@ def courses2(request):
    return HttpResponse(template.render(context, request))
 
 def teachers(request):
-   myTeacher=Teacher.objects.all().values()
+   teacher=Teacher.objects.all()
    context={
-      'teacher':myTeacher
+      'teacher':teacher
    }
    template=loader.get_template('teachers.html')
    return HttpResponse(template.render(context, request))

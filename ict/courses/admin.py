@@ -1,6 +1,5 @@
 from django.contrib import admin
-from .models import Course
-from .models import Teacher
+from .models import Course, Teacher
 
 # Register your models here.
 class CourseAdmin(admin.ModelAdmin):
@@ -8,6 +7,6 @@ class CourseAdmin(admin.ModelAdmin):
 admin.site.register(Course, CourseAdmin)
 
 class TeacherAdmin(admin.ModelAdmin):
-    list_display=('teacher_name', 'teacher_details', 'teacher_image')
+    list_display=['teacher_name', 'teacher_details', 'teacher_image']
 admin.site.register(Teacher,TeacherAdmin)
 

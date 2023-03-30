@@ -51,6 +51,21 @@
               </div>
               {% endfor %}
 
+              <div class="row">
+                {% for x in teacher %}
+                <div class="col-md-4">
+                  <div class="thumbnail">
+                    <a href="{{ x.teacher_image.url }}">
+                      <img src="{{ x.teacher_image.url }}" alt="Lights" style="width:100%">
+                      <div class="caption">
+                        <p>{{ x.teacher_name }}</p>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+                {% endfor %}
+              </div>
+
       <!--
               <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
                 <div class="member">
