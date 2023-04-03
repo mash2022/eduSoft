@@ -12,6 +12,5 @@ admin.site.register(Teacher,TeacherAdmin)
 
 class eventAdmin(admin.ModelAdmin):
     list_display = ["title", "photo"]
-
 admin.site.register(Event, eventAdmin)
 

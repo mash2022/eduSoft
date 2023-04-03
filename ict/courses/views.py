@@ -34,12 +34,13 @@ def about(request):
    return HttpResponse(template.render())
 
 def events(request):
-   template=loader.get_template('events.html')
+   #template=loader.get_template('events.html')
    data = Event.objects.all()
    context = {
       'data' : data
    }
-   return HttpResponse(template.render(context, request))
+   #return HttpResponse(template.render(context, request))
+   return render(request,"events.html", context)
 
 def admission(request):
    template=loader.get_template('admission.html')
