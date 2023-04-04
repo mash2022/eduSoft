@@ -87,10 +87,10 @@ def image(request):
 
 def uploadImage(request):
    if request.method=='POST':
-      form=ImageUploadForm(request.POST, request.files)
+      form=ImageUploadForm(request.POST, request.FILES)
       if form.is_valid():
          form.save()
-         return redirect('contact.html')
+         return redirect('contact')
       
    else:
       form=ImageUploadForm()
