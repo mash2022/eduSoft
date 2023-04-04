@@ -1,8 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from django.http import HttpResponse
 from django.template import loader
 from .models import Course, Event, Image
-from. models import Teacher
+from .models import Teacher
+from .forms import ImageUploadForm
 
 # Create your views here.
 def courses(request):
@@ -83,3 +84,14 @@ def image(request):
       'data':data
    }
    return render(request, events.html, context)
+
+def uploadImage(request):
+   if request.method=='POST':
+      form=ImageUploadForm(request.POST, request.files)
+      if form.is_valid():
+         form.save()
+         return redirect('contact.html')
+      
+   else:
+      form=ImageUploadForm()
+   return render(request, 'contact.html', {'form':form})
