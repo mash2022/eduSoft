@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.template import loader
-from .models import Course, Event
+from .models import Course, Event, Image
 from. models import Teacher
 
 # Create your views here.
@@ -35,7 +35,7 @@ def about(request):
 
 def events(request):
    #template=loader.get_template('events.html')
-   data = Event.objects.all()
+   data = Image.objects.all()
    context = {
       'data' : data
    }
@@ -76,4 +76,10 @@ def testing(request):
       'mySearchData':mySearchData,
    }
    return HttpResponse(template.render(context, request))
-   
+
+def image(request):
+   data=Image.objects.all()
+   context={
+      'data':data
+   }
+   return render(request, events.html, context)

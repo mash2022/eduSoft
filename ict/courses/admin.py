@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Course, Teacher, Event
+from .models import Course, Teacher, Event, Image
 
 # Register your models here.
 class CourseAdmin(admin.ModelAdmin):
@@ -10,7 +10,12 @@ class TeacherAdmin(admin.ModelAdmin):
     list_display=['teacher_name', 'teacher_details', 'teacher_image']
 admin.site.register(Teacher,TeacherAdmin)
 
-class eventAdmin(admin.ModelAdmin):
+class EventAdmin(admin.ModelAdmin):
     list_display = ["title", "photo"]
-admin.site.register(Event, eventAdmin)
+admin.site.register(Event, EventAdmin)
+
+class ImageAdmin(admin.ModelAdmin):
+    list_display = ["title", "photo"]
+
+admin.site.register(Image, ImageAdmin)
 
