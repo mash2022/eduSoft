@@ -15,7 +15,7 @@ class EventAdmin(admin.ModelAdmin):
 admin.site.register(Event, EventAdmin)
 
 class ImageAdmin(admin.ModelAdmin):
-    list_display = ["title","image_tag","photo"]
+    list_display = ["title","image_tag","photo","details"]
 
 admin.site.register(Image, ImageAdmin)
 

@@ -61,7 +61,11 @@ def details(request, id):
 
 def main(request):
   template = loader.get_template('main.html')
-  return HttpResponse(template.render())
+  data=Image.objects.all()
+  context={
+     'data':data
+  }
+  return HttpResponse(template.render(context, request))
 
 def testing(request):
    mySearchData=Course.objects.filter(course_name='DBMS', id=2).values()
@@ -83,7 +87,7 @@ def image(request):
    context={
       'data':data
    }
-   return render(request, events.html, context)
+   return render(request, main.html, context)
 
 def uploadImage(request):
    if request.method=='POST':

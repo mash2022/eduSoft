@@ -27,6 +27,7 @@ class Event(models.Model):
 class Image(models.Model):
     title = models.CharField(max_length=20)
     photo = models.ImageField(upload_to='pics')
+    details= models.CharField(max_length=255)
 
     def image_tag(self):
         return mark_safe('<img src="/../../media/%s" width="150" height="150" />' % (self.photo))
