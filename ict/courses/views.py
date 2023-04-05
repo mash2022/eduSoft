@@ -1,7 +1,7 @@
 from django.shortcuts import redirect, render
 from django.http import HttpResponse
 from django.template import loader
-from .models import Course, Event, Image
+from .models import Course, Event, Image, About
 from .models import Teacher
 from .forms import ImageUploadForm
 
@@ -31,8 +31,12 @@ def teachers(request):
    return HttpResponse(template.render(context, request))
 
 def about(request):
-   template=loader.get_template('about.html')
-   return HttpResponse(template.render())
+   template = loader.get_template('about.html')
+   about = About.objects.all()
+   context = {
+      'about': about
+   }
+   return HttpResponse(template.render(context, request))
 
 def events(request):
    #template=loader.get_template('events.html')

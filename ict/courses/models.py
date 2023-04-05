@@ -40,6 +40,13 @@ class Image(models.Model):
             img.thumbnail(output_size)
             img.save(self.photo.path)
 
+class About(models.Model):
+    title=models.CharField(max_length=255)
+    description=models.TextField(max_length=255)
+    aboutImage=models.ImageField(upload_to='pics')
+
+    def image_tag(self):
+        return mark_safe('<img src="/../../media/%s" width="150" height="150"/>' % (self.aboutImage))
 
     
 
