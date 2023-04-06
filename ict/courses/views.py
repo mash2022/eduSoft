@@ -6,16 +6,16 @@ from .models import Teacher
 from .forms import ImageUploadForm
 
 # Create your views here.
-def courses(request):
-    myCourses=Course.objects.all().values()
-    template=loader.get_template('all_courses.html')
+def all_courses(request):
+    myCourses=Course.objects.all()
+    template=loader.get_template('courses.html')
     context={
-        'myCourses':myCourses
+        'course':myCourses
     }
     return HttpResponse(template.render(context, request))
 
-def courses2(request):
-   myCourses = Course.objects.all().values()
+def courses(request):
+   myCourses = Course.objects.all()
    template=loader.get_template('courses.html')
    context={
       'course':myCourses

@@ -1,9 +1,9 @@
 from django.contrib import admin
-from .models import Course, Teacher, Event, Image, About
+from .models import *
 
 # Register your models here.
 class CourseAdmin(admin.ModelAdmin):
-    list_display=('course_name', 'course_duration', 'course_code')
+    list_display=('course_name', 'image_tag', 'course_duration', 'course_code', 'course_image')
 admin.site.register(Course, CourseAdmin)
 
 class TeacherAdmin(admin.ModelAdmin):

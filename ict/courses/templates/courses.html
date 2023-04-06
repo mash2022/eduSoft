@@ -17,30 +17,30 @@
         <p>Est dolorum ut non facere possimus quibusdam eligendi voluptatem. Quia id aut similique quia voluptas sit quaerat debitis. Rerum omnis ipsam aperiam consequatur laboriosam nemo harum praesentium. </p>
       </div>
     </div><!-- End Breadcrumbs -->
+    <!--
     <p><a href="/">HOME</a></p>
     <ul>
     {% for x in course %}
-        <!--<li>{{ x.course_name }} {{ x.course_duration }}</li>-->
         <li><a href="details/{{ x.id }}">{{ x.course_name }} {{ x.course_duration }}</a></li>
     {% endfor %}
     </ul>
-
+-->
     <!-- ======= Courses Section ======= -->
     <section id="courses" class="courses">
       <div class="container" data-aos="fade-up">
 
         <div class="row" data-aos="zoom-in" data-aos-delay="100">
-
+          {% for x in course  %}
           <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
             <div class="course-item">
-              <img src="assets/img/course-1.jpg" class="img-fluid" alt="...">
+              <img src="{{ x.course_image.url }}" class="img-fluid" alt="...">
               <div class="course-content">
                 <div class="d-flex justify-content-between align-items-center mb-3">
-                  <h4>Web Development</h4>
+                  <h4>{{ x.course_name }}</h4>
                   <p class="price">$169</p>
                 </div>
 
-                <h3><a href="course-details.html">Website Design</a></h3>
+                <h3><a href="course-details.html">{{ x.course_duration }}</a></h3>
                 <p>Et architecto provident deleniti facere repellat nobis iste. Id facere quia quae dolores dolorem tempore.</p>
                 <div class="trainer d-flex justify-content-between align-items-center">
                   <div class="trainer-profile d-flex align-items-center">
@@ -56,7 +56,8 @@
               </div>
             </div>
           </div> <!-- End Course Item-->
-
+          {% endfor %}
+          <!--
           <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0">
             <div class="course-item">
               <img src="assets/img/course-2.jpg" class="img-fluid" alt="...">
@@ -82,7 +83,7 @@
               </div>
             </div>
           </div> <!-- End Course Item-->
-
+<!--
           <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0">
             <div class="course-item">
               <img src="assets/img/course-3.jpg" class="img-fluid" alt="...">
@@ -108,7 +109,6 @@
               </div>
             </div>
           </div> <!-- End Course Item-->
-
         </div>
 
       </div>

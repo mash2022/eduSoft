@@ -8,9 +8,13 @@ class Course(models.Model):
     course_duration=models.CharField(max_length=255)
     course_code=models.IntegerField(null=True)
     course_credit=models.IntegerField(null=True)
+    course_image=models.ImageField(upload_to='pics')
 
     def __str__(self):
         return f"{self.course_name} {self.course_duration}"
+    
+    def image_tag(self):
+        return mark_safe('<img src="/../../media/%s" width="150" height="150" />' % (self.course_image))
 
 class Teacher(models.Model):
     teacher_name=models.CharField(max_length=255)
