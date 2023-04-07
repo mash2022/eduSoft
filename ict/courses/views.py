@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from django.template import loader
 from .models import Course, Event, Image, About
 from .models import Teacher
-from .forms import ImageUploadForm
+from .forms import ImageUploadForm, ContactForm
 
 # Create your views here.
 def all_courses(request):
@@ -52,7 +52,7 @@ def admission(request):
    return HttpResponse(template.render())
 
 def contact(request):
-   form=ImageUploadForm()
+   form=ContactForm()
    context={
       'form':form
    }
@@ -107,3 +107,13 @@ def uploadImage(request):
    else:
       form=ImageUploadForm()
    return render(request, 'contact.html', {'form':form})
+
+def contactUpload(request):
+   if request.method=='POST':
+      form=ContactForm(request.POST, request.FILES)
+      if form.is_valid():
+         form.save()
+         return redirect('contact')
+   else:
+      form=ContactForm()
+      return HttpResponse(request, 'contact.html', {'form':ContactForm})

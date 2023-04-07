@@ -22,3 +22,6 @@ class AboutAdmin(admin.ModelAdmin):
     list_display=['title', 'description', 'aboutImage', 'image_tag']
 admin.site.register(About, AboutAdmin)
 
+class ContactAdmin(admin.ModelAdmin):
+    list_display=['name', 'email', 'subject', 'message']
+admin.site.register(Contact, ContactAdmin)

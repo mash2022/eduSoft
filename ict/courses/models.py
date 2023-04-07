@@ -65,5 +65,10 @@ class About(models.Model):
     def image_tag(self):
         return mark_safe('<img src="/../../media/%s" width="150" height="150"/>' % (self.aboutImage))
 
-    
+class Contact(models.Model):
+    name=models.CharField(max_length=100)
+    email=models.EmailField()
+    subject=models.CharField(max_length=255)
+    message=models.TextField()
+
 
