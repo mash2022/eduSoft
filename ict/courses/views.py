@@ -52,8 +52,12 @@ def admission(request):
    return HttpResponse(template.render())
 
 def contact(request):
+   form=ImageUploadForm()
+   context={
+      'form':form
+   }
    template=loader.get_template('contact.html')
-   return HttpResponse(template.render())
+   return HttpResponse(template.render(context, request))
 
 def details(request, id):
   myCourses = Course.objects.get(id=id)

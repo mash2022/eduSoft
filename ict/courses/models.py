@@ -21,8 +21,21 @@ class Teacher(models.Model):
     teacher_details=models.TextField()
     teacher_image=models.ImageField(upload_to='pics')
 
-    def __str__(self):
-        return self.teacher_name
+    def image_tag(self):
+        return mark_safe('<img src="/../../media/%s" width="150" height="150"/>' %(self.teacher_image))
+
+    def save(self):
+        super().save()
+        img=Im.open(self.teacher_image.path)
+        if img.height>300 or img.width>300:
+            output_size=(300, 300)
+            img.thumbnail(output_size)
+            img.save(self.teacher_image.path)
+
+
+
+"""    def __str__(self):
+        return self.teacher_name"""
     
 class Event(models.Model):
     title = models.CharField(max_length=20)
