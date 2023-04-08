@@ -8,8 +8,8 @@
   </div>
 
   <div class="carousel-inner">
-    {% for x in data  %}
-    <div class="carousel-item active" data-bs-interval="10000">      
+    {% for x in data  %} 
+    <div class="carousel-item {% if forloop.first %} active {% endif %}" data-bs-interval="10000">     
       <img src="{{ x.photo.url }}" class="d-block w-100" alt="...">
       <div class="carousel-caption d-none d-md-block">
         <h5>{{ x.title }}</h5>
@@ -17,6 +17,7 @@
       </div>
     </div>
     {% endfor %}
+    
     <!--
     <div class="carousel-item" data-bs-interval="2000">
       <img src="/static/assets/img/NUR06934.JPG" class="d-block w-100" alt="...">
@@ -45,19 +46,21 @@
 <!--carousel end-->
 
 <!-- ======= Hero Section ======= -->
+<!--
 <section id="hero" class="d-flex justify-content-center align-items-center">
   <div class="container position-relative" data-aos="zoom-in" data-aos-delay="100">
     <h1>Post Graduation Diploma,<br>Information and Communication Technology</h1>
     <h2>Bangladesh Agricultural University, Mymensingh</h2>
     <a href="courses.html" class="btn-get-started">Get Started</a>
   </div>
-</section><!-- End Hero -->
+</section>
+-->
+<!-- End Hero -->
   <main id="main">
 
     <!-- ======= About Section ======= -->
     <section id="about" class="about">
       <div class="container" data-aos="fade-up">
-
         <div class="row">
           <div class="col-lg-6 order-1 order-lg-2" data-aos="fade-left" data-aos-delay="100">
             <img src="assets/img/about.jpg" class="img-fluid" alt="">
@@ -76,10 +79,8 @@
             <p>
               Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
             </p>
-
           </div>
         </div>
-
       </div>
     </section><!-- End About Section -->
 

@@ -52,7 +52,7 @@ class Image(models.Model):
     def save(self):
         super().save()
         img=Im.open(self.photo.path)
-        if img.height>300 or img.width>300:
+        if img.height>300 or img.width>150:
             output_size=(300, 300)
             img.thumbnail(output_size)
             img.save(self.photo.path)
