@@ -10,7 +10,7 @@
   <div class="carousel-inner">
     {% for x in data  %} 
     <div class="carousel-item {% if forloop.first %} active {% endif %}" data-bs-interval="10000">     
-      <img src="{{ x.photo.url }}" class="d-block w-100" alt="...">
+      <img src="{{ x.photo.url }}" class="d-block w-100 h-30" alt="...">
       <div class="carousel-caption d-none d-md-block">
         <h5>{{ x.title }}</h5>
         <p>{{ x.details }}</p>
