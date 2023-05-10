@@ -25,3 +25,7 @@ admin.site.register(About, AboutAdmin)
 class ContactAdmin(admin.ModelAdmin):
     list_display=['name', 'email', 'subject', 'message']
 admin.site.register(Contact, ContactAdmin)
+
+class NoticeAdmin(admin.ModelAdmin):
+    list_display=['notice_title', 'notice_details', 'notice_image']
+admin.site.register(Notice, NoticeAdmin)

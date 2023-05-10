@@ -16,6 +16,17 @@ class Course(models.Model):
     def image_tag(self):
         return mark_safe('<img src="/../../media/%s" width="150" height="150" />' % (self.course_image))
 
+class Notice(models.Model):
+    notice_title=models.CharField(max_length=255)
+    notice_details=models.TextField
+    notice_image=models.ImageField(upload_to='notice_pics')
+
+    def __str__(self):
+        return f"{self.notice_title} {self.notice_details} {self.notice_image}"
+    
+    def image_tag(self):
+        return mark_safe('<img src = "/../../media/%s" width=""150> height="150"/>' %(self.notice_image))
+
 class Teacher(models.Model):
     teacher_name=models.CharField(max_length=255)
     teacher_details=models.TextField()
