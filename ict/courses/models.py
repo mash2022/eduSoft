@@ -18,7 +18,7 @@ class Course(models.Model):
 
 class Notice(models.Model):
     notice_title=models.CharField(max_length=255)
-    notice_details=models.TextField
+    notice_details=models.TextField(max_length=255)
     notice_image=models.ImageField(upload_to='notice_pics')
 
     def __str__(self):
