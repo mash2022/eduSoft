@@ -57,8 +57,10 @@
 -->
 <!-- End Hero -->
   <main id="main">
-<div class="marquee"><marquee>Hi, I am ahasan Habib Shanto, Software developer</marquee></div>
-    <!-- ======= About Section ======= -->
+    {% for x in notice_data %}
+      <div class="marquee"><marquee>{{ x.notice_title }}</marquee></div>
+    {% endfor %}    
+<!-- ======= About Section ======= -->
     <section id="about" class="about">
       <div class="container" data-aos="fade-up">
         <div class="row">
@@ -67,8 +69,9 @@
           </div>
           <div class="col-lg-6 pt-4 pt-lg-0 order-2 order-lg-1 content">
             <h3>NOTICE</h3>
+            {% for x in notice_data %}
             <p class="fst-italic">
-Post Graduation Diploma in Information and Communication Technology
+              {{ x.notice_title }}
             </p>
             <ul>
               <li><i class="bi bi-check-circle"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat.</li>
@@ -78,6 +81,7 @@ Post Graduation Diploma in Information and Communication Technology
             <p>
               Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
             </p>
+            {% endfor %}
           </div>
         </div>
       </div>

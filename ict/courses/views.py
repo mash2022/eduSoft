@@ -1,8 +1,7 @@
 from django.shortcuts import redirect, render
 from django.http import HttpResponse
 from django.template import loader
-from .models import Course, Event, Image, About
-from .models import Teacher
+from .models import *
 from .forms import ImageUploadForm, ContactForm
 
 # Create your views here.
@@ -70,8 +69,10 @@ def details(request, id):
 def main(request):
   template = loader.get_template('main.html')
   data=Image.objects.all()
+  notice_data=Notice.objects.all()
   context={
-     'data':data
+     'data':data,
+     'notice_data':notice_data
   }
   return HttpResponse(template.render(context, request))
 
