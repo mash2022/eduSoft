@@ -27,5 +27,9 @@ class ContactAdmin(admin.ModelAdmin):
 admin.site.register(Contact, ContactAdmin)
 
 class NoticeAdmin(admin.ModelAdmin):
-    list_display=['notice_title', 'notice_details', 'notice_image']
+    list_display=['notice_title', 'notice_details','image_tag','notice_image']
 admin.site.register(Notice, NoticeAdmin)
+
+class AdmissionAdmin(admin.ModelAdmin):
+    list_display=['course_name','admission_open', 'admission_close','admission_link']
+admin.site.register(Admission, AdmissionAdmin)

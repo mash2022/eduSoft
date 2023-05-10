@@ -48,7 +48,11 @@ def events(request):
 
 def admission(request):
    template=loader.get_template('admission.html')
-   return HttpResponse(template.render())
+   data=Admission.objects.all()
+   context={
+      'data':data
+   }
+   return HttpResponse(template.render(context, request))
 
 def contact(request):
    form=ContactForm()

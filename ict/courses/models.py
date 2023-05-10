@@ -19,13 +19,10 @@ class Course(models.Model):
 class Notice(models.Model):
     notice_title=models.CharField(max_length=255)
     notice_details=models.TextField(max_length=255)
-    notice_image=models.ImageField(upload_to='notice_pics')
+    notice_image=models.ImageField(upload_to='pics')
 
-    def __str__(self):
-        return f"{self.notice_title} {self.notice_details} {self.notice_image}"
-    
     def image_tag(self):
-        return mark_safe('<img src = "/../../media/%s" width=""150> height="150"/>' %(self.notice_image))
+        return mark_safe('<img src="/../../media/%s" width="150" height="150" />' % (self.notice_image))
 
 class Teacher(models.Model):
     teacher_name=models.CharField(max_length=255)
@@ -42,11 +39,6 @@ class Teacher(models.Model):
             output_size=(300, 300)
             img.thumbnail(output_size)
             img.save(self.teacher_image.path)
-
-
-
-"""    def __str__(self):
-        return self.teacher_name"""
     
 class Event(models.Model):
     title = models.CharField(max_length=20)
@@ -82,4 +74,9 @@ class Contact(models.Model):
     subject=models.CharField(max_length=255)
     message=models.TextField()
 
+class Admission(models.Model):
+    course_name=models.CharField(max_length=255)
+    admission_open=models.DateTimeField()
+    admission_close=models.DateTimeField()
+    admission_link=models.URLField((""), max_length=200)
 

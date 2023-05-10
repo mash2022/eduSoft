@@ -9,12 +9,35 @@
     <!-- ======= Breadcrumbs ======= -->
     <div class="breadcrumbs" data-aos="fade-in">
       <div class="container">
-        <h2>Pricing</h2>
-        <a href="" style="color: red">Admission</a>
-        <p>Est dolorum ut non facere possimus quibusdam eligendi voluptatem. Quia id aut similique quia voluptas sit quaerat debitis. Rerum omnis ipsam aperiam consequatur laboriosam nemo harum praesentium. </p>
+        <h2>ADMISSION</h2>
       </div>
     </div><!-- End Breadcrumbs -->
-
+<!--Admission table start-->
+<div class="container">
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Course name</th>
+      <th scope="col">Admission open</th>
+      <th scope="col">Admission close</th>
+      <th scope="col">Admission link</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for x in data %}
+    <tr>
+      <th scope="row">{{ x.id }}</th>
+      <td>{{ x.course_name }}</td>
+      <td>{{ x.admission_open }}</td>
+      <td>{{ x.admission_close}}</td>
+      <td><a href="">{{ x.admission_link}}</a></td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+</div>
+<!--Admission table end-->
     <!-- ======= Pricing Section ======= -->
     <section id="pricing" class="pricing">
       <div class="container" data-aos="fade-up">
