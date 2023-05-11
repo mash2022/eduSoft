@@ -16,8 +16,10 @@ def all_courses(request):
 def courses(request):
    myCourses = Course.objects.all()
    template=loader.get_template('courses.html')
+   course_count=Course.objects.all().count()
    context={
-      'course':myCourses
+      'course':myCourses,
+      'course_count':course_count,
    }
    return HttpResponse(template.render(context, request))
 
