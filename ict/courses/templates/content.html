@@ -95,7 +95,9 @@
           </div>
 
           <div class="col-lg-3 col-6 text-center">
-            <span data-purecounter-start="0" data-purecounter-end="64" data-purecounter-duration="1" class="purecounter"></span>
+            {% for x in course_data %}
+            <span data-purecounter-start="0" data-purecounter-end="{{ x.id }}" data-purecounter-duration="1" class="purecounter"></span>
+            {% endfor %}
             <p>Courses</p>
           </div>
 

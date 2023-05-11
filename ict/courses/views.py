@@ -74,9 +74,11 @@ def main(request):
   template = loader.get_template('main.html')
   data=Image.objects.all()
   notice_data=Notice.objects.all()
+  course_data=Course.objects.all()
   context={
      'data':data,
-     'notice_data':notice_data
+     'notice_data':notice_data,
+     'course_data':course_data,
   }
   return HttpResponse(template.render(context, request))
 
