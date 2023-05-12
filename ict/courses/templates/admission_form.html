@@ -1,6 +1,6 @@
 {% extends 'master.html' %}
 
-{% block title %}ADMISSION{% endblock title %}
+{% block title %}ADMISSION FORM{% endblock title %}
 
 {% block content %}
     {% include 'header.html' %}
@@ -9,35 +9,20 @@
     <!-- ======= Breadcrumbs ======= -->
     <div class="breadcrumbs" data-aos="fade-in">
       <div class="container">
-        <h2>ADMISSION</h2>
+        <h2>ADMISSION FORM</h2>
       </div>
     </div><!-- End Breadcrumbs -->
-<!--Admission table start-->
-<div class="container">
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Course name</th>
-      <th scope="col">Admission open</th>
-      <th scope="col">Admission close</th>
-      <th scope="col">Admission link</th>
-    </tr>
-  </thead>
-  <tbody>
-    {% for x in data %}
-    <tr>
-      <th scope="row">{{ x.id }}</th>
-      <td>{{ x.course_name }}</td>
-      <td>{{ x.admission_open }}</td>
-      <td>{{ x.admission_close}}</td>
-      <td><a href="{% url 'admission_form' %}">{{ x.admission_link}}</a></td>
-    </tr>
-    {% endfor %}
-  </tbody>
-</table>
-</div>
-<!--Admission table end-->
+    <!--Admission form start-->
+    <div class='container'>
+        <form action="{% url 'admission_submit' %}" method="POST" role="form">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <div class='text-center'>
+                <button class='btn btn-outline-success' type='submit'>Submit</button>
+            </div>
+        </form>
+    </div>
+    <!--Admission form end-->
     <!-- ======= Pricing Section ======= -->
     <section id="pricing" class="pricing">
       <div class="container" data-aos="fade-up">

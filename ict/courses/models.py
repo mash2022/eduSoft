@@ -80,3 +80,8 @@ class Admission(models.Model):
     admission_close=models.DateTimeField()
     admission_link=models.URLField((""), max_length=200)
 
+class AdmissionForm(models.Model):
+    student_name=models.CharField(max_length=255)
+    father_name=models.CharField(max_length=255)
+    date_of_birth=models.DateField()
+    edu_qualification=models.CharField(max_length=255)

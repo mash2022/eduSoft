@@ -2,7 +2,7 @@ from django.shortcuts import redirect, render
 from django.http import HttpResponse
 from django.template import loader
 from .models import *
-from .forms import ImageUploadForm, ContactForm
+from .forms import *
 
 # Create your views here.
 def all_courses(request):
@@ -126,3 +126,21 @@ def contactUpload(request):
    else:
       form=ContactForm()
       return HttpResponse(request, 'contact.html', {'form':ContactForm})
+
+def admission_form(request):
+   form=Admission_form()
+   context={
+      'form':form
+   }
+   template=loader.get_template('admission_form.html')
+   return HttpResponse(template.render(context, request))
+
+def admission_submit(request):
+   if request.method=='POST':
+      form=Admission_form(request.POST, request.FILES)
+      if form.is_valid():
+         form.save()
+         return redirect('admission_form')
+   else:
+      form=Admission_form()
+      return HttpResponse(request, 'admission_form.html', {'form':Admission_form})

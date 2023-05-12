@@ -33,3 +33,7 @@ admin.site.register(Notice, NoticeAdmin)
 class AdmissionAdmin(admin.ModelAdmin):
     list_display=['course_name','admission_open', 'admission_close','admission_link']
 admin.site.register(Admission, AdmissionAdmin)
+
+class AdmissionFormAdmin(admin.ModelAdmin):
+    list_display=['student_name', 'father_name', 'date_of_birth', 'edu_qualification']
+admin.site.register(AdmissionForm, AdmissionFormAdmin)
