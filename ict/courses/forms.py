@@ -33,3 +33,7 @@ class ContactForm(forms.ModelForm):
             'placeholder':'Message'
             })
         }
+
+    class AdmissionForm(forms.Form):
+        student_name=forms.CharField(label='Student name:', max_length=255)
+        student_age=forms.IntegerField(label='Student name:')
