@@ -1,6 +1,6 @@
 from django import forms
 from .models import *
-from django.forms import TextInput, EmailInput, Textarea, DateInput
+from django.forms import DateField, TextInput, EmailInput, Textarea
 
 class ImageUploadForm(forms.ModelForm):
     class Meta:
@@ -37,7 +37,7 @@ class ContactForm(forms.ModelForm):
 class Admission_form(forms.ModelForm):
     class Meta:
         model=AdmissionForm
-        fields=['student_name', 'father_name', 'date_of_birth', 'edu_qualification']
+        fields=['student_name','father_name','edu_qualification']
         widgets={
             'student_name':TextInput(attrs={
                 'class':'form-control required',
@@ -48,11 +48,6 @@ class Admission_form(forms.ModelForm):
                 'class':'form-control',
                 'style':'max_width: 50px;',
                 'placeholder':'Name of father'
-            }),
-            'date_of_birth':DateInput(attrs={
-                'class':'form-control',
-                'style':'max_width: 50px;',
-                'placeholder':'Date of birth'
             }),
             'edu_qualification':TextInput(attrs={
                 'class':'form-control',

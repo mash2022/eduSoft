@@ -140,8 +140,6 @@ def admission_submit(request):
       form=Admission_form(request.POST)
       if form.is_valid():
          form.save()
-         redirect('admission_form')
-         return HttpResponseRedirect('/Successfully done/')
-   else:
+         return redirect('admission_form')
       form=Admission_form()
       return render(request, 'admission_form.html', {'form':form})

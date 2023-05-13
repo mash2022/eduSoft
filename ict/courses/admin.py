@@ -35,5 +35,5 @@ class AdmissionAdmin(admin.ModelAdmin):
 admin.site.register(Admission, AdmissionAdmin)
 
 class AdmissionFormAdmin(admin.ModelAdmin):
-    list_display=['student_name', 'father_name', 'date_of_birth', 'edu_qualification']
+    list_display=['student_name', 'father_name','edu_qualification']
 admin.site.register(AdmissionForm, AdmissionFormAdmin)

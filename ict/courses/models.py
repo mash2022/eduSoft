@@ -83,5 +83,4 @@ class Admission(models.Model):
 class AdmissionForm(models.Model):
     student_name=models.CharField(max_length=255)
     father_name=models.CharField(max_length=255)
-    date_of_birth=models.DateField()
     edu_qualification=models.CharField(max_length=255)
