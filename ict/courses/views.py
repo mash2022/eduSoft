@@ -143,4 +143,4 @@ def admission_submit(request):
          return redirect('admission_form')
    else:
       form=Admission_form()
-      return HttpResponse(request, 'admission_form.html', {'form':Admission_form})
+      return HttpResponse(request, 'admission_form.html', {'form':form})
