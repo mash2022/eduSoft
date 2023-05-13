@@ -1,5 +1,5 @@
 from django.shortcuts import redirect, render
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
 from .models import *
 from .forms import *
@@ -137,10 +137,11 @@ def admission_form(request):
 
 def admission_submit(request):
    if request.method=='POST':
-      form=Admission_form(request.POST, request.FILES)
+      form=Admission_form(request.POST)
       if form.is_valid():
          form.save()
-         return redirect('admission_form')
+         redirect('admission_form')
+         return HttpResponseRedirect('/Successfully done/')
    else:
       form=Admission_form()
-      return HttpResponse(request, 'admission_form.html', {'form':form})
+      return render(request, 'admission_form.html', {'form':form})
