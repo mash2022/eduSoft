@@ -412,7 +412,7 @@ h6 {
 #hero {
   width: 100%;
   height: 80vh;
-  background: url("../img/hero-bg.jpg") top center;
+  background: url("../img/course-1.jpg") top center;
   background-size: cover;
   position: relative;
 }
@@ -1596,8 +1596,8 @@ section {
 }
 
 .marquee{
-  font-size: 30px;
-  font-weight: 800;
+  font-size: 10px;
+  font-weight: 400;
   color: rgb(113, 5, 236);
   font-family: sans-serif;
   }

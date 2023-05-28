@@ -46,7 +46,7 @@
 <!--carousel end-->
 
 <!-- ======= Hero Section ======= -->
-<!--
+
 <section id="hero" class="d-flex justify-content-center align-items-center">
   <div class="container position-relative" data-aos="zoom-in" data-aos-delay="100">
     <h1>Post Graduation Diploma,<br>Information and Communication Technology</h1>
@@ -54,34 +54,40 @@
     <a href="courses.html" class="btn-get-started">Get Started</a>
   </div>
 </section>
--->
 <!-- End Hero -->
+
   <main id="main">
-    {% for x in notice_data %}
-      <div class="marquee"><marquee>{{ x.notice_title }}</marquee></div> 
-    {% endfor %} 
-<!-- ======= About Section ======= -->
-    <section id="about" class="about">
-      <div class="container" data-aos="fade-up">
-        <div class="row">
-          <div class="col-lg-6 order-1 order-lg-2" data-aos="fade-left" data-aos-delay="100">
-            <img src="assets/img/about.jpg" class="img-fluid" alt="">
+    <!--Marquee start-->
+    <div class="container">
+      <div class="row">
+        {% for x in notice_data %}
+          <div class="col">
+            <p class="marquee"><marquee>{{ x.notice_title }}</marquee></p>
           </div>
-          <div class="col-lg-6 pt-4 pt-lg-0 order-2 order-lg-1 content">
-            <h3>NOTICE</h3>
-            {% for i in notice_data %}
-            <p class="fst-bold">
-              {{ i.notice_title }}
-            </p>
-            <img src="{{ i.notice_image.url }}" class="img-fluid" alt="notice_image">
-            <ul>
-                <li><i class="bi bi-check-circle"></i>{{ i.notice_details }}</li>
-              {% endfor %}
-            </ul>
-          </div>
-        </div>
+        {% endfor %} 
       </div>
-    </section><!-- End About Section -->
+    </div>
+    <!--Marquee end-->
+ 
+    <!--Notice start-->
+    <div class="container">
+      <div><h3 class="text-center">NOTICE</h3></div>
+      <div class="row">
+        {% for i in notice_data %}
+        <div class="col">
+          <p class="fst-bold">
+            {{ i.notice_title }}
+          </p>
+          <img src="{{ i.notice_image.url }}" class="img-fluid" alt="notice_image">
+          <ul>
+            <li><i class="bi bi-check-circle"></i>{{ i.notice_details }}</li>
+          </ul>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    <!--Notice end-->
+
 
     <!-- ======= Counts Section ======= -->
     <section id="counts" class="counts section-bg">
