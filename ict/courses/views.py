@@ -75,10 +75,16 @@ def main(request):
   data=Image.objects.all()
   notice_data=Notice.objects.all()
   course_data=Course.objects.all()
+  course_count=Course.objects.all().count()
+  event_count=Event.objects.all().count()
+  trainer_count=Teacher.objects.all().count()
   context={
      'data':data,
      'notice_data':notice_data,
      'course_data':course_data,
+     'course_count':course_count,
+     'event_count':event_count,
+     'trainer_count':trainer_count
   }
   return HttpResponse(template.render(context, request))
 
