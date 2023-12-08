@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils.safestring import mark_safe
-from PIL import Image as Im
+#from django import Image as Im
+import image as Im
 
 # Create your models here.
 class Course(models.Model):
