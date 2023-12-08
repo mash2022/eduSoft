@@ -108,7 +108,7 @@ def image(request):
    context={
       'data':data
    }
-   return render(request, main.html, context)
+   return render(request, 'main.html', context)
 
 def uploadImage(request):
    if request.method=='POST':
