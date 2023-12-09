@@ -70,21 +70,23 @@ def details(request, id):
   }
   return HttpResponse(template.render(context, request))
 
-def main(request):
-  template = loader.get_template('main.html')
+def index(request):
+  template = loader.get_template('index.html')
   data=Image.objects.all()
-  notice_data=Notice.objects.all()
+  notice_data=Notice.objects.all().reverse()[:2]
   course_data=Course.objects.all()
   course_count=Course.objects.all().count()
   event_count=Event.objects.all().count()
   trainer_count=Teacher.objects.all().count()
+  custom_settings_data=CustomSettings.objects.all()
   context={
      'data':data,
      'notice_data':notice_data,
      'course_data':course_data,
      'course_count':course_count,
      'event_count':event_count,
-     'trainer_count':trainer_count
+     'trainer_count':trainer_count,
+     'custom_settings':custom_settings_data
   }
   return HttpResponse(template.render(context, request))
 

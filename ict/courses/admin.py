@@ -37,3 +37,7 @@ admin.site.register(Admission, AdmissionAdmin)
 class AdmissionFormAdmin(admin.ModelAdmin):
     list_display=['student_name', 'father_name','edu_qualification']
 admin.site.register(AdmissionForm, AdmissionFormAdmin)
+
+class CustomSettingsAdmin(admin.ModelAdmin):
+    list_display=['image_tag','logo', 'institute_name', 'address']
+admin.site.register(CustomSettings, CustomSettingsAdmin)

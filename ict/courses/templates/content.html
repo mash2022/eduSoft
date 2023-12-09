@@ -1,71 +1,40 @@
 {% load static %}
 <!--carousel-->
-<div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
-  <div class="carousel-indicators">
-    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
-    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
-  </div>
+<div class="container-fluid m-2 p-3">
+  <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    </div>
 
-  <div class="carousel-inner">
-    {% for x in data  %} 
-    <div class="carousel-item {% if forloop.first %} active {% endif %}" data-bs-interval="10000">     
-      <img src="{{ x.photo.url }}" class="d-block w-100 h-30" alt="...">
-      <div class="carousel-caption d-none d-md-block">
-        <h5>{{ x.title }}</h5>
-        <p>{{ x.details }}</p>
+    <div class="carousel-inner">
+      {% for x in data  %} 
+      <div class="carousel-item {% if forloop.first %} active {% endif %}" data-bs-interval="10000">     
+        <img src="{{ x.photo.url }}" style="height: 800px; width: 1600px;" alt="Picture">
+        <div class="carousel-caption d-none d-md-block">
+          <h5>{{ x.title }}</h5>
+          <p>{{ x.details }}</p>
+        </div>
       </div>
+      {% endfor %}
     </div>
-    {% endfor %}
-    
-    <!--
-    <div class="carousel-item" data-bs-interval="2000">
-      <img src="/static/assets/img/NUR06934.JPG" class="d-block w-100" alt="...">
-      <div class="carousel-caption d-none d-md-block">
-        <h5>Second slide label</h5>
-        <p>Some representative placeholder content for the second slide.</p>
-      </div>
-    </div>
-    <div class="carousel-item">
-      <img src="/static/assets/img/course-1.jpg" class="d-block w-100" alt="...">
-      <div class="carousel-caption d-none d-md-block">
-        <h5>Third slide label</h5>
-        <p>Some representative placeholder content for the third slide.</p>
-      </div>
-    </div>-->
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
   </div>
-  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Previous</span>
-  </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Next</span>
-  </button>
 </div>
-<!--carousel end-->
-
-<!-- ======= Hero Section ======= -->
-
-<section id="hero" class="d-flex justify-content-center align-items-center">
-  <div class="container position-relative" data-aos="zoom-in" data-aos-delay="100">
-    <h1>Post Graduation Diploma,<br>Information and Communication Technology</h1>
-    <h2>Bangladesh Agricultural University, Mymensingh</h2>
-    <a href="courses.html" class="btn-get-started">Get Started</a>
-  </div>
-</section>
-<!-- End Hero -->
-
   <main id="main">
     <!--Marquee start-->
     <div class="container">
-      <div class="row">
-        {% for x in notice_data %}
-          <div class="col">
-            <p class="marquee"><marquee>{{ x.notice_title }}</marquee></p>
-          </div>
-        {% endfor %} 
-      </div>
+      {% for x in notice_data %}
+              <p class="marquee"><marquee>{{ x.notice_title }}</marquee></p>
+      {% endfor %}
     </div>
     <!--Marquee end-->
  

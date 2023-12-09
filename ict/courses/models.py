@@ -1,7 +1,7 @@
 from django.db import models
 from django.utils.safestring import mark_safe
-#from django import Image as Im
-import image as Im
+from PIL import Image as Im
+
 
 # Create your models here.
 class Course(models.Model):
@@ -85,3 +85,12 @@ class AdmissionForm(models.Model):
     student_name=models.CharField(max_length=255)
     father_name=models.CharField(max_length=255)
     edu_qualification=models.CharField(max_length=255)
+
+class CustomSettings(models.Model):
+    logo=models.ImageField(upload_to='logo')
+    institute_name=models.CharField(max_length=255)
+    address=models.CharField(max_length=255)
+    mobile_number=models.CharField(max_length=50)
+
+    def image_tag(self):
+        return mark_safe('<img src="/../../media/%s" width="150" height="150"/>' % (self.logo))
