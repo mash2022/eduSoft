@@ -94,3 +94,32 @@ class CustomSettings(models.Model):
 
     def image_tag(self):
         return mark_safe('<img src="/../../media/%s" width="150" height="150"/>' % (self.logo))
+
+edu_choice=(('SSC', 'ssc'), ('HSC', 'hsc'), ('HONOURS', 'Honours'), ('MASTERS', 'Masters'))
+religion=(('ISLAM', 'Islam'), ('HINDU', 'Hindu'), ('CHRITIAN', 'Christian'), ('OTHERS', 'Others'))
+pharmacy=(('YES', 'Yes'), ('No', 'No'))
+class RmpLmf(models.Model):
+    student_name_ban=models.CharField(max_length=150)
+    student_name_eng=models.CharField(max_length=150)
+    father_or_hus_name_ban=models.CharField(max_length=150)
+    father_or_hus_name_eng=models.CharField(max_length=150)
+    village_ban=models.CharField(max_length=100)
+    village_eng=models.CharField(max_length=100)
+    post_office_ban=models.CharField(max_length=100)
+    post_office_eng=models.CharField(max_length=100)
+    upozila_ban=models.CharField(max_length=100)
+    upozila_eng=models.CharField(max_length=100)
+    district_ban=models.CharField(max_length=100)
+    district_eng=models.CharField(max_length=100)
+    religion=models.CharField(max_length=10, choices=religion, default='ISLAM')
+    nid=models.IntegerField(null=False)
+    mobile=models.CharField(max_length=20)
+    nationality=models.CharField(max_length=100)
+    blood_group=models.CharField(max_length=20)
+    marrietal_status=models.CharField(max_length=50)
+    age=models.CharField(max_length=50)
+    edu_qualification=models.CharField(max_length=10, choices=edu_choice, default='SSC')
+    is_pharmacy_have=models.CharField(max_length=10, choices=pharmacy, default='YES' )
+    pharmacy_name_address=models.CharField(max_length=255)
+    past_training_name=models.CharField(max_length=100)
+

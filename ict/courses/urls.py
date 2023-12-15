@@ -16,5 +16,6 @@ urlpatterns = [
     path('uploadImage/', views.uploadImage, name='uploadImage'),
     path('contactUpload/', views.contactUpload, name='contactUpload'),
     path('admission_form/',views.admission_form, name='admission_form'),
+    path('rmpLmf/',views.RmpLmfView.as_view(), name='rmpLmf'),
     path('admission_submit/', views.admission_submit, name='admission_submit'),
 ]

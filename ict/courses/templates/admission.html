@@ -32,6 +32,7 @@
       <td>{{ x.admission_open }}</td>
       <td>{{ x.admission_close}}</td>
       <td><a href="{% url 'admission_form' %}">{{ x.admission_link}}</a></td>
+      <td><a href="{% url 'rmpLmf' %}">{{ x.admission_link}}</a></td>
     </tr>
     {% endfor %}
   </tbody>

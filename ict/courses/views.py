@@ -3,6 +3,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
 from .models import *
 from .forms import *
+from django.views.generic.edit import CreateView
 
 # Create your views here.
 def all_courses(request):
@@ -149,3 +150,9 @@ def admission_submit(request):
          return redirect('admission_form')
       form=Admission_form()
       return render(request, 'admission_form.html', {'form':form})
+
+class RmpLmfView(CreateView):
+   model=RmpLmf
+   form_class=RmpLmfForm
+   template_name='admission_form_2.html'
+   success_url='success.html'

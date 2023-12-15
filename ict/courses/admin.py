@@ -41,3 +41,7 @@ admin.site.register(AdmissionForm, AdmissionFormAdmin)
 class CustomSettingsAdmin(admin.ModelAdmin):
     list_display=['image_tag','logo', 'institute_name', 'address']
 admin.site.register(CustomSettings, CustomSettingsAdmin)
+
+class RmpLmfAdmin(admin.ModelAdmin):
+    list_display=['student_name_ban', 'student_name_eng', 'father_or_hus_name_ban', 'father_or_hus_name_eng', 'village_ban', 'village_eng', 'post_office_ban', 'post_office_eng', 'upozila_ban', 'upozila_eng', 'district_ban', 'district_eng', 'religion', 'nid', 'mobile', 'nationality', 'blood_group', 'marrietal_status', 'age', 'edu_qualification', 'is_pharmacy_have', 'pharmacy_name_address', 'past_training_name']
+admin.site.register(RmpLmf, RmpLmfAdmin)
