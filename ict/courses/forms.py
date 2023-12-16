@@ -1,6 +1,6 @@
 from django import forms
 from .models import *
-from django.forms import ModelForm, DateField, TextInput, EmailInput, Textarea
+from django.forms import ModelForm, DateField, TextInput,EmailInput, Textarea
 
 class ImageUploadForm(forms.ModelForm):
     class Meta:
@@ -59,22 +59,85 @@ class Admission_form(forms.ModelForm):
 class RmpLmfForm(ModelForm):
     class Meta:
         model=RmpLmf
-        fields=['student_name_ban', 'student_name_eng', 'father_or_hus_name_ban', 'father_or_hus_name_eng', 'village_ban', 'village_eng', 'post_office_ban', 'post_office_eng', 'upozila_ban', 'upozila_eng', 'district_ban', 'district_eng', 'religion', 'nid', 'mobile', 'nationality', 'blood_group', 'marrietal_status', 'age', 'edu_qualification', 'is_pharmacy_have', 'pharmacy_name_address', 'past_training_name']  
+        fields='__all__'
+        #fields=['student_name_ban', 'student_name_eng', 'father_or_hus_name_ban', 'father_or_hus_name_eng', 'village_ban', 'village_eng', 'post_office_ban', 'post_office_eng', 'upozila_ban', 'upozila_eng', 'district_ban', 'district_eng', 'religion', 'nid', 'mobile', 'nationality', 'blood_group', 'marrietal_status', 'age', 'edu_qualification', 'is_pharmacy_have', 'pharmacy_name_address', 'past_training_name']  
         widgets={
             'student_name_ban':TextInput(attrs={
-                'class':'form-control',
                 'style':'max_width: 300px;',
-                'placeholder':'Name'}),
+                'placeholder':'নাম (বাংলায়)'}),
             'student_name_eng':TextInput(attrs={
-                'class':'form-control',
                 'style':'max_width: 300px;',
-                'placeholder':'Name'}),
+                'placeholder':'Name (English)'}),
             'father_or_hus_name_ban':TextInput(attrs={
-                'class':'form-control required',
+                'class':'form-control',
                 'style':'max_width: 50px;',
-                'placeholder':'Name'}),
+                'placeholder':'পিতা/স্বামীর নাম'}),
             'father_or_hus_name_eng':TextInput(attrs={
-                'class':'form-control required',
+                'class':'form-control',
                 'style':'max_width: 50px;',
-                'placeholder':'Name'}),
+                'placeholder':'Father/Husband name'}),
+            'village_ban':TextInput(attrs={
+                'class':'form-control',
+                'style':'max_width: 50px;',
+                'placeholder':'গ্রাম'}),
+            'village_eng':TextInput(attrs={
+                'class':'form-control',
+                'style':'max_width: 50px;',
+                'placeholder':'Village'}),
+            'post_office_ban':TextInput(attrs={
+                'class':'form-control',
+                'style':'max_width: 50px;',
+                'placeholder':'ডাকঘর'}),
+            'post_office_eng':TextInput(attrs={
+                'class':'form-control',
+                'style':'max_width: 50px;',
+                'placeholder':'Post office'}),
+            'upozila_ban':TextInput(attrs={
+                'class':'form-control',
+                'style':'max_width: 50px;',
+                'placeholder':'উপজেলা'}),
+            'upozila_eng':TextInput(attrs={
+                'class':'form-control',
+                'style':'max_width: 50px;',
+                'placeholder':'Upozilla'}),
+            'district_ban':TextInput(attrs={
+                'class':'form-control',
+                'style':'max_width: 50px;',
+                'placeholder':'জেলা'}),
+            'district_eng':TextInput(attrs={
+                'class':'form-control',
+                'style':'max_width: 50px;',
+                'placeholder':'District'}),
+            'religion':TextInput(attrs={
+                'class':'form-control',
+                'style':'max_width: 50px;',
+                'placeholder':'Religion'}),
+            'nid':TextInput(attrs={
+                'class':'form-control',
+                'style':'max_width: 50px;',
+                'placeholder':'NID'}),
+            'mobile':TextInput(attrs={
+                'class':'form-control',
+                'style':'max_width: 50px;',
+                'placeholder':'Mobile number'}),
+            'nationality':TextInput(attrs={
+                'class':'form-control',
+                'style':'max_width: 50px;',
+                'placeholder':'Nationality'}),
+            'blood_group':TextInput(attrs={
+                'class':'form-control',
+                'style':'max_width: 50px;',
+                'placeholder':'Blood group'}),
+            'age':TextInput(attrs={
+                'class':'form-control',
+                'style':'max_width: 50px;',
+                'placeholder':'Age'}),
+            'pharmacy_name_address':TextInput(attrs={
+                'class':'form-control',
+                'style':'max_width: 50px;',
+                'placeholder':'If yes, Pharmacy name and address'}),
+            'past_training_name':TextInput(attrs={
+                'class':'form-control',
+                'style':'max_width: 50px;',}),
+                
         }      
