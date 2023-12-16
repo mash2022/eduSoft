@@ -156,3 +156,4 @@ class RmpLmfView(CreateView):
    form_class=RmpLmfForm
    template_name='admission_form_2.html'
    success_url='success.html'
+   
