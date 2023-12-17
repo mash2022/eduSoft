@@ -13,125 +13,138 @@
       </div>
     </div><!-- End Breadcrumbs -->
     <!--Admission form start-->
-
-<div class="container">
-    <form class="row m-2" action="{% url 'rmpLmf' %}" method="POST">
-      {% csrf_token %}
-      <div class="row p-2">
-        <label class="col-sm-2 col-form-label">Student name:</label>
-        <div class="col-md-5">
-          {{ form.student_name_ban }}
-        </div>
-        <div class="col-md-5">
-          {{ form.student_name_eng }}
-        </div>
-      </div>
-      <div class="row p-2">
-        <label class="col-sm-2 col-form-label">Father/Husband name:</label>
-        <div class="col-md-5">
-          {{ form.father_or_hus_name_ban }}
-        </div>
-        <div class="col-md-5">
-          {{ form.father_or_hus_name_eng }}
-        </div>
-      </div>
-      <div class="row p-2">
-        <label class="col-sm-2 col-form-label">Village:</label>
-        <div class="col-md-5">
-          {{ form.village_ban }}
-        </div>
-        <div class="col-md-5">
-          {{ form.village_eng }}
-        </div>
-      </div>
-      <div class="row p-2">
-        <label class="col-sm-2 col-form-label">Post office:</label>
-        <div class="col-md-5">
-          {{ form.post_office_ban }}
-        </div>
-        <div class="col-md-5">
-          {{ form.post_office_eng }}
-        </div>
-      </div>
-      <div class="row p-2">
-        <label class="col-sm-2 col-form-label">Upozilla:</label>
-        <div class="col-md-5">
-          {{ form.upozila_ban }}
-        </div>
-        <div class="col-md-5">
-          {{ form.upozila_eng }}
-        </div>
-      </div>
-      <div class="row p-2">
-        <label class="col-sm-2 col-form-label">Upozilla:</label>
-        <div class="col-md-5">
-          {{ form.district_ban }}
-        </div>
-        <div class="col-md-5">
-          {{ form.district_eng }}
-        </div>
-      </div>
-      <div class="row p-2">
-        <label class="col-sm-2 col-form-label">Religion:</label>
-        <div class="col-md-4">
-          {{ form.religion }}
-        </div>
-        <label class="col-sm-2 col-form-label">NID:</label>
-        <div class="col-md-4">
-          {{ form.nid }}
-        </div>
-        </div>
-        <div class="row p-2">
-          <label class="col-sm-2 col-form-label">Mobile:</label>
-          <div class="col-md-4">
-            {{ form.mobile }}
+    <div class='container'>
+      <form action="{% url 'admission_submit_2' %}" method="POST" role="form">
+          {% csrf_token %}
+          {{ form.as_p }}
+          <div class='text-center'>
+              <button class='btn btn-outline-success' type='submit' value='submit'>Submit</button>
           </div>
-          <label class="col-sm-2 col-form-label">Nationality:</label>
-          <div class="col-md-4">
-            {{ form.nationality }}
-          </div>
-        </div>
-        <div class="row p-2">
-          <label class="col-sm-2 col-form-label">Blood group:</label>
-          <div class="col-md-4">
-            {{ form.blood_group }}
-          </div>
-          <label class="col-sm-2 col-form-label">Age:</label>
-          <div class="col-md-4">
-            {{ form.age }}
-          </div>
-        </div>
-        <div class="row p-2">
-          <label class="col-sm-2 col-form-label">Marrietal status:</label>
-          <div class="col-md-4">
-            {{ form.marrietal_status }}
-          </div>
-          <label class="col-sm-2 col-form-label">Educational qualification:</label>
-          <div class="col-md-4">
-            {{ form.edu_qualification }}
-          </div>
-        </div>
-        <div class="row p-2">
-          <label class="col-sm-2 col-form-label">Have any Pharmacy:</label>
-          <div class="col-md-4">
-            {{ form.is_pharmacy_have }}
-          </div>
-          <label class="col-sm-2 col-form-label">Pharmacy name:</label>
-          <div class="col-md-4">
-            {{ form.pharmacy_name_address }}
-          </div>
-          <label class="col-sm-2 col-form-label">Past training:</label>
-          <div class="col-md-10 p-2">
-            {{ form.past_training_name }}
-          </div>
-          <label class="col-sm-2 col-form-label">Student picture:</label>
-          <div class="col-md-10 p-2">
-            {{ form.student_image }}
-          </div>
-        </div>
-      <div class="form-group"><input class="btn btn-primary" type="submit" value="Submit"></div>
-    </form>
+      </form>
   </div>
+
+<!--
+    <div class="container">
+        <form class="row m-2" action="{% url 'admission_submit_2' %}" method="POST" role="form">
+          {% csrf_token %}
+          <div class="row p-2">
+            <label class="col-sm-2 col-form-label">Student name:</label>
+            <div class="col-md-5">
+              {{ form.student_name_ban }}
+            </div>
+            <div class="col-md-5">
+              {{ form.student_name_eng }}
+            </div>
+          </div>
+          <div class="row p-2">
+            <label class="col-sm-2 col-form-label">Father/Husband name:</label>
+            <div class="col-md-5">
+              {{ form.father_or_hus_name_ban }}
+            </div>
+            <div class="col-md-5">
+              {{ form.father_or_hus_name_eng }}
+            </div>
+          </div>
+          <div class="row p-2">
+            <label class="col-sm-2 col-form-label">Village:</label>
+            <div class="col-md-5">
+              {{ form.village_ban }}
+            </div>
+            <div class="col-md-5">
+              {{ form.village_eng }}
+            </div>
+          </div>
+          <div class="row p-2">
+            <label class="col-sm-2 col-form-label">Post office:</label>
+            <div class="col-md-5">
+              {{ form.post_office_ban }}
+            </div>
+            <div class="col-md-5">
+              {{ form.post_office_eng }}
+            </div>
+          </div>
+          <div class="row p-2">
+            <label class="col-sm-2 col-form-label">Upozilla:</label>
+            <div class="col-md-5">
+              {{ form.upozila_ban }}
+            </div>
+            <div class="col-md-5">
+              {{ form.upozila_eng }}
+            </div>
+          </div>
+          <div class="row p-2">
+            <label class="col-sm-2 col-form-label">Upozilla:</label>
+            <div class="col-md-5">
+              {{ form.district_ban }}
+            </div>
+            <div class="col-md-5">
+              {{ form.district_eng }}
+            </div>
+          </div>
+          <div class="row p-2">
+            <label class="col-sm-2 col-form-label">Religion:</label>
+            <div class="col-md-4">
+              {{ form.religion }}
+            </div>
+            <label class="col-sm-2 col-form-label">NID:</label>
+            <div class="col-md-4">
+              {{ form.nid }}
+            </div>
+            </div>
+            <div class="row p-2">
+              <label class="col-sm-2 col-form-label">Mobile:</label>
+              <div class="col-md-4">
+                {{ form.mobile }}
+              </div>
+              <label class="col-sm-2 col-form-label">Nationality:</label>
+              <div class="col-md-4">
+                {{ form.nationality }}
+              </div>
+            </div>
+            <div class="row p-2">
+              <label class="col-sm-2 col-form-label">Blood group:</label>
+              <div class="col-md-4">
+                {{ form.blood_group }}
+              </div>
+              <label class="col-sm-2 col-form-label">Age:</label>
+              <div class="col-md-4">
+                {{ form.age }}
+              </div>
+            </div>
+            <div class="row p-2">
+              <label class="col-sm-2 col-form-label">Marrietal status:</label>
+              <div class="col-md-4">
+                {{ form.marrietal_status }}
+              </div>
+              <label class="col-sm-2 col-form-label">Educational qualification:</label>
+              <div class="col-md-4">
+                {{ form.edu_qualification }}
+              </div>
+            </div>
+            <div class="row p-2">
+              <label class="col-sm-2 col-form-label">Have any Pharmacy:</label>
+              <div class="col-md-4">
+                {{ form.is_pharmacy_have }}
+              </div>
+              <label class="col-sm-2 col-form-label">Pharmacy name:</label>
+              <div class="col-md-4">
+                {{ form.pharmacy_name_address }}
+              </div>
+              <label class="col-sm-2 col-form-label">Past training:</label>
+              <div class="col-md-10 p-2">
+                {{ form.past_training_name }}
+              </div>
+              <label class="col-sm-2 col-form-label">Student picture:</label>
+              <div class="col-md-10 p-2">
+                {{ form.student_image }}
+              </div>
+            </div>
+            <div class='text-center'>
+              <button class='btn btn-outline-success' type='submit' value='submit'>Submit</button>
+          </div>
+        </form>
+    </div>
+-->
    <!--Admission form end-->
     <!-- ======= Pricing Section ======= -->
     <section id="pricing" class="pricing">

@@ -151,9 +151,40 @@ def admission_submit(request):
       form=Admission_form()
       return render(request, 'admission_form.html', {'form':form})
 
-class RmpLmfView(CreateView):
-   model=RmpLmf
-   form_class=RmpLmfForm
-   template_name='admission_form_2.html'
-   success_url='success.html'
+def rmpLmf(request):
+   form=RmpLmfForm()
+   context={
+      'form':form
+   }
+   template=loader.get_template('admission_form_2.html')
+   return HttpResponse(template.render(context, request))
+
+def admission_submit_2(request):
+   if request.method == 'POST':
+      form = RmpLmfForm(request.POST)
+      if form.is_valid():
+         form.save()
+         return redirect('rmpLmf')
+         
+      else:
+         return HttpResponse('Something wrong')
+   form=RmpLmfForm()
+   return render(request, 'admission_form_2.html', {'form':form})
+
+def student_list(request):
+    student_list=AdmissionForm.objects.all()
+    template=loader.get_template('student_list.html')
+    context={
+        'student_list':student_list
+    }
+    return HttpResponse(template.render(context, request))
+
+def student_details(request, id):
+  student_details = AdmissionForm.objects.get(id=id)
+  template = loader.get_template('student_details.html')
+  context = {
+    'student_details': student_details,
+  }
+  return HttpResponse(template.render(context, request))
+
    

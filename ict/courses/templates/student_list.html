@@ -1,0 +1,82 @@
+{% extends 'master.html' %}
+
+{% block title %}Student List{% endblock title %}
+
+{% block content %}
+    {% include 'header.html' %}
+
+
+
+    <main id="main" data-aos="fade-in">
+        <!-- ======= Breadcrumbs ======= -->
+        <div class="breadcrumbs">
+          <div class="container">
+            <h2>Student List</h2>
+          </div>
+        </div>
+        <!-- End Breadcrumbs -->
+        <div class="container p-1">
+            <div class= "row">
+                <div class="col-sm">
+                    <table id="table_db" class="table table-bordered table-hover" style="width: 100%">
+                        <thead>
+                            <tr>
+                                <th scope="col">Regi. No.</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Father/Husband</th>
+                                <th scope="col">Mobile number</th>
+                                <th scope="col">Details</th>
+
+                            </tr>
+                        </thead>
+                        <tbody >
+                            {% for x in student_list %}
+                            <tr>
+                                <td> {{ x.id }}</td>
+                                <td> {{ x.student_name_eng }}</td>
+                                <td> {{ x.father_or_hus_name_eng }}</td>
+                                <td> {{ x.mobile }} </td>
+                                <td> <a href="{% url 'student_details' x.id %}">See details</a> </td>
+
+                            </tr>
+                        </tbody>
+                            {% endfor %}
+                    </table>
+                </div>
+            </div>
+        </div>
+         
+        <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap4.min.js"></script>
+         
+        <script>
+            $(document).ready(function () {
+            $('#table_db').DataTable( {
+                "paging": true,
+                "searching": true,
+                "autoWidth": false,
+                "ordering": true,
+                "columnDefs": [
+                    {"width": "50px", "targets": 0},
+                    {"width": "250px", "targets": 1},
+                ],
+            }
+            );
+        } );
+        </script>
+         
+        <!-- Added this script to see if the page would recognize the items within block -->
+        <script>
+        window.onload = function() {
+            if (window.jQuery) { 
+                // jQuery is loaded 
+                alert("successfull !");
+            } else {
+                // jQuery is not loaded
+                alert("Doesn't Work");
+            }
+        }
+         </script>     
+          <!-- End #main -->
+    {% include 'footer.html' %}
+  {% endblock content %}
