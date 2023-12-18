@@ -79,6 +79,7 @@ def index(request):
   course_count=Course.objects.all().count()
   event_count=Event.objects.all().count()
   trainer_count=Teacher.objects.all().count()
+  student_count=AdmissionForm.objects.all().count()
   custom_settings_data=CustomSettings.objects.all()
   context={
      'data':data,
@@ -87,6 +88,7 @@ def index(request):
      'course_count':course_count,
      'event_count':event_count,
      'trainer_count':trainer_count,
+     'student_count':student_count,
      'custom_settings':custom_settings_data
   }
   return HttpResponse(template.render(context, request))

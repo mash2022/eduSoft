@@ -31,12 +31,12 @@ class NoticeAdmin(admin.ModelAdmin):
 admin.site.register(Notice, NoticeAdmin)
 
 class AdmissionAdmin(admin.ModelAdmin):
-    list_display=['course_name','admission_open', 'admission_close','admission_link']
+    list_display=['course_name','admission_open', 'admission_close']
 admin.site.register(Admission, AdmissionAdmin)
 
 class AdmissionFormAdmin(admin.ModelAdmin):
     #list_display=['student_name', 'father_name','edu_qualification']
-    list_display=['student_name_ban', 'student_name_eng', 'father_or_hus_name_ban', 'father_or_hus_name_eng', 'village_ban', 'village_eng', 'post_office_ban', 'post_office_eng', 'upozila_ban', 'upozila_eng', 'district_ban', 'district_eng', 'religion', 'nid', 'mobile', 'nationality', 'blood_group', 'marrietal_status', 'age', 'edu_qualification', 'is_pharmacy_have', 'pharmacy_name_address', 'past_training_name', 'student_image']
+    list_display=['student_name_ban', 'student_name_eng', 'father_or_hus_name_ban', 'father_or_hus_name_eng', 'village_ban', 'village_eng', 'post_office_ban', 'post_office_eng', 'upozila_ban', 'upozila_eng', 'district_ban', 'district_eng', 'religion', 'nid', 'mobile', 'nationality', 'blood_group', 'marrietal_status', 'age', 'edu_qualification', 'is_pharmacy_have', 'pharmacy_name_address', 'past_training_name', 'student_image', 'admission_date']
 admin.site.register(AdmissionForm, AdmissionFormAdmin)
 
 class CustomSettingsAdmin(admin.ModelAdmin):
