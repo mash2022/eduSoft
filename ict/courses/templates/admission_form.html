@@ -17,9 +17,7 @@
         <form action="{% url 'admission_submit' %}" method="POST" role="form">
             {% csrf_token %}
             {{ form.as_p }}
-            <div class='text-center'>
                 <button class='btn btn-outline-success' type='submit' value='submit'>Submit</button>
-            </div>
         </form>
     </div>
     <!--Admission form end-->

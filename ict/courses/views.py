@@ -3,7 +3,6 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
 from .models import *
 from .forms import *
-from django.views.generic.edit import CreateView
 
 # Create your views here.
 def all_courses(request):
@@ -145,33 +144,16 @@ def admission_form(request):
    return HttpResponse(template.render(context, request))
 
 def admission_submit(request):
-   if request.method=='POST':
-      form=Admission_form(request.POST)
+   form=admission_form  
+   if request.method == 'POST':
+      form=Admission_form(request.POST, request.FILES)
       if form.is_valid():
          form.save()
          return redirect('admission_form')
-      form=Admission_form()
-      return render(request, 'admission_form.html', {'form':form})
-
-def rmpLmf(request):
-   form=RmpLmfForm()
-   context={
-      'form':form
-   }
-   template=loader.get_template('admission_form_2.html')
-   return HttpResponse(template.render(context, request))
-
-def admission_submit_2(request):
-   if request.method == 'POST':
-      form = RmpLmfForm(request.POST)
-      if form.is_valid():
-         form.save()
-         return redirect('rmpLmf')
-         
       else:
-         return HttpResponse('Something wrong')
-   form=RmpLmfForm()
-   return render(request, 'admission_form_2.html', {'form':form})
+         return HttpResponse('Something wrong!')
+   context={'form':form}
+   return render(request, 'admission_form.html', context)
 
 def student_list(request):
     student_list=AdmissionForm.objects.all()
