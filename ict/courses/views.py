@@ -171,4 +171,20 @@ def student_details(request, id):
   }
   return HttpResponse(template.render(context, request))
 
-   
+def studentInfo(request):
+   form=StudentInfoForm()
+   context={
+      'form':form
+   }
+   template=loader.get_template('studentInfo.html')
+   return HttpResponse(template.render(context, request))
+  
+def studentInfoUpload(request):
+   if request.method=='POST':
+      form=StudentInfoForm(request.POST, request.FILES)
+      if form.is_valid():
+         form.save()
+         return redirect('studentInfo')
+   else:
+      form=StudentInfoForm()
+      return HttpResponse(request, 'studentInfo.html', {'form':StudentInfoForm})

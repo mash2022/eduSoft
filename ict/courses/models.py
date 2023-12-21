@@ -121,3 +121,10 @@ class CustomSettings(models.Model):
     def image_tag(self):
         return mark_safe('<img src="/../../media/%s" width="150" height="150"/>' % (self.logo))
 
+class StudentInfo(models.Model):
+    name=models.CharField(max_length=50)
+    fatherName=models.CharField(max_length=50)
+    mobile=models.CharField(max_length=50)
+    email=models.EmailField()
+    courseName=models.CharField(max_length=255)
+    address=models.TextField()

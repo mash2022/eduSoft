@@ -116,4 +116,41 @@ class Admission_form(forms.ModelForm):
                 'class':'form-control',
                 'style':'max_width: 50px;',}),               
         } 
-   
+
+class StudentInfoForm(forms.ModelForm):
+    class Meta:
+        model=StudentInfo
+        fields=['name', 'fatherName', 'mobile', 'email', 'courseName', 'address']
+        widgets={
+            'name':TextInput(attrs={
+            'class':'form-control required',
+            'style':'max_width:50px;',
+            'placeholder':'Your name'            
+            }),
+            'fatherName':TextInput(attrs={
+            'class':'form-control required',
+            'style':'max_width:50px;',
+            'placeholder':'Your name'            
+            }),
+            'mobile':TextInput(attrs={
+            'class':'form-control required',
+            'style':'max_width:50px;',
+            'placeholder':'Your name'            
+            }),
+            'email':EmailInput(attrs={
+            'class':'form-control',
+            'style':'max_width:300px;',
+            'placeholder':'Your email'            
+            }),
+            'courseName':TextInput(attrs={
+            'class':'form-control',
+            'style':'max_width:300px;',
+            'placeholder':'Subject'
+            }),
+            'address':Textarea(attrs={
+            'class':'form-control',
+            'style':'row:5;',
+            'placeholder':'Message'
+            })
+        }
+
