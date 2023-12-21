@@ -21,4 +21,7 @@ urlpatterns = [
     path('student_list/student_details/<int:id>', views.student_details, name='student_details'),
     path('studentInfo/', views.studentInfo, name='studentInfo'),
     path('studentInfoUpload/', views.studentInfoUpload, name='studentInfoUpload'),
+    path('paymentAdmission/', views.paymentAdmission, name='paymentAdmission'),
+    path('paymentAdmissionSubmit/', views.paymentAdmissionSubmit, name='paymentAdmissionSubmit'),
+
 ]

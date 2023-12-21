@@ -154,3 +154,20 @@ class StudentInfoForm(forms.ModelForm):
             })
         }
 
+class PaymentAdmissionForm(forms.ModelForm):
+    class Meta:
+        model=PaymentAdmission
+        fields=['paymentAgent','taxInId']
+        widgets={
+            'paymentAgent':TextInput(attrs={
+            'class':'form-control',
+            'style':'max_width:300px;',
+            'placeholder':'Your email'            
+            }),
+            'taxInId':TextInput(attrs={
+            'class':'form-control',
+            'style':'max_width:300px;',
+            'placeholder':'Subject'
+            }),
+        }
+

@@ -1,5 +1,5 @@
 from django.shortcuts import redirect, render
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse
 from django.template import loader
 from .models import *
 from .forms import *
@@ -184,7 +184,25 @@ def studentInfoUpload(request):
       form=StudentInfoForm(request.POST, request.FILES)
       if form.is_valid():
          form.save()
-         return redirect('studentInfo')
+         return redirect('paymentAdmission')
    else:
       form=StudentInfoForm()
       return HttpResponse(request, 'studentInfo.html', {'form':StudentInfoForm})
+   
+def paymentAdmission(request):
+   form=PaymentAdmissionForm()
+   context={
+      'form':form
+   }
+   template=loader.get_template('paymentAdmission.html')
+   return HttpResponse(template.render(context, request))
+
+def paymentAdmissionSubmit(request):
+   if request.method=='POST':
+      form=PaymentAdmissionForm(request.POST, request.FILES)
+      if form.is_valid():
+         form.save()
+         return redirect('paymentAdmission')
+   else:
+      form=PaymentAdmissionForm()
+      return HttpResponse(request, 'paymentAdmission.html', {'form':StudentInfoForm})   

@@ -45,3 +45,7 @@ admin.site.register(CustomSettings, CustomSettingsAdmin)
 class StudentInfoAdmin(admin.ModelAdmin):
     list_display=['name', 'fatherName', 'mobile', 'email', 'courseName', 'address']
 admin.site.register(StudentInfo, StudentInfoAdmin)
+
+class PaymentAdmissionAdmin(admin.ModelAdmin):
+    list_display=['studentInfo', 'paymentAgent', 'taxInId', 'date']
+admin.site.register(PaymentAdmission, PaymentAdmissionAdmin)

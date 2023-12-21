@@ -128,3 +128,10 @@ class StudentInfo(models.Model):
     email=models.EmailField()
     courseName=models.CharField(max_length=255)
     address=models.TextField()
+
+class PaymentAdmission(models.Model):
+    studentInfo=models.ForeignKey(StudentInfo, on_delete=models.CASCADE)
+    paymentAgent=models.CharField(max_length=15)
+    taxInId=models.CharField(max_length=30)
+    date=models.DateField(auto_now=True)
+    
