@@ -144,7 +144,7 @@ def admission_form(request):
    return HttpResponse(template.render(context, request))
 
 def admission_submit(request):
-   form=admission_form  
+   form=Admission_form()  
    if request.method == 'POST':
       form=Admission_form(request.POST, request.FILES)
       if form.is_valid():

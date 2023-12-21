@@ -81,10 +81,10 @@ class Admission(models.Model):
     admission_close=models.DateTimeField()
 
 class AdmissionForm(models.Model):
-    edu_choice=(('SSC', 'ssc'), ('HSC', 'hsc'), ('HONOURS', 'Honours'), ('MASTERS', 'Masters'))
-    religion=(('ISLAM', 'Islam'), ('HINDU', 'Hindu'), ('CHRITIAN', 'Christian'), ('OTHERS', 'Others'))
-    pharmacy=(('YES', 'Yes'), ('No', 'No'))
-    marrietal_status=(('MARRIED', 'Married'), ('UNMARRIED', 'Unmarried'))
+    edu_choice=(('SSC', 'SSC'), ('HSC', 'HSC'), ('HONOURS', 'HONOURS'), ('MASTERS', 'MASTERS'))
+    religion=(('ISLAM', 'ISLAM'), ('OTHERS', 'OTHERS'))
+    pharmacy=(('YES', 'YES'), ('NO', 'NO'))
+    marrietal_status=(('MARRIED', 'MARRIED'), ('UNMARRIED', 'UNMARRIED'))
 
     student_name_ban=models.CharField('Student name:', max_length=70)
     student_name_eng=models.CharField('', max_length=70)
