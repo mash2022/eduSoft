@@ -130,7 +130,7 @@ class StudentInfo(models.Model):
     address=models.TextField()
 
 class PaymentAdmission(models.Model):
-    studentInfo=models.ForeignKey(StudentInfo, on_delete=models.CASCADE)
+    studentInfo=models.ForeignKey(StudentInfo, blank=False, null=True, on_delete=models.CASCADE)
     paymentAgent=models.CharField(max_length=15)
     taxInId=models.CharField(max_length=30)
     date=models.DateField(auto_now=True)

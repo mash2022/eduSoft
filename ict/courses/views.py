@@ -202,7 +202,25 @@ def paymentAdmissionSubmit(request):
       form=PaymentAdmissionForm(request.POST, request.FILES)
       if form.is_valid():
          form.save()
-         return redirect('paymentAdmission')
+         return redirect('studentProfile')
    else:
       form=PaymentAdmissionForm()
-      return HttpResponse(request, 'paymentAdmission.html', {'form':StudentInfoForm})   
+      return HttpResponse(request, 'paymentAdmission.html', {'form':StudentInfoForm}) 
+
+def studentProfile(request):
+   data=StudentInfo.objects.all()
+   context={
+      'data':data,
+   }
+   template=loader.get_template('studentProfile.html')
+   return HttpResponse(template.render(context, request))
+
+def signUp(request):
+   if request.method=='POST':
+      form=SignUpForm(request.POST, request.FILES)
+      if form.is_valid():
+         form.save()
+         return redirect('login')
+   else:
+      form=SignUpForm()
+      return HttpResponse(request, 'signUp.html', {'form':SignUpForm}) 

@@ -23,5 +23,7 @@ urlpatterns = [
     path('studentInfoUpload/', views.studentInfoUpload, name='studentInfoUpload'),
     path('paymentAdmission/', views.paymentAdmission, name='paymentAdmission'),
     path('paymentAdmissionSubmit/', views.paymentAdmissionSubmit, name='paymentAdmissionSubmit'),
+    path('studentProfile', views.studentProfile, name='studentProfile'),
+    path('signUp', views.signUp, name='signUp'),
 
 ]
