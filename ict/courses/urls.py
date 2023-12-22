@@ -26,4 +26,5 @@ urlpatterns = [
     path('studentProfile/', views.studentProfile, name='studentProfile'),
     # path('signUp', views.signUp, name='signUp'),
     path('pdf/', views.getPdf, name='pdf'),
+    path('generate_pdf_file/', views.generate_pdf_file, name='generate_pdf_file'),
 ]

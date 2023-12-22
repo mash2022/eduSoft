@@ -226,7 +226,25 @@ def getPdf(request):
    p.save()
    return response
 
-
+def generate_pdf_file():
+    from io import BytesIO
+    buffer = BytesIO()
+    p = canvas.Canvas(buffer)
+    # Create a PDF document
+    books = StudentInfo.objects.all()
+    p.drawString(100, 750, "Student Info")
+    y = 700
+    for x in StudentInfo:
+        p.drawString(100, y, f"Title: {x.name}")
+        p.drawString(100, y - 20, f"Author: {x.fatherName}")
+        p.drawString(100, y - 40, f"Year: {x.mobile}")
+        y -= 60
+ 
+    p.showPage()
+    p.save()
+ 
+    buffer.seek(0)
+    return buffer
 
 # def signUp(request):
 #    if request.method=='POST':
