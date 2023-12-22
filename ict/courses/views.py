@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from django.template import loader
 from .models import *
 from .forms import *
+from reportlab.pdfgen import canvas
 
 # Create your views here.
 def all_courses(request):
@@ -215,12 +216,24 @@ def studentProfile(request):
    template=loader.get_template('studentProfile.html')
    return HttpResponse(template.render(context, request))
 
-def signUp(request):
-   if request.method=='POST':
-      form=SignUpForm(request.POST, request.FILES)
-      if form.is_valid():
-         form.save()
-         return redirect('login')
-   else:
-      form=SignUpForm()
-      return HttpResponse(request, 'signUp.html', {'form':SignUpForm}) 
+def getPdf(request):
+   response=HttpResponse(content_type='application/pdf')
+   response['Content-deposition']='attachment; filename="file.pdf"'
+   p=canvas.Canvas(response)
+   p.setFont('Times-Roman', 55)
+   p.drawString(100, 700, 'ahasan')
+   p.showPage()
+   p.save()
+   return response
+
+
+
+# def signUp(request):
+#    if request.method=='POST':
+#       form=SignUpForm(request.POST, request.FILES)
+#       if form.is_valid():
+#          form.save()
+#          return redirect('login')
+#    else:
+#       form=SignUpForm()
+#       return HttpResponse(request, 'signUp.html', {'form':SignUpForm}) 
