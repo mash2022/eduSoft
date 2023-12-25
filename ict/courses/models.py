@@ -137,7 +137,7 @@ class PaymentAdmission(models.Model):
 
 class MyVideo(models.Model):
     title = models.CharField(max_length=20)
-    video = models.FileField(upload_to='videos', null=True, verbose_name='')
+    video = models.FileField(upload_to='videos/', null=True, verbose_name='')
     details= models.CharField(max_length=255)
 
     def __str__(self):
