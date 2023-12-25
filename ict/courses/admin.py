@@ -49,3 +49,7 @@ admin.site.register(StudentInfo, StudentInfoAdmin)
 class PaymentAdmissionAdmin(admin.ModelAdmin):
     list_display=['studentInfo', 'paymentAgent', 'taxInId', 'date']
 admin.site.register(PaymentAdmission, PaymentAdmissionAdmin)
+
+class MyVideoAdmin(admin.ModelAdmin):
+    list_display = ["title","video","details"]
+admin.site.register(MyVideo, MyVideoAdmin)

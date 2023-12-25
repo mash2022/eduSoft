@@ -6,9 +6,7 @@
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-
-  <!-- <title>{{custom_settings.name}}</title> -->
-  <title>brmpa</title>
+  <title></title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -42,12 +40,15 @@
   <!-- ======= Header ======= -->
   <div class="container-fluid my-3">
     <header id="header" class="fixed-top">
-      <div class="container-fluid bg-success p-1">
-        {% for x in custom_settings %}
-        <h2 class="text-white text-center">{{ x.institute_name }}</h2>
-        {% endfor %}
+      <div class="row container-fluid bg-success p-1">
+        <div class="col-9 p-2">
+          <h2 class="text-white text-center">বাংলাদেশ গ্রাম ডাক্তার কল্যাণ সমিতি</h2>
+        </div>
+        <div class="col-3 p-1">
+          <p class="text-white text-center">১৬/১, পাদ্রি মিশন রোড, আলিয়া মাদ্রাসা মোড়, ময়মনসিংহ মোবাইল: ০১৭২৫ ১৩৫৬১৫</p>
+        </div>
       </div>
-      <div class="container d-flex align-items-center">
+      <div class="container d-flex align-items-center p-1">
         <h1 class="logo me-auto">
           <a href="index.html">
             {% for x in custom_settings %}

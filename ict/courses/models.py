@@ -134,4 +134,22 @@ class PaymentAdmission(models.Model):
     paymentAgent=models.CharField(max_length=15)
     taxInId=models.CharField(max_length=30)
     date=models.DateField(auto_now=True)
+
+class MyVideo(models.Model):
+    title = models.CharField(max_length=20)
+    video = models.FileField(upload_to='videos', null=True, verbose_name='')
+    details= models.CharField(max_length=255)
+
+    def __str__(self):
+        return self.title + ": " + str(self.video)
     
+    # def video_tag(self):
+    #     return mark_safe('<img src="/../../media/%s" width="150" height="150" />' % (self.video))
+
+    # def save(self):
+    #     super().save()
+    #     img=Im.open(self.photo.path)
+    #     if img.height>300 or img.width>150:
+    #         output_size=(300, 300)
+    #         img.thumbnail(output_size)
+    #         img.save(self.photo.path)   

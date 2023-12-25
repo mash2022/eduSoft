@@ -79,8 +79,10 @@ def index(request):
   course_count=Course.objects.all().count()
   event_count=Event.objects.all().count()
   trainer_count=Teacher.objects.all().count()
+  trainer_data=Teacher.objects.all()
   student_count=AdmissionForm.objects.all().count()
   custom_settings_data=CustomSettings.objects.all()
+  my_video=MyVideo.objects.all()
   context={
      'data':data,
      'notice_data':notice_data,
@@ -88,8 +90,10 @@ def index(request):
      'course_count':course_count,
      'event_count':event_count,
      'trainer_count':trainer_count,
+     'trainer_data':trainer_data,
      'student_count':student_count,
-     'custom_settings':custom_settings_data
+     'custom_settings':custom_settings_data,
+     'my_video':my_video,
   }
   return HttpResponse(template.render(context, request))
 
