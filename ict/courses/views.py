@@ -217,12 +217,12 @@ def studentProfile(request):
    context={
       'data':data,
    }
-   template=loader.get_template('studentProfile.html')
+   template=loader.get_template('student_signup.html')
    return HttpResponse(template.render(context, request))
 
 def getPdf(request):
    response=HttpResponse(content_type='application/pdf')
-   response['Content-deposition']='attachment; filename="file.pdf"'
+   response['Content-deposition'] = 'attachment; filename="file.pdf"'
    p=canvas.Canvas(response)
    p.setFont('Times-Roman', 55)
    p.drawString(100, 700, 'ahasan')
