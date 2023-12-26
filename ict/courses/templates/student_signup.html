@@ -1,0 +1,58 @@
+{% extends 'master.html' %}
+
+{% block title %}Student Signup{% endblock title %}
+
+{% block content %}
+    {% include 'header.html' %}
+
+    <main id="main" data-aos="fade-in">
+        <!-- ======= Breadcrumbs ======= -->
+        <div class="breadcrumbs">
+          <div class="container">
+            <h2>Student Signup</h2>
+          </div>
+        </div>
+        <!-- End Breadcrumbs -->
+        <div class="alert alert-primary text-center" role="alert">
+            <h4>Welcome to BRMPA</h4>
+            <p>Please signup to see your profile</p>
+            <a href="" class="get-started-btn">Sign up</a>
+        </div>
+
+
+
+         
+        <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap4.min.js"></script>
+ 
+        <script>
+            $(document).ready(function () {
+            $('#table_db').DataTable( {
+                "paging": true,
+                "searching": true,
+                "autoWidth": false,
+                "ordering": true,
+                "columnDefs": [
+                    {"width": "50px", "targets": 0},
+                    {"width": "250px", "targets": 1},
+                ],
+            }
+            );
+        } );
+        </script>
+ 
+        <!-- Added this script to see if the page would recognize the items within block -->
+        <script>
+        window.onload = function() {
+            if (window.jQuery) { 
+                // jQuery is loaded 
+                alert("successfull !");
+            } else {
+                // jQuery is not loaded
+                alert("Doesn't Work");
+            }
+        }
+        </script>     
+    </main><!-- End #main -->
+    {% include 'footer.html' %}
+{% endblock content %}
