@@ -17,15 +17,19 @@ def all_courses(request):
 def courses(request):
    myCourses = Course.objects.all()
    template=loader.get_template('courses.html')
+   custom_settings=CustomSettings.objects.all()
    context={
       'course':myCourses,
+      'custom_settings':custom_settings,
    }
    return HttpResponse(template.render(context, request))
 
 def teachers(request):
    teacher=Teacher.objects.all()
+   custom_settings=CustomSettings.objects.all()
    context={
-      'teacher':teacher
+      'teacher':teacher,
+      'custom_settings':custom_settings,
    }
    template=loader.get_template('teachers.html')
    return HttpResponse(template.render(context, request))
@@ -33,16 +37,20 @@ def teachers(request):
 def about(request):
    template = loader.get_template('about.html')
    about = About.objects.all()
+   custom_settings=CustomSettings.objects.all()
    context = {
-      'about': about
+      'about': about,
+      'custom_settings':custom_settings,
    }
    return HttpResponse(template.render(context, request))
 
 def events(request):
    #template=loader.get_template('events.html')
    data = Image.objects.all()
+   custom_settings=CustomSettings.objects.all()
    context = {
-      'data' : data
+      'data' : data,
+      'custom_settings':custom_settings,
    }
    #return HttpResponse(template.render(context, request))
    return render(request,"events.html", context)
@@ -50,15 +58,19 @@ def events(request):
 def admission(request):
    template=loader.get_template('admission.html')
    data=Admission.objects.all()
+   custom_settings=CustomSettings.objects.all()
    context={
-      'data':data
+      'data':data,
+      'custom_settings':custom_settings,
    }
    return HttpResponse(template.render(context, request))
 
 def contact(request):
    form=ContactForm()
+   custom_settings=CustomSettings.objects.all()
    context={
-      'form':form
+      'form':form,
+      'custom_settings':custom_settings,
    }
    template=loader.get_template('contact.html')
    return HttpResponse(template.render(context, request))
