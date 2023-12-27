@@ -37,10 +37,18 @@ def teachers(request):
 def about(request):
    template = loader.get_template('about.html')
    about = About.objects.all()
-   custom_settings=CustomSettings.objects.all()
+   custom_settings=CustomSettings.objects.all()[1:]
+   course_count=Course.objects.all().count()
+   event_count=Event.objects.all().count()
+   trainer_count=Teacher.objects.all().count()
+   student_count=AdmissionForm.objects.all().count()
    context = {
       'about': about,
       'custom_settings':custom_settings,
+      'course_count':course_count,
+      'event_count':event_count,
+      'trainer_count':trainer_count,
+      'student_count':student_count,
    }
    return HttpResponse(template.render(context, request))
 
@@ -93,7 +101,7 @@ def index(request):
   trainer_count=Teacher.objects.all().count()
   trainer_data=Teacher.objects.all()
   student_count=AdmissionForm.objects.all().count()
-  custom_settings_data=CustomSettings.objects.all()
+  custom_settings_data=CustomSettings.objects.all()[1:]
   my_video=MyVideo.objects.all()
   context={
      'data':data,
