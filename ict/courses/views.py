@@ -9,24 +9,26 @@ from reportlab.pdfgen import canvas
 def all_courses(request):
     myCourses=Course.objects.all()
     template=loader.get_template('courses.html')
+    custom_settings = CustomSettings.objects.all()[1:]
     context={
-        'course':myCourses
+        'course':myCourses,
+        'custom_settings': custom_settings,
     }
     return HttpResponse(template.render(context, request))
 
 def courses(request):
    myCourses = Course.objects.all()
    template=loader.get_template('courses.html')
-   custom_settings=CustomSettings.objects.all()
+   custom_settings = CustomSettings.objects.all()[1:]
    context={
       'course':myCourses,
-      'custom_settings':custom_settings,
+      'custom_settings': custom_settings,
    }
    return HttpResponse(template.render(context, request))
 
 def teachers(request):
    teacher=Teacher.objects.all()
-   custom_settings=CustomSettings.objects.all()
+   custom_settings=CustomSettings.objects.all()[1:]
    context={
       'teacher':teacher,
       'custom_settings':custom_settings,
@@ -55,7 +57,7 @@ def about(request):
 def events(request):
    #template=loader.get_template('events.html')
    data = Image.objects.all()
-   custom_settings=CustomSettings.objects.all()
+   custom_settings = CustomSettings.objects.all()[1:]
    context = {
       'data' : data,
       'custom_settings':custom_settings,
@@ -66,7 +68,7 @@ def events(request):
 def admission(request):
    template=loader.get_template('admission.html')
    data=Admission.objects.all()
-   custom_settings=CustomSettings.objects.all()
+   custom_settings = CustomSettings.objects.all()[1:]
    context={
       'data':data,
       'custom_settings':custom_settings,
@@ -75,7 +77,7 @@ def admission(request):
 
 def contact(request):
    form=ContactForm()
-   custom_settings=CustomSettings.objects.all()
+   custom_settings=CustomSettings.objects.all()[1:]
    context={
       'form':form,
       'custom_settings':custom_settings,
