@@ -5,6 +5,9 @@ from PIL import Image as Im
 
 # Create your models here.
 class Course(models.Model):
+    class Meta:
+        verbose_name_plural='courses'
+
     course_name=models.CharField(max_length=255)
     course_duration=models.CharField(max_length=255)
     course_code=models.IntegerField(null=True)
@@ -117,6 +120,7 @@ class CustomSettings(models.Model):
     institute_name=models.CharField(max_length=255)
     address=models.CharField(max_length=255)
     mobile_number=models.CharField(max_length=50)
+    email=models.EmailField()
 
     def image_tag(self):
         return mark_safe('<img src="/../../media/%s" width="150" height="150"/>' % (self.logo))
@@ -126,7 +130,15 @@ class StudentInfo(models.Model):
     fatherName=models.CharField(max_length=50)
     mobile=models.CharField(max_length=50)
     email=models.EmailField()
-    courseName=models.CharField(max_length=255)
+    #courseName=models.CharField(max_length=255)
+    #courseName=models.ForeignKey(Course, on_delete=models.CASCADE)
+    courseName = models.ForeignKey(
+        to=Course,
+        related_name="courses",
+        on_delete=models.SET_NULL,
+        blank=True,
+        null=True,
+    )
     address=models.TextField()
 
 class PaymentAdmission(models.Model):
