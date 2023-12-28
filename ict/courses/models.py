@@ -127,12 +127,12 @@ class CustomSettings(models.Model):
 
 class StudentInfo(models.Model):
     name=models.CharField(max_length=50)
-    fatherName=models.CharField(max_length=50)
+    father_name=models.CharField(max_length=50)
     mobile=models.CharField(max_length=50)
     email=models.EmailField()
     #courseName=models.CharField(max_length=255)
     #courseName=models.ForeignKey(Course, on_delete=models.CASCADE)
-    courseName = models.ForeignKey(
+    course_name = models.ForeignKey(
         to=Course,
         related_name="courses",
         on_delete=models.SET_NULL,

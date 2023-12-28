@@ -121,7 +121,7 @@ class StudentInfoForm(forms.ModelForm):
     #courseName=forms.ModelChoiceField(queryset=Course.objects.all(course_name='course_name'), empty_label='Selectionnez une categorie', label="", help_text="", widget=forms.Select(attrs={'class': 'form-control'}))
     class Meta:
         model=StudentInfo
-        fields=['name', 'fatherName', 'mobile', 'email', 'courseName', 'address']
+        fields=['name', 'father_name', 'mobile', 'email', 'course_name', 'address']
         courseName = forms.ModelMultipleChoiceField(
         queryset=Course.objects.all(), widget=forms.CheckboxSelectMultiple
          )
@@ -131,7 +131,7 @@ class StudentInfoForm(forms.ModelForm):
             'style':'max_width:50px;',
             'placeholder':'Your name'            
             }),
-            'fatherName':TextInput(attrs={
+            'father_name':TextInput(attrs={
             'class':'form-control required',
             'style':'max_width:50px;',
             'placeholder':'Father name'            
@@ -146,11 +146,11 @@ class StudentInfoForm(forms.ModelForm):
             'style':'max_width:300px;',
             'placeholder':'email'            
             }),
-            'courseName':TextInput(attrs={
-            'class':'form-control',
-            'style':'max_width:300px;',
-            'placeholder':'Subject'
-            }),
+            # 'courseName':TextInput(attrs={
+            # 'class':'form-control',
+            # 'style':'max_width:300px;',
+            # 'placeholder':'Subject'
+            # }),
             'address':Textarea(attrs={
             'class':'form-control',
             'style':'row:5;',
