@@ -134,7 +134,7 @@ class StudentInfo(models.Model):
     #courseName=models.ForeignKey(Course, on_delete=models.CASCADE)
     courseName = models.ForeignKey(
         to=Course,
-        related_name="posts",
+        related_name="courses",
         on_delete=models.SET_NULL,
         blank=True,
         null=True,
