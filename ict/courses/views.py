@@ -200,8 +200,10 @@ def student_details(request, id):
 
 def studentInfo(request):
    form=StudentInfoForm()
+   custom_settings=CustomSettings.objects.all()[1:]
    context={
-      'form':form
+      'form':form,
+      'custom_settings':custom_settings,
    }
    template=loader.get_template('studentInfo.html')
    return HttpResponse(template.render(context, request))
