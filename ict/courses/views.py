@@ -55,19 +55,19 @@ def about(request):
    return HttpResponse(template.render(context, request))
 
 def events(request):
-   #template=loader.get_template('events.html')
-   data = Image.objects.all()
+   template=loader.get_template('events.html')
+   event_data = Event.objects.all()
    custom_settings = CustomSettings.objects.all()[1:]
    context = {
-      'data' : data,
+      'event_data' : event_data,
       'custom_settings':custom_settings,
    }
-   #return HttpResponse(template.render(context, request))
-   return render(request,"events.html", context)
+   return HttpResponse(template.render(context, request))
+   #return render(request,"events.html", context)
 
-def admission(request):
-   template=loader.get_template('admission.html')
-   data=Admission.objects.all()
+def admission_notice(request):
+   template=loader.get_template('admission_notice.html')
+   data=AdmissionNotice.objects.all()
    custom_settings = CustomSettings.objects.all()[1:]
    context={
       'data':data,
@@ -102,7 +102,7 @@ def index(request):
   event_count=Event.objects.all().count()
   trainer_count=Teacher.objects.all().count()
   trainer_data=Teacher.objects.all()
-  student_count=AdmissionForm.objects.all().count()
+  student_count=StudentInfo.objects.all().count()
   custom_settings_data=CustomSettings.objects.all()[1:]
   my_video=MyVideo.objects.all()
   context={
@@ -162,7 +162,7 @@ def contactUpload(request):
       form=ContactForm()
       return HttpResponse(request, 'contact.html', {'form':ContactForm})
 
-def admission_form(request):
+# def admission_form(request):
    form=Admission_form()
    context={
       'form':form
@@ -170,7 +170,7 @@ def admission_form(request):
    template=loader.get_template('admission_form.html')
    return HttpResponse(template.render(context, request))
 
-def admission_submit(request):
+# def admission_submit(request):
    form=Admission_form()  
    if request.method == 'POST':
       form=Admission_form(request.POST, request.FILES)
@@ -183,7 +183,7 @@ def admission_submit(request):
    return render(request, 'admission_form.html', context)
 
 def student_list(request):
-    student_list=AdmissionForm.objects.all()
+    student_list=StudentInfo.objects.all()
     template=loader.get_template('student_list.html')
     context={
         'student_list':student_list
@@ -191,7 +191,7 @@ def student_list(request):
     return HttpResponse(template.render(context, request))
 
 def student_details(request, id):
-  student_details = AdmissionForm.objects.get(id=id)
+  student_details = StudentInfo.objects.get(id=id)
   template = loader.get_template('student_details.html')
   context = {
     'student_details': student_details,
@@ -283,3 +283,9 @@ def generate_pdf_file():
 #    else:
 #       form=SignUpForm()
 #       return HttpResponse(request, 'signUp.html', {'form':SignUpForm}) 
+def circular(request):
+   circular_data=Circular.objects.all()
+   context={
+      'circular_data':circular_data
+   }
+   return render(request, 'circular.html', context)

@@ -53,6 +53,8 @@ class Teacher(models.Model):
 class Event(models.Model):
     title = models.CharField(max_length=20)
     photo = models.ImageField(upload_to='pics')
+    event_date=models.DateField(null=True)
+    description=models.TextField(max_length=255, null=True)
 
 class Image(models.Model):
     title = models.CharField(max_length=20)
@@ -84,42 +86,42 @@ class Contact(models.Model):
     subject=models.CharField(max_length=255)
     message=models.TextField()
 
-class Admission(models.Model):
+class AdmissionNotice(models.Model):
     course_name=models.CharField(max_length=255)
     admission_open=models.DateTimeField()
     admission_close=models.DateTimeField()
 
-class AdmissionForm(models.Model):
-    edu_choice=(('SSC', 'SSC'), ('HSC', 'HSC'), ('HONOURS', 'HONOURS'), ('MASTERS', 'MASTERS'))
-    religion=(('ISLAM', 'ISLAM'), ('OTHERS', 'OTHERS'))
-    pharmacy=(('YES', 'YES'), ('NO', 'NO'))
-    marrietal_status=(('MARRIED', 'MARRIED'), ('UNMARRIED', 'UNMARRIED'))
+# class AdmissionForm(models.Model):
+    # edu_choice=(('SSC', 'SSC'), ('HSC', 'HSC'), ('HONOURS', 'HONOURS'), ('MASTERS', 'MASTERS'))
+    # religion=(('ISLAM', 'ISLAM'), ('OTHERS', 'OTHERS'))
+    # pharmacy=(('YES', 'YES'), ('NO', 'NO'))
+    # marrietal_status=(('MARRIED', 'MARRIED'), ('UNMARRIED', 'UNMARRIED'))
 
-    student_name_ban=models.CharField('Student name:', max_length=70)
-    student_name_eng=models.CharField('', max_length=70)
-    father_or_hus_name_ban=models.CharField('Father/Husband name:',max_length=70)
-    father_or_hus_name_eng=models.CharField('', max_length=70)
-    village_ban=models.CharField('Village:',max_length=50)
-    village_eng=models.CharField('', max_length=50)
-    post_office_ban=models.CharField('Post office:', max_length=50)
-    post_office_eng=models.CharField('', max_length=50)
-    upozila_ban=models.CharField('Upazilla:', max_length=50)
-    upozila_eng=models.CharField('', max_length=50)
-    district_ban=models.CharField('District:', max_length=50)
-    district_eng=models.CharField('', max_length=50)
-    religion=models.CharField('Religion:', max_length=10, choices=religion, default='ISLAM')
-    nid=models.CharField('National ID no.:', max_length=30)
-    mobile=models.CharField('Mobile number:', max_length=20)
-    nationality=models.CharField('Nationality:', max_length=50)
-    blood_group=models.CharField('Blood group:', max_length=20)
-    marrietal_status=models.CharField('Marrital status:', max_length=50, choices=marrietal_status)
-    age=models.CharField('Age:', max_length=50)
-    edu_qualification=models.CharField('Educational qualification:', max_length=10, choices=edu_choice)
-    is_pharmacy_have=models.CharField('Have any Pharmacy:', max_length=10, choices=pharmacy)
-    pharmacy_name_address=models.CharField('Pharmacy name and address:', max_length=200)
-    past_training_name=models.CharField('Have any training:', max_length=100)
-    student_image=models.ImageField(upload_to='student_pic')
-    admission_date=models.DateField(auto_now=True)
+    # student_name_ban=models.CharField('Student name:', max_length=70)
+    # student_name_eng=models.CharField('', max_length=70)
+    # father_or_hus_name_ban=models.CharField('Father/Husband name:',max_length=70)
+    # father_or_hus_name_eng=models.CharField('', max_length=70)
+    # village_ban=models.CharField('Village:',max_length=50)
+    # village_eng=models.CharField('', max_length=50)
+    # post_office_ban=models.CharField('Post office:', max_length=50)
+    # post_office_eng=models.CharField('', max_length=50)
+    # upozila_ban=models.CharField('Upazilla:', max_length=50)
+    # upozila_eng=models.CharField('', max_length=50)
+    # district_ban=models.CharField('District:', max_length=50)
+    # district_eng=models.CharField('', max_length=50)
+    # religion=models.CharField('Religion:', max_length=10, choices=religion, default='ISLAM')
+    # nid=models.CharField('National ID no.:', max_length=30)
+    # mobile=models.CharField('Mobile number:', max_length=20)
+    # nationality=models.CharField('Nationality:', max_length=50)
+    # blood_group=models.CharField('Blood group:', max_length=20)
+    # marrietal_status=models.CharField('Marrital status:', max_length=50, choices=marrietal_status)
+    # age=models.CharField('Age:', max_length=50)
+    # edu_qualification=models.CharField('Educational qualification:', max_length=10, choices=edu_choice)
+    # is_pharmacy_have=models.CharField('Have any Pharmacy:', max_length=10, choices=pharmacy)
+    # pharmacy_name_address=models.CharField('Pharmacy name and address:', max_length=200)
+    # past_training_name=models.CharField('Have any training:', max_length=100)
+    # student_image=models.ImageField(upload_to='student_pic')
+    # admission_date=models.DateField(auto_now=True)
 
 class CustomSettings(models.Model):
     logo=models.ImageField(upload_to='logo')
@@ -171,3 +173,19 @@ class MyVideo(models.Model):
     #         output_size=(300, 300)
     #         img.thumbnail(output_size)
     #         img.save(self.photo.path)   
+
+class Circular(models.Model):
+    title = models.CharField(max_length=20)
+    circular = models.ImageField(upload_to='circulars')
+    details= models.CharField(max_length=255)
+
+    def image_tag(self):
+        return mark_safe('<img src="/../../media/%s" width="150" height="150" />' % (self.circular))
+
+    def save(self):
+        super().save()
+        img=Im.open(self.circular.path)
+        if img.height>300 or img.width>150:
+            output_size=(300, 300)
+            img.thumbnail(output_size)
+            img.save(self.circular.path)
