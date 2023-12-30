@@ -41,7 +41,9 @@
   <div class="container-fluid p-3">
     <header id="header" class="fixed-top">
       <div class="row container-fluid bg-success">
-          <h4 class="text-white text-center">Bangladesh Rural Medical Practioners Association</h4>
+          {% for x in custom_settings %}
+            <h4 class="text-white text-center">{{ x.institute_name }}</h4>
+          {% endfor %}
       </div>
       <div class="container d-flex align-items-center p-1">
         <h1 class="logo me-auto">

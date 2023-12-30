@@ -13,12 +13,18 @@ class Course(models.Model):
     course_code=models.IntegerField(null=True)
     course_credit=models.IntegerField(null=True)
     course_image=models.ImageField(upload_to='pics')
+    total_cost=models.FloatField(null=True)
+    description=models.TextField(max_length=255, null=True)
+    #trainer_image=models.ImageField(upload_to='trainer_pics', null=True)
 
     def __str__(self):
         return f"{self.course_name} {self.course_duration}"
     
     def image_tag(self):
         return mark_safe('<img src="/../../media/%s" width="150" height="150" />' % (self.course_image))
+    
+    def image_tag_2(self):
+        return mark_safe('<img src="/../../media/%s" width="150" height="150" />' % (self.trainer_image))
 
 class Notice(models.Model):
     notice_title=models.CharField(max_length=255)
@@ -66,7 +72,7 @@ class Image(models.Model):
 
 class About(models.Model):
     title=models.CharField(max_length=255)
-    description=models.TextField(max_length=255)
+    description=models.TextField(max_length=4000)
     aboutImage=models.ImageField(upload_to='pics')
 
     def image_tag(self):

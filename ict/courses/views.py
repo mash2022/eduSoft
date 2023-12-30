@@ -7,21 +7,21 @@ from reportlab.pdfgen import canvas
 
 # Create your views here.
 def all_courses(request):
-    myCourses=Course.objects.all()
+    my_courses=Course.objects.all()
     template=loader.get_template('courses.html')
     custom_settings = CustomSettings.objects.all()[1:]
     context={
-        'course':myCourses,
+        'course':my_courses,
         'custom_settings': custom_settings,
     }
     return HttpResponse(template.render(context, request))
 
 def courses(request):
-   myCourses = Course.objects.all()
+   my_courses = Course.objects.all()
    template=loader.get_template('courses.html')
    custom_settings = CustomSettings.objects.all()[1:]
    context={
-      'course':myCourses,
+      'course':my_courses,
       'custom_settings': custom_settings,
    }
    return HttpResponse(template.render(context, request))
