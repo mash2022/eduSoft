@@ -22,7 +22,6 @@ class Teacher(models.Model):
 class Course(models.Model):
     class Meta:
         verbose_name_plural='courses'
-
     course_name=models.CharField(max_length=255)
     course_duration=models.CharField(max_length=255)
     course_code=models.IntegerField(null=True)
@@ -114,15 +113,19 @@ class StudentInfo(models.Model):
         null=True,
     )
     address=models.TextField()
+    def __str__(self):
+        return f'{self.name}|{self.father_name}'
 
 class PaymentAdmission(models.Model):
-    studentInfo=models.ForeignKey(StudentInfo, blank=False, null=True, on_delete=models.CASCADE)
     paymentAgent=models.CharField(max_length=15)
     taxInId=models.CharField(max_length=30)
     date=models.DateField(auto_now=True)
+    name=models.ForeignKey(StudentInfo, blank=False, null=True, on_delete=models.CASCADE)
 
     def __str__(self):
-        return f'{self.studentInfo}|{self.paymentAgent}|{self.taxInId}|{self.date}'
+        return f'{self.name}|{self.paymentAgent}|{self.taxInId}|{self.date}'
+    class Meta:
+        ordering=['name']
 
 class MyVideo(models.Model):
     title = models.CharField(max_length=20)
@@ -132,17 +135,6 @@ class MyVideo(models.Model):
     def __str__(self):
         return self.title + ": " + str(self.video)
     
-    # def video_tag(self):
-    #     return mark_safe('<img src="/../../media/%s" width="150" height="150" />' % (self.video))
-
-    # def save(self):
-    #     super().save()
-    #     img=Im.open(self.photo.path)
-    #     if img.height>300 or img.width>150:
-    #         output_size=(300, 300)
-    #         img.thumbnail(output_size)
-    #         img.save(self.photo.path)   
-
 class Circular(models.Model):
     title = models.CharField(max_length=20)
     circular = models.ImageField(upload_to='circulars')

@@ -40,12 +40,11 @@ admin.site.register(CustomSettings, CustomSettingsAdmin)
 
 class StudentInfoAdmin(admin.ModelAdmin):
     list_display=['name', 'father_name', 'mobile', 'email', 'course_name', 'address']
-    def get_student(self, student):
-        return student.StudentInfo.name
 admin.site.register(StudentInfo, StudentInfoAdmin)
 
 class PaymentAdmissionAdmin(admin.ModelAdmin):
-    list_display=['studentInfo', 'paymentAgent', 'taxInId', 'date']
+    model=PaymentAdmission
+    list_display=['name', 'paymentAgent', 'taxInId', 'date']
 admin.site.register(PaymentAdmission, PaymentAdmissionAdmin)
 
 class MyVideoAdmin(admin.ModelAdmin):
