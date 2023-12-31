@@ -63,7 +63,6 @@ def events(request):
       'custom_settings':custom_settings,
    }
    return HttpResponse(template.render(context, request))
-   #return render(request,"events.html", context)
 
 def admission_notice(request):
    template=loader.get_template('admission_notice.html')
@@ -274,15 +273,6 @@ def generate_pdf_file():
     buffer.seek(0)
     return buffer
 
-# def signUp(request):
-#    if request.method=='POST':
-#       form=SignUpForm(request.POST, request.FILES)
-#       if form.is_valid():
-#          form.save()
-#          return redirect('login')
-#    else:
-#       form=SignUpForm()
-#       return HttpResponse(request, 'signUp.html', {'form':SignUpForm}) 
 def circular(request):
    circular_data=Circular.objects.all()
    context={

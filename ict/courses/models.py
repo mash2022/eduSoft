@@ -2,7 +2,6 @@ from django.db import models
 from django.utils.safestring import mark_safe
 from PIL import Image as Im
 
-
 # Create your models here.
 class Teacher(models.Model):
     teacher_name=models.CharField(max_length=255)
@@ -31,8 +30,8 @@ class Course(models.Model):
     course_image=models.ImageField(upload_to='pics')
     total_cost=models.FloatField(null=True)
     description=models.TextField(max_length=255, null=True)
-    teacher_image=models.ForeignKey(Teacher, on_delete=models.SET_NULL, null=True)
-    teacher_name=models.ForeignKey(Teacher, on_delete=models.SET_NULL, null=True)
+    teacher_image=models.ForeignKey(Teacher, on_delete=models.SET_NULL, null=True, related_name='trainer_image')
+    teacher_name=models.ForeignKey(Teacher, on_delete=models.SET_NULL, null=True, related_name='trainer_name')
 
     def __str__(self):
         return f"{self.course_name} {self.course_duration}"
@@ -50,7 +49,6 @@ class Notice(models.Model):
 
     def image_tag(self):
         return mark_safe('<img src="/../../media/%s" width="150" height="150" />' % (self.notice_image))
-
     
 class Event(models.Model):
     title = models.CharField(max_length=20)
@@ -93,38 +91,6 @@ class AdmissionNotice(models.Model):
     admission_open=models.DateTimeField()
     admission_close=models.DateTimeField()
 
-# class AdmissionForm(models.Model):
-    # edu_choice=(('SSC', 'SSC'), ('HSC', 'HSC'), ('HONOURS', 'HONOURS'), ('MASTERS', 'MASTERS'))
-    # religion=(('ISLAM', 'ISLAM'), ('OTHERS', 'OTHERS'))
-    # pharmacy=(('YES', 'YES'), ('NO', 'NO'))
-    # marrietal_status=(('MARRIED', 'MARRIED'), ('UNMARRIED', 'UNMARRIED'))
-
-    # student_name_ban=models.CharField('Student name:', max_length=70)
-    # student_name_eng=models.CharField('', max_length=70)
-    # father_or_hus_name_ban=models.CharField('Father/Husband name:',max_length=70)
-    # father_or_hus_name_eng=models.CharField('', max_length=70)
-    # village_ban=models.CharField('Village:',max_length=50)
-    # village_eng=models.CharField('', max_length=50)
-    # post_office_ban=models.CharField('Post office:', max_length=50)
-    # post_office_eng=models.CharField('', max_length=50)
-    # upozila_ban=models.CharField('Upazilla:', max_length=50)
-    # upozila_eng=models.CharField('', max_length=50)
-    # district_ban=models.CharField('District:', max_length=50)
-    # district_eng=models.CharField('', max_length=50)
-    # religion=models.CharField('Religion:', max_length=10, choices=religion, default='ISLAM')
-    # nid=models.CharField('National ID no.:', max_length=30)
-    # mobile=models.CharField('Mobile number:', max_length=20)
-    # nationality=models.CharField('Nationality:', max_length=50)
-    # blood_group=models.CharField('Blood group:', max_length=20)
-    # marrietal_status=models.CharField('Marrital status:', max_length=50, choices=marrietal_status)
-    # age=models.CharField('Age:', max_length=50)
-    # edu_qualification=models.CharField('Educational qualification:', max_length=10, choices=edu_choice)
-    # is_pharmacy_have=models.CharField('Have any Pharmacy:', max_length=10, choices=pharmacy)
-    # pharmacy_name_address=models.CharField('Pharmacy name and address:', max_length=200)
-    # past_training_name=models.CharField('Have any training:', max_length=100)
-    # student_image=models.ImageField(upload_to='student_pic')
-    # admission_date=models.DateField(auto_now=True)
-
 class CustomSettings(models.Model):
     logo=models.ImageField(upload_to='logo')
     institute_name=models.CharField(max_length=255)
@@ -140,8 +106,6 @@ class StudentInfo(models.Model):
     father_name=models.CharField(max_length=50)
     mobile=models.CharField(max_length=50)
     email=models.EmailField()
-    #courseName=models.CharField(max_length=255)
-    #courseName=models.ForeignKey(Course, on_delete=models.CASCADE)
     course_name = models.ForeignKey(
         to=Course,
         related_name="courses",
@@ -156,6 +120,9 @@ class PaymentAdmission(models.Model):
     paymentAgent=models.CharField(max_length=15)
     taxInId=models.CharField(max_length=30)
     date=models.DateField(auto_now=True)
+
+    def __str__(self):
+        return f'{self.studentInfo}|{self.paymentAgent}|{self.taxInId}|{self.date}'
 
 class MyVideo(models.Model):
     title = models.CharField(max_length=20)

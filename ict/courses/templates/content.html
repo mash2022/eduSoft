@@ -178,8 +178,8 @@
                 <p>{{x.description}}</p>
                 <div class="trainer d-flex justify-content-between align-items-center">
                   <div class="trainer-profile d-flex align-items-center">
-                    <img src="{{ x.trainer_image.url }}" class="img-fluid" alt="">
-                    <span>{{ x.course_name }}</span>
+                    <img src="{{ x.teacher_image.url }}" class="img-fluid" alt="">
+                    <span>{{ x.teacher_name }}</span>
                   </div>
                   <div class="trainer-rank d-flex align-items-center">
                     <i class="bx bx-user"></i>&nbsp;50
@@ -227,41 +227,41 @@
       </div>
     </section><!-- End Trainers Section -->
 
-        <!-- ======= Video Section ======= -->
-        <section id="trainers" class="trainers">
-          <div class="container" data-aos="fade-up">
-            <div class="section-title">
-              <h2>Videos</h2>
-              <p>Our events</p>
-            </div>
-            <div class="row" data-aos="zoom-in" data-aos-delay="100">
-              {% for x in my_video %}
-              <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
-                <div class="member">
-                  <video width='400' controls>
-                    <source src='{{ MEDIA_URL }}{{ x.video }}' type='video/mp4'>
-                    Your browser does not support the video tag.
-                    </video>
-                  <!-- <img src="{{ x.video.url }}" class="img-fluid" alt=""> -->
-                  <div class="member-content">
-                    <h4>{{ x.title }}</h4>
-                    <span>{{ x.teacher_details}}</span>
-                    <p>
-                      {{x.details }}
-                    </p>
-                    <div class="social">
-                      <a href=""><i class="bi bi-twitter"></i></a>
-                      <a href=""><i class="bi bi-facebook"></i></a>
-                      <a href=""><i class="bi bi-instagram"></i></a>
-                      <a href=""><i class="bi bi-linkedin"></i></a>
-                    </div>
-                  </div>
+    <!-- ======= Video Section ======= -->
+    <section id="trainers" class="trainers">
+      <div class="container" data-aos="fade-up">
+        <div class="section-title">
+          <h2>Videos</h2>
+          <p>Our events</p>
+        </div>
+        <div class="row" data-aos="zoom-in" data-aos-delay="100">
+          {% for x in my_video %}
+          <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
+            <div class="member">
+              <video width='400' controls>
+                <source src='{{ MEDIA_URL }}{{ x.video }}' type='video/mp4'>
+                Your browser does not support the video tag.
+                </video>
+              <!-- <img src="{{ x.video.url }}" class="img-fluid" alt=""> -->
+              <div class="member-content">
+                <h4>{{ x.title }}</h4>
+                <span>{{ x.teacher_details}}</span>
+                <p>
+                  {{x.details }}
+                </p>
+                <div class="social">
+                  <a href=""><i class="bi bi-twitter"></i></a>
+                  <a href=""><i class="bi bi-facebook"></i></a>
+                  <a href=""><i class="bi bi-instagram"></i></a>
+                  <a href=""><i class="bi bi-linkedin"></i></a>
                 </div>
               </div>
-              {% endfor %}   
-            </div>   
+            </div>
           </div>
-        </section><!-- End Video Section -->
+          {% endfor %}   
+        </div>   
+      </div>
+    </section><!-- End Video Section -->
 
   </main><!-- End #main -->
  
