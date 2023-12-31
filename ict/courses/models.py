@@ -100,19 +100,23 @@ class CustomSettings(models.Model):
     def image_tag(self):
         return mark_safe('<img src="/../../media/%s" width="150" height="150"/>' % (self.logo))
 
+class PaymentAgent(models.Model):
+    agent_name=models.CharField(max_length=40)
+    agent_number=models.CharField(max_length=11)
+    def __str__(self):
+        return f'{self.agent_name} | {self.agent_number}'
+
 class StudentInfo(models.Model):
     name=models.CharField(max_length=50)
     father_name=models.CharField(max_length=50)
     mobile=models.CharField(max_length=50)
     email=models.EmailField()
-    course_name = models.ForeignKey(
-        to=Course,
-        related_name="courses",
-        on_delete=models.SET_NULL,
-        blank=True,
-        null=True,
-    )
+    course_name = models.ForeignKey(to=Course,related_name="courses",on_delete=models.SET_NULL,blank=True,null=True,)
     address=models.TextField()
+    agent_name=models.ForeignKey(to=PaymentAgent,related_name="payment_agent",on_delete=models.SET_NULL,blank=True,null=True,)
+    taxInId=models.CharField(max_length=30, null=True)
+    date=models.DateField(auto_now=True, null=True)
+    
     def __str__(self):
         return f'{self.name}|{self.father_name}'
 
@@ -150,3 +154,4 @@ class Circular(models.Model):
             output_size=(300, 300)
             img.thumbnail(output_size)
             img.save(self.circular.path)
+
