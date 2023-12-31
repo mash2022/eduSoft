@@ -43,7 +43,7 @@ def about(request):
    course_count=Course.objects.all().count()
    event_count=Event.objects.all().count()
    trainer_count=Teacher.objects.all().count()
-   student_count=AdmissionForm.objects.all().count()
+   student_count=StudentInfo.objects.all().count()
    context = {
       'about': about,
       'custom_settings':custom_settings,

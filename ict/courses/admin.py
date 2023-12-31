@@ -3,7 +3,7 @@ from .models import *
 
 # Register your models here.
 class CourseAdmin(admin.ModelAdmin):
-    list_display=('course_name', 'image_tag', 'course_duration', 'course_code', 'course_image', 'total_cost', 'description')
+    list_display=('course_name', 'image_tag', 'course_duration', 'course_code', 'course_image', 'total_cost', 'description', 'teacher_image', 'teacher_name')
 admin.site.register(Course, CourseAdmin)
 
 class TeacherAdmin(admin.ModelAdmin):

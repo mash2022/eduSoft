@@ -4,6 +4,22 @@ from PIL import Image as Im
 
 
 # Create your models here.
+class Teacher(models.Model):
+    teacher_name=models.CharField(max_length=255)
+    teacher_details=models.TextField()
+    teacher_image=models.ImageField(upload_to='pics')
+
+    def image_tag(self):
+        return mark_safe('<img src="/../../media/%s" width="150" height="150"/>' %(self.teacher_image))
+
+    def save(self):
+        super().save()
+        img=Im.open(self.teacher_image.path)
+        if img.height>300 or img.width>300:
+            output_size=(300, 300)
+            img.thumbnail(output_size)
+            img.save(self.teacher_image.path)
+
 class Course(models.Model):
     class Meta:
         verbose_name_plural='courses'
@@ -15,7 +31,8 @@ class Course(models.Model):
     course_image=models.ImageField(upload_to='pics')
     total_cost=models.FloatField(null=True)
     description=models.TextField(max_length=255, null=True)
-    #trainer_image=models.ImageField(upload_to='trainer_pics', null=True)
+    teacher_image=models.ForeignKey(Teacher, on_delete=models.SET_NULL, null=True)
+    teacher_name=models.ForeignKey(Teacher, on_delete=models.SET_NULL, null=True)
 
     def __str__(self):
         return f"{self.course_name} {self.course_duration}"
@@ -34,21 +51,6 @@ class Notice(models.Model):
     def image_tag(self):
         return mark_safe('<img src="/../../media/%s" width="150" height="150" />' % (self.notice_image))
 
-class Teacher(models.Model):
-    teacher_name=models.CharField(max_length=255)
-    teacher_details=models.TextField()
-    teacher_image=models.ImageField(upload_to='pics')
-
-    def image_tag(self):
-        return mark_safe('<img src="/../../media/%s" width="150" height="150"/>' %(self.teacher_image))
-
-    def save(self):
-        super().save()
-        img=Im.open(self.teacher_image.path)
-        if img.height>300 or img.width>300:
-            output_size=(300, 300)
-            img.thumbnail(output_size)
-            img.save(self.teacher_image.path)
     
 class Event(models.Model):
     title = models.CharField(max_length=20)
