@@ -218,7 +218,8 @@ def studentInfoUpload(request):
       form=StudentInfoForm(request.POST, request.FILES)
       if form.is_valid():
          form.save()
-         return redirect('paymentAdmission')
+         #return redirect('paymentAdmission')
+         return redirect('studentProfile')
    else:
       form=StudentInfoForm()
       return HttpResponse(request, 'studentInfo.html', {'form':StudentInfoForm})
