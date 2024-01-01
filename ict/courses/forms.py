@@ -39,8 +39,9 @@ class StudentInfoForm(forms.ModelForm):
     class Meta:
         model=StudentInfo
         fields=['name', 'father_name', 'mobile', 'email', 'course_name', 'address','agent_name','taxInId']
-        courseName = forms.ModelMultipleChoiceField(queryset=Course.objects.all(), widget=forms.CheckboxSelectMultiple)
+        #courseName = forms.ModelMultipleChoiceField(queryset=Course.objects.all(), widget=forms.CheckboxSelectMultiple)
         agent_name = forms.ModelMultipleChoiceField(queryset=PaymentAgent.objects.all(), widget=forms.CheckboxSelectMultiple)
+        coursName=forms.CharField()
         widgets={
             'name':TextInput(attrs={
             'class':'form-control required',
@@ -62,6 +63,11 @@ class StudentInfoForm(forms.ModelForm):
             'style':'max_width:300px;',
             'placeholder':'email'            
             }),
+            # 'course_name':TextInput(attrs={
+            # 'class':'form-control required',
+            # 'style':'max_width:50px;',
+            # 'placeholder':''            
+            # }),
             'address':Textarea(attrs={
             'class':'form-control',
             'style':'row:5;',

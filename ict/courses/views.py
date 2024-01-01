@@ -1,4 +1,4 @@
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect, render, get_object_or_404
 from django.http import HttpResponse
 from django.template import loader
 from .models import *
@@ -198,16 +198,22 @@ def student_details(request, id):
   return HttpResponse(template.render(context, request))
 
 def studentInfo(request):
+   # obj=get_object_or_404(Course, id=id)
+   #course=Course.objects.get(id=id)
+   # form=StudentInfoForm(instance=course)
    form=StudentInfoForm()
    custom_settings=CustomSettings.objects.all()[1:]
    context={
       'form':form,
+      #'course':course,
+      #'obj':obj,
       'custom_settings':custom_settings,
    }
    template=loader.get_template('studentInfo.html')
    return HttpResponse(template.render(context, request))
   
 def studentInfoUpload(request):
+   #course=Course.objects.get(id=id)
    if request.method=='POST':
       form=StudentInfoForm(request.POST, request.FILES)
       if form.is_valid():

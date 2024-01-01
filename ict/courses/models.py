@@ -8,6 +8,9 @@ class Teacher(models.Model):
     teacher_details=models.TextField()
     teacher_image=models.ImageField(upload_to='pics')
 
+    def __str__(self):
+        return f'{self.teacher_name}'
+
     def image_tag(self):
         return mark_safe('<img src="/../../media/%s" width="150" height="150"/>' %(self.teacher_image))
 
@@ -86,7 +89,8 @@ class Contact(models.Model):
     message=models.TextField()
 
 class AdmissionNotice(models.Model):
-    course_name=models.CharField(max_length=255)
+    # course_name=models.CharField(max_length=255)
+    course_name = models.ForeignKey(to=Course,related_name="course_notice",on_delete=models.SET_NULL,blank=True,null=True,)
     admission_open=models.DateTimeField()
     admission_close=models.DateTimeField()
 
