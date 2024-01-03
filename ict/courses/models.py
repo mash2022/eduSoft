@@ -36,7 +36,7 @@ class Course(models.Model):
     teacher_name=models.ForeignKey(Teacher, on_delete=models.SET_NULL, null=True, related_name='trainer_name')
 
     def __str__(self):
-        return f"{self.course_name} {self.course_duration}"
+        return f"{self.course_name} {self.total_cost}"
     
     def image_tag(self):
         return mark_safe('<img src="/../../media/%s" width="150" height="150" />' % (self.course_image))
@@ -113,13 +113,15 @@ class PaymentAgent(models.Model):
 class StudentInfo(models.Model):
     name=models.CharField(max_length=50)
     father_name=models.CharField(max_length=50)
-    mobile=models.CharField(max_length=50)
-    email=models.EmailField()
+    mobile_number=models.CharField(max_length=50, unique=True, null=True)
+    email=models.EmailField(unique=True, null=True)
     course_name = models.ForeignKey(to=Course,related_name="courses",on_delete=models.SET_NULL,blank=True,null=True,)
     address=models.TextField()
-    agent_name=models.ForeignKey(to=PaymentAgent,related_name="payment_agent",on_delete=models.SET_NULL,blank=True,null=True,)
+    payment_agent=models.ForeignKey(to=PaymentAgent,related_name="payment_agents",on_delete=models.SET_NULL,blank=True,null=True,)
     taxInId=models.CharField(max_length=30, null=True)
     date=models.DateField(auto_now=True, null=True)
+    is_active=models.BooleanField(default=False)
+    is_approved=models.BooleanField(default=False)
     
     def __str__(self):
         return f'{self.name}|{self.father_name}'
@@ -159,3 +161,12 @@ class Circular(models.Model):
             img.thumbnail(output_size)
             img.save(self.circular.path)
 
+class Payment(models.Model):
+    student_info=models.OneToOneField(StudentInfo, on_delete=models.CASCADE, null=True)
+    payment_amount=models.FloatField()
+    total_cost=models.ForeignKey(Course, related_name='cost', on_delete=models.CASCADE)
+    due_amount=models.FloatField()
+    payment_date=models.DateField()
+
+    def __str__(self):
+        return f'{self.student_info}'

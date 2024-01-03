@@ -39,7 +39,7 @@ class CustomSettingsAdmin(admin.ModelAdmin):
 admin.site.register(CustomSettings, CustomSettingsAdmin)
 
 class StudentInfoAdmin(admin.ModelAdmin):
-    list_display=['name', 'father_name', 'mobile', 'email', 'course_name', 'address', 'agent_name', 'taxInId', 'date']
+    list_display=['name', 'father_name', 'mobile_number', 'email', 'course_name', 'address', 'payment_agent', 'taxInId', 'date', 'is_active', 'is_approved']
     search_fields=['name', 'mobile']
 admin.site.register(StudentInfo, StudentInfoAdmin)
 
@@ -59,3 +59,7 @@ admin.site.register(Circular, CircularAdmin)
 class PaymentAgentAdmin(admin.ModelAdmin):
     list_display=['agent_name', 'agent_number']
 admin.site.register(PaymentAgent, PaymentAgentAdmin)
+
+class PaymentAdmin(admin.ModelAdmin):
+    list_display=['student_info', 'payment_amount', 'total_cost','due_amount','payment_date']
+admin.site.register(Payment, PaymentAdmin)
