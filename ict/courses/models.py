@@ -166,7 +166,7 @@ class Circular(models.Model):
 class Payment(models.Model):
     student_info=models.ForeignKey(StudentInfo, on_delete=models.CASCADE, null=True)
     payment_month = models.CharField(max_length = 100, null=True)
-    payment_amount = models.IntegerField()
+    payment_amount = models.IntegerField(default=0)
     payment_date = models.DateTimeField(auto_now=True)
     balance = models.IntegerField(default='0')
 

@@ -38,7 +38,7 @@ class ContactForm(forms.ModelForm):
 class StudentInfoForm(forms.ModelForm):
     class Meta:
         model=StudentInfo
-        fields=['name', 'father_name', 'mobile_number', 'email', 'course_name', 'address','payment_agent','taxInId']
+        fields=['name', 'father_name', 'mobile_number', 'email', 'course_name', 'address','total_cost', 'payment_amount', 'payment_agent','taxInId']
         agent_name = forms.ModelMultipleChoiceField(queryset=PaymentAgent.objects.all(), widget=forms.CheckboxSelectMultiple)
         coursName=forms.CharField()
         widgets={

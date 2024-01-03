@@ -25,9 +25,9 @@
     
           <div class="container" data-aos="fade-up">
     
-            <div class="row mt-5">
+            <!-- <div class="row mt-5"> -->
     
-              <div class="col-lg-4">
+              <!-- <div class="col-lg-4">
                 {% for x in custom_settings %}
                 <div class="info">
                   <div class="address">
@@ -50,26 +50,18 @@
                   {% endfor %}
                 </div>
     
-              </div>
+              </div> -->
     
-              <div class="col-lg-8 mt-5 mt-lg-0">
+              <!-- <div class="col-lg-8 mt-5 mt-lg-0"> -->
     
                 <form action="{% url 'studentInfoUpload' %}" method="POST" role="form">
                   {% csrf_token %}
-                  <table class="table">
-                    <tbody>
-                      <tr>
-                        <td>{{ form.as_p }}</td>
-                        <!-- <td>{{ form.as_p }}</td>
-                        <td>{{ form.as_p }}</td>
-                        <td>{{ form.as_p }}</td> -->
-                      </tr>
-                    </tbody>
-                  </table>
+                    <!-- {{ form.as_p }} -->
+                    {{ form.as_table }}
                   <div class="text-center"><button type="submit" class=" btn btn-outline-success">Submit</button></div>
                 </form>
-              </div>    
-            </div>   
+              <!-- </div>    
+            </div>    -->
           </div>
         </section><!-- End Contact Section -->    
       </main><!-- End #main -->
