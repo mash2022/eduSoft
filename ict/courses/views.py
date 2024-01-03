@@ -104,6 +104,7 @@ def index(request):
   student_count=StudentInfo.objects.all().count()
   custom_settings_data=CustomSettings.objects.all()[1:]
   my_video=MyVideo.objects.all()
+  committee_member=Committee.objects.all()
   context={
      'data':data,
      'notice_data':notice_data,
@@ -115,6 +116,7 @@ def index(request):
      'student_count':student_count,
      'custom_settings':custom_settings_data,
      'my_video':my_video,
+     'committee_member':committee_member,
   }
   return HttpResponse(template.render(context, request))
 

@@ -195,24 +195,22 @@
       </div>
     </section><!-- End Popular Courses Section -->
 
-    <!-- ======= Trainers Section ======= -->
+    <!-- ======= Committee Section ======= -->
     <section id="trainers" class="trainers">
       <div class="container" data-aos="fade-up">
         <div class="section-title">
           <h2>Committee</h2>
-          <p>Official Persons</p>
+          <p>Committee Members</p>
         </div>
         <div class="row" data-aos="zoom-in" data-aos-delay="100">
-          {% for x in trainer_data %}
+          {% for x in committee_member %}
           <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
             <div class="member">
-              <img src="{{ x.teacher_image.url }}" class="img-fluid" alt="">
+              <img src="{{ x.member_pic.url }}" class="img-fluid" alt="">
               <div class="member-content">
-                <h4>{{ x.teacher_name }}</h4>
-                <span>{{ x.teacher_details}}</span>
-                <p>
-                  Magni qui quod omnis unde et eos fuga et exercitationem. Odio veritatis perspiciatis quaerat qui aut aut aut
-                </p>
+                <h4>{{ x.member_name }}</h4>
+                <span>{{ x.member_details}}</span>
+                <p>{{ x.member_voice }}</p>
                 <div class="social">
                   <a href=""><i class="bi bi-twitter"></i></a>
                   <a href=""><i class="bi bi-facebook"></i></a>
@@ -225,7 +223,7 @@
           {% endfor %}          
         </div>
       </div>
-    </section><!-- End Trainers Section -->
+    </section><!-- End Committee Section -->
 
     <!-- ======= Video Section ======= -->
     <section id="trainers" class="trainers">

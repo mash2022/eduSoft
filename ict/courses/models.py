@@ -170,3 +170,23 @@ class Payment(models.Model):
 
     def __str__(self):
         return f'{self.student_info}'
+    
+class Committee(models.Model):
+    member_name=models.CharField(max_length=200)
+    member_details=models.TextField()
+    member_pic=models.ImageField(upload_to='committee_pics')
+    member_voice=models.TextField(null=True)
+
+    def __str__(self):
+        return f'{self.member_name}'
+    
+    def image_tag(self):
+        return mark_safe('<img src="/../../media/%s" width="150" height="150"/>' %(self.member_pic))
+
+    def save(self):
+        super().save()
+        img=Im.open(self.member_pic.path)
+        if img.height>300 or img.width>300:
+            output_size=(300, 300)
+            img.thumbnail(output_size)
+            img.save(self.member_pic.path)
