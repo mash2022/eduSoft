@@ -30,7 +30,7 @@ class Course(models.Model):
     course_code=models.IntegerField(null=True)
     course_credit=models.IntegerField(null=True)
     course_image=models.ImageField(upload_to='pics')
-    total_cost=models.FloatField(null=True)
+    total_cost=models.IntegerField(default=0, null=True)
     description=models.TextField(max_length=255, null=True)
     teacher_image=models.ForeignKey(Teacher, on_delete=models.SET_NULL, null=True, related_name='trainer_image')
     teacher_name=models.ForeignKey(Teacher, on_delete=models.SET_NULL, null=True, related_name='trainer_name')
@@ -117,7 +117,9 @@ class StudentInfo(models.Model):
     email=models.EmailField(unique=True, null=True)
     course_name = models.ForeignKey(to=Course,related_name="courses",on_delete=models.SET_NULL,blank=True,null=True,)
     address=models.TextField()
-    payment_agent=models.ForeignKey(to=PaymentAgent,related_name="payment_agents",on_delete=models.SET_NULL,blank=True,null=True,)
+    total_cost=models.ForeignKey(Course, related_name='cost', on_delete=models.CASCADE, null=True)
+    payment_amount=models.IntegerField(default=0, null=True)
+    payment_agent=models.ForeignKey(to=PaymentAgent,related_name="payment_agents",on_delete=models.SET_NULL,blank=True,null=True)
     taxInId=models.CharField(max_length=30, null=True)
     date=models.DateField(auto_now=True, null=True)
     is_active=models.BooleanField(default=False)
@@ -162,14 +164,21 @@ class Circular(models.Model):
             img.save(self.circular.path)
 
 class Payment(models.Model):
-    student_info=models.OneToOneField(StudentInfo, on_delete=models.CASCADE, null=True)
-    payment_amount=models.FloatField()
-    total_cost=models.ForeignKey(Course, related_name='cost', on_delete=models.CASCADE)
-    due_amount=models.FloatField()
-    payment_date=models.DateField()
+    student_info=models.ForeignKey(StudentInfo, on_delete=models.CASCADE, null=True)
+    payment_month = models.CharField(max_length = 100, null=True)
+    payment_amount = models.IntegerField()
+    payment_date = models.DateTimeField(auto_now=True)
+    balance = models.IntegerField(default='0')
 
     def __str__(self):
         return f'{self.student_info}'
+    def calculate_balance(self):
+        balance=(self.student_info.total_cost - self.student_info.payment_amount)
+        return balance
+    def save(self,*args, **kwargs):
+        self.balance = self.calculate_balance()
+        super().save(*args, **kwargs)
+
     
 class Committee(models.Model):
     member_name=models.CharField(max_length=200)
