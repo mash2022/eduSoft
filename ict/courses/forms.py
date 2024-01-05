@@ -38,46 +38,83 @@ class ContactForm(forms.ModelForm):
 class StudentInfoForm(forms.ModelForm):
     class Meta:
         model=StudentInfo
-        fields=['name', 'father_name', 'mobile_number', 'email', 'course_name', 'address','total_cost', 'payment_amount', 'payment_agent','taxInId']
-        agent_name = forms.ModelMultipleChoiceField(queryset=PaymentAgent.objects.all(), widget=forms.CheckboxSelectMultiple)
-        coursName=forms.CharField()
+        fields=['name', 'father_name', 'mobile_number', 'email', 'course_name','total_cost', 'payment_amount', 'payment_agent','taxInId','address']
+        # agent_name = forms.ModelMultipleChoiceField(queryset=PaymentAgent.objects.all(), widget=forms.CheckboxSelectMultiple)
+        # widgets={
+        #     'name':TextInput(attrs={
+        #     'class':'form-control required',
+        #     'style':'max_width:50px;',
+        #     'placeholder':'Your name'            
+        #     }),
+        #     'father_name':TextInput(attrs={
+        #     'class':'form-control required',
+        #     'style':'max_width:50px;',
+        #     'placeholder':'Father name'            
+        #     }),
+        #     'mobile_number':TextInput(attrs={
+        #     'class':'form-control required',
+        #     'style':'max_width:50px;',
+        #     'placeholder':'Mobile number'            
+        #     }),
+        #     'email':EmailInput(attrs={
+        #     'class':'form-control',
+        #     'style':'max_width:300px;',
+        #     'placeholder':'email'            
+        #     }),
+        #     'course_name':TextInput(attrs={
+        #     'class':'form-control required',
+        #     'style':'max_width:50px;',
+        #     'placeholder':''            
+        #     }),
+        #     'address':Textarea(attrs={
+        #     'class':'form-control',
+        #     'style':'row:5;',
+        #     'placeholder':'Message'
+        #     }),
+        #     'taxInId':TextInput(attrs={
+        #     'class':'form-control required',
+        #     'style':'max_width:50px;',
+        #     'placeholder':'TaxInId'            
+        #     }),
+        # }
         widgets={
             'name':TextInput(attrs={
-            'class':'form-control required',
-            'style':'max_width:50px;',
-            'placeholder':'Your name'            
+            'class':'required',
+            'size':'50',
+            'placeholder':''            
             }),
             'father_name':TextInput(attrs={
-            'class':'form-control required',
-            'style':'max_width:50px;',
-            'placeholder':'Father name'            
+            'class':'required',
+            'size':'50',
+            'placeholder':''            
             }),
-            'mobile':TextInput(attrs={
-            'class':'form-control required',
-            'style':'max_width:50px;',
-            'placeholder':'Mobile number'            
+            'mobile_number':TextInput(attrs={
+            'class':'required',
+            'size':'42',
+            'placeholder':''            
             }),
             'email':EmailInput(attrs={
-            'class':'form-control',
-            'style':'max_width:300px;',
-            'placeholder':'email'            
+            'class':'required',
+            'size':'56',
+            'placeholder':''            
             }),
             # 'course_name':TextInput(attrs={
-            # 'class':'form-control required',
-            # 'style':'max_width:50px;',
+            # # 'class':'table-primary required',
+            # 'size':'50',
             # 'placeholder':''            
             # }),
-            'address':Textarea(attrs={
-            'class':'form-control',
-            'style':'row:5;',
-            'placeholder':'Message'
-            }),
             'taxInId':TextInput(attrs={
-            'class':'form-control required',
+            'class':'table-info required',
             'style':'max_width:50px;',
             'placeholder':'TaxInId'            
             }),
+            'address':Textarea(attrs={
+            'class':'table-info required',
+            'style':'row:5;',
+            'placeholder':'Parmanent address'
+            }),
         }
+        
 
 class PaymentAdmissionForm(forms.ModelForm):
     class Meta:
