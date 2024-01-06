@@ -98,6 +98,8 @@ class CustomSettings(models.Model):
     logo=models.ImageField(upload_to='logo')
     institute_name=models.CharField(max_length=255)
     address=models.CharField(max_length=255)
+    regi_number=models.CharField(max_length=255, null=True)
+    mono_regi_number=models.CharField(max_length=255, null=True)
     mobile_number=models.CharField(max_length=50)
     email=models.EmailField()
 
@@ -115,29 +117,28 @@ class StudentInfo(models.Model):
     father_name=models.CharField(max_length=50)
     mobile_number=models.CharField(max_length=50, unique=True, null=True)
     email=models.EmailField(unique=True, null=True)
+    village=models.CharField(max_length=255, null=True)
+    post_office=models.CharField(max_length=255, null=True)
+    upozilla=models.CharField(max_length=255, null=True)
+    district=models.CharField(max_length=255, null=True)
+    nid=models.CharField(max_length=255, null=True)
+    date_of_birth=models.DateField()
+    student_pic=models.ImageField(upload_to='student_pic')
+    edu_qualification=models.CharField(max_length=255, null=True)
+    edu_cirtificate=models.ImageField(upload_to='cirtificate')
+    pharmacy=models.BooleanField(null=True)
+    pharmacy_address=models.CharField(max_length=255, null=True)
     course_name = models.ForeignKey(to=Course,related_name="courses",on_delete=models.SET_NULL,blank=True,null=True,)
-    address=models.TextField()
     total_cost=models.ForeignKey(Course, related_name='cost', on_delete=models.CASCADE, null=True)
     payment_amount=models.IntegerField(default=0, null=True)
     payment_agent=models.ForeignKey(to=PaymentAgent,related_name="payment_agents",on_delete=models.SET_NULL,blank=True,null=True)
     taxInId=models.CharField(max_length=30, null=True)
-    date=models.DateField(auto_now=True, null=True)
+    admission_date=models.DateField(auto_now=True, null=True)
     is_active=models.BooleanField(default=False)
     is_approved=models.BooleanField(default=False)
     
     def __str__(self):
         return f'{self.name}|{self.father_name}'
-
-class PaymentAdmission(models.Model):
-    paymentAgent=models.CharField(max_length=15)
-    taxInId=models.CharField(max_length=30)
-    date=models.DateField(auto_now=True)
-    name=models.ForeignKey(StudentInfo, blank=False, null=True, on_delete=models.CASCADE)
-
-    def __str__(self):
-        return f'{self.name}|{self.paymentAgent}|{self.taxInId}|{self.date}'
-    class Meta:
-        ordering=['name']
 
 class MyVideo(models.Model):
     title = models.CharField(max_length=20)

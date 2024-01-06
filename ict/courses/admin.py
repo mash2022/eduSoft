@@ -39,14 +39,14 @@ class CustomSettingsAdmin(admin.ModelAdmin):
 admin.site.register(CustomSettings, CustomSettingsAdmin)
 
 class StudentInfoAdmin(admin.ModelAdmin):
-    list_display=['name', 'father_name', 'mobile_number', 'email', 'course_name', 'address', 'payment_agent', 'taxInId', 'date', 'is_active', 'is_approved']
+    list_display=['name', 'father_name', 'mobile_number', 'email','village','post_office','upozilla','district','nid','date_of_birth','student_pic','edu_qualification','edu_cirtificate','pharmacy','pharmacy_address','course_name','payment_agent', 'taxInId', 'admission_date', 'is_active', 'is_approved']
     search_fields=['name', 'mobile']
 admin.site.register(StudentInfo, StudentInfoAdmin)
 
-class PaymentAdmissionAdmin(admin.ModelAdmin):
-    model=PaymentAdmission
-    list_display=['name', 'paymentAgent', 'taxInId', 'date']
-admin.site.register(PaymentAdmission, PaymentAdmissionAdmin)
+# class PaymentAdmissionAdmin(admin.ModelAdmin):
+#     model=PaymentAdmission
+#     list_display=['name', 'paymentAgent', 'taxInId', 'date']
+# admin.site.register(PaymentAdmission, PaymentAdmissionAdmin)
 
 class MyVideoAdmin(admin.ModelAdmin):
     list_display = ["title","video","details"]

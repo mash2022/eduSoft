@@ -38,98 +38,54 @@ class ContactForm(forms.ModelForm):
 class StudentInfoForm(forms.ModelForm):
     class Meta:
         model=StudentInfo
-        fields=['name', 'father_name', 'mobile_number', 'email', 'course_name','total_cost', 'payment_amount', 'payment_agent','taxInId','address']
-        # agent_name = forms.ModelMultipleChoiceField(queryset=PaymentAgent.objects.all(), widget=forms.CheckboxSelectMultiple)
-        # widgets={
-        #     'name':TextInput(attrs={
-        #     'class':'form-control required',
-        #     'style':'max_width:50px;',
-        #     'placeholder':'Your name'            
-        #     }),
-        #     'father_name':TextInput(attrs={
-        #     'class':'form-control required',
-        #     'style':'max_width:50px;',
-        #     'placeholder':'Father name'            
-        #     }),
-        #     'mobile_number':TextInput(attrs={
-        #     'class':'form-control required',
-        #     'style':'max_width:50px;',
-        #     'placeholder':'Mobile number'            
-        #     }),
-        #     'email':EmailInput(attrs={
-        #     'class':'form-control',
-        #     'style':'max_width:300px;',
-        #     'placeholder':'email'            
-        #     }),
-        #     'course_name':TextInput(attrs={
-        #     'class':'form-control required',
-        #     'style':'max_width:50px;',
-        #     'placeholder':''            
-        #     }),
-        #     'address':Textarea(attrs={
-        #     'class':'form-control',
-        #     'style':'row:5;',
-        #     'placeholder':'Message'
-        #     }),
-        #     'taxInId':TextInput(attrs={
-        #     'class':'form-control required',
-        #     'style':'max_width:50px;',
-        #     'placeholder':'TaxInId'            
-        #     }),
-        # }
+        fields=['name', 'father_name', 'mobile_number', 'email','village','post_office','upozilla','district','nid','date_of_birth','student_pic','edu_qualification','edu_cirtificate','pharmacy','pharmacy_address', 'course_name','total_cost', 'payment_amount', 'payment_agent','taxInId',]
+        agent_name = forms.ModelMultipleChoiceField(queryset=PaymentAgent.objects.all(), widget=forms.CheckboxSelectMultiple)
+        course_name = forms.ModelChoiceField(to_field_name='course_name', queryset=Course.objects.all())
         widgets={
             'name':TextInput(attrs={
-            'class':'required',
-            'size':'50',
-            'placeholder':''            
+            'class':'form-control required',
+            'style':'max_width:50px;',
+            'placeholder':'Your name'            
             }),
             'father_name':TextInput(attrs={
-            'class':'required',
-            'size':'50',
-            'placeholder':''            
+            'class':'form-control required',
+            'style':'max_width:50px;',
+            'placeholder':'Father name'            
             }),
             'mobile_number':TextInput(attrs={
-            'class':'required',
-            'size':'42',
-            'placeholder':''            
+            'class':'form-control required',
+            'style':'max_width:50px;',
+            'placeholder':'Mobile number'            
             }),
             'email':EmailInput(attrs={
-            'class':'required',
-            'size':'56',
-            'placeholder':''            
+            'class':'form-control',
+            'style':'max_width:300px;',
+            'placeholder':'email'            
             }),
-            # 'course_name':TextInput(attrs={
-            # # 'class':'table-primary required',
-            # 'size':'50',
-            # 'placeholder':''            
-            # }),
-            'taxInId':TextInput(attrs={
-            'class':'table-info required',
+            'village':TextInput(attrs={
+            'class':'form-control',
+            'style':'max_width:300px;',
+            'placeholder':'permanent'            
+            }),
+            'post_office':TextInput(attrs={
+            'class':'form-control',
+            'style':'max_width:300px;',
+            'placeholder':'permanent'            
+            }),
+            'upozilla':TextInput(attrs={
+            'class':'form-control',
+            'style':'max_width:300px;',
+            'placeholder':'permanent'            
+            }),
+            'district':TextInput(attrs={
+            'class':'form-control',
+            'style':'max_width:300px;',
+            'placeholder':'permanent'            
+            }),
+            'pharmacy_address':TextInput(attrs={
+            'class':'form-control required',
             'style':'max_width:50px;',
-            'placeholder':'TaxInId'            
-            }),
-            'address':Textarea(attrs={
-            'class':'table-info required',
-            'style':'row:5;',
-            'placeholder':'Parmanent address'
-            }),
-        }
-        
-
-class PaymentAdmissionForm(forms.ModelForm):
-    class Meta:
-        model=PaymentAdmission
-        fields=['paymentAgent','taxInId']
-        widgets={
-            'paymentAgent':TextInput(attrs={
-            'class':'form-control',
-            'style':'max_width:300px;',
-            'placeholder':'Your email'            
-            }),
-            'taxInId':TextInput(attrs={
-            'class':'form-control',
-            'style':'max_width:300px;',
-            'placeholder':'Subject'
+            'placeholder':'Pharmacy name and address'            
             }),
         }
 

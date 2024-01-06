@@ -164,24 +164,24 @@ def contactUpload(request):
       return HttpResponse(request, 'contact.html', {'form':ContactForm})
 
 # def admission_form(request):
-   form=Admission_form()
-   context={
-      'form':form
-   }
-   template=loader.get_template('admission_form.html')
-   return HttpResponse(template.render(context, request))
+   # form=Admission_form()
+   # context={
+   #    'form':form
+   # }
+   # template=loader.get_template('admission_form.html')
+   # return HttpResponse(template.render(context, request))
 
 # def admission_submit(request):
-   form=Admission_form()  
-   if request.method == 'POST':
-      form=Admission_form(request.POST, request.FILES)
-      if form.is_valid():
-         form.save()
-         return redirect('admission_form')
-      else:
-         return HttpResponse('Something wrong!')
-   context={'form':form}
-   return render(request, 'admission_form.html', context)
+   # form=Admission_form()  
+   # if request.method == 'POST':
+   #    form=Admission_form(request.POST, request.FILES)
+   #    if form.is_valid():
+   #       form.save()
+   #       return redirect('admission_form')
+   #    else:
+   #       return HttpResponse('Something wrong!')
+   # context={'form':form}
+   # return render(request, 'admission_form.html', context)
 
 def student_list(request):
     student_list=StudentInfo.objects.all()
@@ -216,7 +216,7 @@ def studentInfo(request):
   
 def studentInfoUpload(request):
    #course=Course.objects.get(id=id)
-   if request.method=='POST':
+   if request.method == 'POST':
       form=StudentInfoForm(request.POST, request.FILES)
       if form.is_valid():
          form.save()
@@ -226,23 +226,23 @@ def studentInfoUpload(request):
       form=StudentInfoForm()
       return HttpResponse(request, 'studentInfo.html', {'form':StudentInfoForm})
    
-def paymentAdmission(request):
-   form=PaymentAdmissionForm()
-   context={
-      'form':form
-   }
-   template=loader.get_template('paymentAdmission.html')
-   return HttpResponse(template.render(context, request))
+# def paymentAdmission(request):
+#    form=PaymentAdmissionForm()
+#    context={
+#       'form':form
+#    }
+#    template=loader.get_template('paymentAdmission.html')
+#    return HttpResponse(template.render(context, request))
 
-def paymentAdmissionSubmit(request):
-   if request.method=='POST':
-      form=PaymentAdmissionForm(request.POST, request.FILES)
-      if form.is_valid():
-         form.save()
-         return redirect('studentProfile')
-   else:
-      form=PaymentAdmissionForm()
-      return HttpResponse(request, 'paymentAdmission.html', {'form':StudentInfoForm}) 
+# def paymentAdmissionSubmit(request):
+#    if request.method=='POST':
+#       form=PaymentAdmissionForm(request.POST, request.FILES)
+#       if form.is_valid():
+#          form.save()
+#          return redirect('studentProfile')
+#    else:
+#       form=PaymentAdmissionForm()
+#       return HttpResponse(request, 'paymentAdmission.html', {'form':StudentInfoForm}) 
 
 def studentProfile(request):
    data=StudentInfo.objects.all()
