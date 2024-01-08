@@ -1,6 +1,6 @@
 from django import forms
 from .models import *
-from django.forms import ModelForm, DateField, TextInput,EmailInput, Textarea
+from django.forms import DateInput, FileInput, ModelForm, DateField, NumberInput, Select, SelectMultiple, TextInput,EmailInput, Textarea, DateInput
 
 class ImageUploadForm(forms.ModelForm):
     class Meta:
@@ -86,6 +86,35 @@ class StudentInfoForm(forms.ModelForm):
             'class':'form-control required',
             'style':'max_width:50px;',
             'placeholder':'Pharmacy name and address'            
+            }),
+            'nid':TextInput(attrs={
+            'class':'form-control required',
+            'style':'max_width:50px;',
+            'placeholder':'National id'            
+            }),
+            'date_of_birth':DateInput(attrs={
+            'class':'form-control required',
+            'style':'max_width:50px;',
+            'placeholder':'00/00/00'            
+            }),
+            'student_pic':FileInput(attrs={
+            'class':'form-control required',
+            'style':'max_width:50px;',
+            'placeholder':'Student image'            
+            }),
+            'edu_qualification':TextInput(attrs={
+            'class':'form-control required',
+            'style':'max_width:50px;',
+            'placeholder':'Educational Qualification example: SSC'            
+            }),
+            'edu_cirtificate':FileInput(attrs={
+            'class':'form-control required',
+            'style':'max_width:50px;',            
+            }),
+            'payment_amount':NumberInput(attrs={
+            'class':'form-control required',
+            'style':'max_width:50px;',
+            'placeholder':'Educational Qualification example: SSC'            
             }),
         }
 
