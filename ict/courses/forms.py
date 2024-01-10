@@ -41,6 +41,8 @@ class StudentInfoForm(forms.ModelForm):
         fields=['name', 'father_name', 'mobile_number', 'email','village','post_office','upozilla','district','nid','date_of_birth','student_pic','edu_qualification','edu_cirtificate','pharmacy','pharmacy_address', 'course_name','total_cost', 'payment_amount', 'payment_agent','taxInId',]
         agent_name = forms.ModelMultipleChoiceField(queryset=PaymentAgent.objects.all(), widget=forms.CheckboxSelectMultiple)
         course_name = forms.ModelChoiceField(to_field_name='course_name', queryset=Course.objects.all())
+        student_pic=forms.ImageField()
+        edu_cirtificate=forms.ImageField()
         widgets={
             'name':TextInput(attrs={
             'class':'form-control required',
@@ -52,7 +54,7 @@ class StudentInfoForm(forms.ModelForm):
             'style':'max_width:50px;',
             'placeholder':'Father name'            
             }),
-            'mobile_number':TextInput(attrs={
+            'mobile_number':NumberInput(attrs={
             'class':'form-control required',
             'style':'max_width:50px;',
             'placeholder':'Mobile number'            
@@ -87,29 +89,15 @@ class StudentInfoForm(forms.ModelForm):
             'style':'max_width:50px;',
             'placeholder':'Pharmacy name and address'            
             }),
-            'nid':TextInput(attrs={
+            'nid':NumberInput(attrs={
             'class':'form-control required',
             'style':'max_width:50px;',
             'placeholder':'National id'            
-            }),
-            'date_of_birth':DateInput(attrs={
-            'class':'form-control required',
-            'style':'max_width:50px;',
-            'placeholder':'00/00/00'            
-            }),
-            'student_pic':FileInput(attrs={
-            'class':'form-control required',
-            'style':'max_width:50px;',
-            'placeholder':'Student image'            
             }),
             'edu_qualification':TextInput(attrs={
             'class':'form-control required',
             'style':'max_width:50px;',
             'placeholder':'Educational Qualification example: SSC'            
-            }),
-            'edu_cirtificate':FileInput(attrs={
-            'class':'form-control required',
-            'style':'max_width:50px;',            
             }),
             'payment_amount':NumberInput(attrs={
             'class':'form-control required',

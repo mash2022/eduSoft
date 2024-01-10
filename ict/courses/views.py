@@ -1,9 +1,11 @@
 from django.shortcuts import redirect, render, get_object_or_404
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
+from django.urls import reverse_lazy
 from .models import *
 from .forms import *
 from reportlab.pdfgen import canvas
+from django.contrib import messages
 
 # Create your views here.
 def all_courses(request):
@@ -163,26 +165,6 @@ def contactUpload(request):
       form=ContactForm()
       return HttpResponse(request, 'contact.html', {'form':ContactForm})
 
-# def admission_form(request):
-   # form=Admission_form()
-   # context={
-   #    'form':form
-   # }
-   # template=loader.get_template('admission_form.html')
-   # return HttpResponse(template.render(context, request))
-
-# def admission_submit(request):
-   # form=Admission_form()  
-   # if request.method == 'POST':
-   #    form=Admission_form(request.POST, request.FILES)
-   #    if form.is_valid():
-   #       form.save()
-   #       return redirect('admission_form')
-   #    else:
-   #       return HttpResponse('Something wrong!')
-   # context={'form':form}
-   # return render(request, 'admission_form.html', context)
-
 def student_list(request):
     student_list=StudentInfo.objects.all()
     template=loader.get_template('student_list.html')
@@ -200,50 +182,29 @@ def student_details(request, id):
   return HttpResponse(template.render(context, request))
 
 def studentInfo(request):
-   # obj=get_object_or_404(Course, id=id)
-   #course=Course.objects.get(id=id)
-   # form=StudentInfoForm(instance=course)
    form=StudentInfoForm()
    custom_settings=CustomSettings.objects.all()[1:]
    context={
       'form':form,
-      #'course':course,
-      #'obj':obj,
       'custom_settings':custom_settings,
    }
    template=loader.get_template('studentInfo.html')
    return HttpResponse(template.render(context, request))
   
 def studentInfoUpload(request):
-   #course=Course.objects.get(id=id)
    if request.method == 'POST':
       form=StudentInfoForm(request.POST, request.FILES)
       if form.is_valid():
          form.save()
-         #return redirect('paymentAdmission')
+         messages.success(request, 'Successfully submited')
          return redirect('studentProfile')
+      else:
+         messages.error(request, 'Invalid data ! Try again.')
+         return redirect('studentInfo')
    else:
       form=StudentInfoForm()
-      return HttpResponse(request, 'studentInfo.html', {'form':StudentInfoForm})
+   return render(request, 'studentInfo.html',{'form':form})
    
-# def paymentAdmission(request):
-#    form=PaymentAdmissionForm()
-#    context={
-#       'form':form
-#    }
-#    template=loader.get_template('paymentAdmission.html')
-#    return HttpResponse(template.render(context, request))
-
-# def paymentAdmissionSubmit(request):
-#    if request.method=='POST':
-#       form=PaymentAdmissionForm(request.POST, request.FILES)
-#       if form.is_valid():
-#          form.save()
-#          return redirect('studentProfile')
-#    else:
-#       form=PaymentAdmissionForm()
-#       return HttpResponse(request, 'paymentAdmission.html', {'form':StudentInfoForm}) 
-
 def studentProfile(request):
    data=StudentInfo.objects.all()
    context={

@@ -52,10 +52,9 @@
     
               <!-- <div class="col-lg-8 mt-5 mt-lg-0"> -->
     
-                <form action="{% url 'studentInfoUpload' %}" method="POST" role="form">
+                <form action="{% url 'studentInfoUpload' %}" method="POST" enctype="multipart/form-data">
                   {% csrf_token %}
-                    <!-- {{ form.as_p }} -->
-                    {{ form.as_table }}
+                    {{ form.as_p }}            
                   <div class="text-center"><button type="submit" class=" btn btn-outline-success">Submit</button></div>
                 </form>
               </div>    
