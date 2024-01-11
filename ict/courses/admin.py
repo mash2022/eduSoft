@@ -39,7 +39,7 @@ class CustomSettingsAdmin(admin.ModelAdmin):
 admin.site.register(CustomSettings, CustomSettingsAdmin)
 
 class StudentInfoAdmin(admin.ModelAdmin):
-    list_display=['name', 'father_name', 'mobile_number', 'email','village','post_office','upozilla','district','nid','date_of_birth','student_pic','edu_qualification','edu_cirtificate','pharmacy','pharmacy_address','course_name','payment_agent', 'taxInId', 'admission_date', 'is_active', 'is_approved']
+    list_display=['name', 'father_name', 'mobile_number', 'email','village','post_office','upozilla','district','nid','date_of_birth','student_pic','edu_qualification','edu_cirtificate','pharmacy','pharmacy_address','course_name','payment_amount', 'payment_agent', 'taxInId', 'admission_date', 'is_active', 'is_approved', 'membership_number']
     search_fields=['name', 'mobile']
 admin.site.register(StudentInfo, StudentInfoAdmin)
 

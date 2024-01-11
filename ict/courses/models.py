@@ -36,7 +36,7 @@ class Course(models.Model):
     teacher_name=models.ForeignKey(Teacher, on_delete=models.SET_NULL, null=True, related_name='trainer_name')
 
     def __str__(self):
-        return f"{self.course_name} {self.total_cost}"
+        return f"{self.total_cost}"
     
     def image_tag(self):
         return mark_safe('<img src="/../../media/%s" width="150" height="150" />' % (self.course_image))
@@ -90,7 +90,7 @@ class Contact(models.Model):
 
 class AdmissionNotice(models.Model):
     # course_name=models.CharField(max_length=255)
-    course_name = models.ForeignKey(to=Course,related_name="course_notice",on_delete=models.SET_NULL,blank=True,null=True,)
+    course_name = models.ForeignKey(to=Course,related_name="course_notice",on_delete=models.SET_NULL,blank=True,null=True)
     admission_open=models.DateTimeField()
     admission_close=models.DateTimeField()
 
@@ -136,6 +136,7 @@ class StudentInfo(models.Model):
     admission_date=models.DateField(auto_now=True, null=True)
     is_active=models.BooleanField(default=False)
     is_approved=models.BooleanField(default=False)
+    membership_number=models.CharField(max_length=255, null=True)
     
     def __str__(self):
         return f'{self.name}|{self.father_name}'
@@ -174,7 +175,7 @@ class Payment(models.Model):
     def __str__(self):
         return f'{self.student_info}'
     def calculate_balance(self):
-        balance=(self.student_info.total_cost - self.student_info.payment_amount)
+        balance=(int(self.student_info.total_cost) - int(self.student_info.payment_amount))
         return balance
     def save(self,*args, **kwargs):
         self.balance = self.calculate_balance()
@@ -200,3 +201,10 @@ class Committee(models.Model):
             output_size=(300, 300)
             img.thumbnail(output_size)
             img.save(self.member_pic.path)
+
+# class Sign_up(models.Model):
+#     name=models.CharField(max_length=255)
+#     mobile_number=models.IntegerField()
+#     email=models.EmailField()
+#     membership_number=models.CharField(max_length=255)
+#     password=models.CharField(max_length=200)
