@@ -61,7 +61,7 @@ class PaymentAgentAdmin(admin.ModelAdmin):
 admin.site.register(PaymentAgent, PaymentAgentAdmin)
 
 class PaymentAdmin(admin.ModelAdmin):
-    list_display=['student_info', 'payment_date', 'total_cost', 'payment_amount']
+    list_display=['student_info', 'payment_date', 'total_cost', 'payment_amount', 'due']
 admin.site.register(Payment, PaymentAdmin)
 
 class CommitteeAdmin(admin.ModelAdmin):

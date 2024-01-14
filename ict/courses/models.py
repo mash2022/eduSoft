@@ -174,16 +174,14 @@ class Circular(models.Model):
 class Payment(models.Model):
     student_info=models.ForeignKey(StudentInfo, on_delete=models.CASCADE)
     payment_date = models.DateTimeField(auto_now=True)
-    total_cost=models.ForeignKey(Cost, on_delete=models.CASCADE, null=True)
+    # total_cost=models.ForeignKey(Cost, on_delete=models.CASCADE, null=True)
+    total_cost=models.IntegerField(default=0)
     payment_amount = models.IntegerField(default=0)
-
-    # def __str__(self):
-    #     return f'{self.student_info}'
 
     @property
     def due(self):
         if (self.payment_amount != None):
-            due=self.total_cost - self.payment_amount
+            due = self.total_cost - self.payment_amount
             return due
 
     
