@@ -3,7 +3,7 @@ from .models import *
 
 # Register your models here.
 class CourseAdmin(admin.ModelAdmin):
-    list_display=('course_name', 'image_tag', 'course_duration', 'course_code', 'course_image', 'total_cost', 'description', 'teacher_image', 'teacher_name')
+    list_display=('course_name', 'image_tag', 'course_duration', 'course_code', 'course_image','description', 'teacher_image', 'teacher_name')
 admin.site.register(Course, CourseAdmin)
 
 class TeacherAdmin(admin.ModelAdmin):
@@ -61,9 +61,13 @@ class PaymentAgentAdmin(admin.ModelAdmin):
 admin.site.register(PaymentAgent, PaymentAgentAdmin)
 
 class PaymentAdmin(admin.ModelAdmin):
-    list_display=['student_info', 'payment_month', 'payment_amount','payment_date','calculate_balance', 'balance']
+    list_display=['student_info', 'payment_date', 'total_cost', 'payment_amount']
 admin.site.register(Payment, PaymentAdmin)
 
 class CommitteeAdmin(admin.ModelAdmin):
     list_display=['member_name', 'member_details', 'image_tag','member_voice']
 admin.site.register(Committee, CommitteeAdmin)
+
+class CostAdmin(admin.ModelAdmin):
+    list_display=['course_name', 'total_cost']
+admin.site.register(Cost, CostAdmin)

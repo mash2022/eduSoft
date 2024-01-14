@@ -30,19 +30,25 @@ class Course(models.Model):
     course_code=models.IntegerField(null=True)
     course_credit=models.IntegerField(null=True)
     course_image=models.ImageField(upload_to='pics')
-    total_cost=models.IntegerField(default=0, null=True)
     description=models.TextField(max_length=255, null=True)
     teacher_image=models.ForeignKey(Teacher, on_delete=models.SET_NULL, null=True, related_name='trainer_image')
     teacher_name=models.ForeignKey(Teacher, on_delete=models.SET_NULL, null=True, related_name='trainer_name')
 
     def __str__(self):
-        return f"{self.total_cost}"
+        return f"{self.course_name}"
     
     def image_tag(self):
         return mark_safe('<img src="/../../media/%s" width="150" height="150" />' % (self.course_image))
     
     def image_tag_2(self):
         return mark_safe('<img src="/../../media/%s" width="150" height="150" />' % (self.trainer_image))
+
+class Cost(models.Model):
+    course_name=models.ForeignKey(Course, on_delete=models.CASCADE)
+    total_cost=models.IntegerField(default=0)
+
+    def __str__(self):
+        return f'{self.total_cost}'
 
 class Notice(models.Model):
     notice_title=models.CharField(max_length=255)
@@ -129,7 +135,7 @@ class StudentInfo(models.Model):
     pharmacy=models.BooleanField(null=True)
     pharmacy_address=models.CharField(max_length=255, null=True)
     course_name = models.ForeignKey(to=Course,related_name="courses",on_delete=models.SET_NULL,blank=True,null=True,)
-    total_cost=models.ForeignKey(Course, related_name='cost', on_delete=models.CASCADE, null=True)
+    total_cost=models.ForeignKey(Cost, related_name='fee', on_delete=models.CASCADE, null=True)
     payment_amount=models.IntegerField(default=0, null=True)
     payment_agent=models.ForeignKey(to=PaymentAgent,related_name="payment_agents",on_delete=models.SET_NULL,blank=True,null=True)
     taxInId=models.CharField(max_length=30, null=True)
@@ -166,20 +172,19 @@ class Circular(models.Model):
             img.save(self.circular.path)
 
 class Payment(models.Model):
-    student_info=models.ForeignKey(StudentInfo, on_delete=models.CASCADE, null=True)
-    payment_month = models.CharField(max_length = 100, null=True)
-    payment_amount = models.IntegerField(default=0)
+    student_info=models.ForeignKey(StudentInfo, on_delete=models.CASCADE)
     payment_date = models.DateTimeField(auto_now=True)
-    balance = models.IntegerField(default='0')
+    total_cost=models.ForeignKey(Cost, on_delete=models.CASCADE, null=True)
+    payment_amount = models.IntegerField(default=0)
 
-    def __str__(self):
-        return f'{self.student_info}'
-    def calculate_balance(self):
-        balance=(int(self.student_info.total_cost) - int(self.student_info.payment_amount))
-        return balance
-    def save(self,*args, **kwargs):
-        self.balance = self.calculate_balance()
-        super().save(*args, **kwargs)
+    # def __str__(self):
+    #     return f'{self.student_info}'
+
+    @property
+    def due(self):
+        if (self.payment_amount != None):
+            due=self.total_cost - self.payment_amount
+            return due
 
     
 class Committee(models.Model):
