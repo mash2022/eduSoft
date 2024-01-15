@@ -67,3 +67,7 @@ admin.site.register(Committee, CommitteeAdmin)
 class CostAdmin(admin.ModelAdmin):
     list_display=['course_name', 'total_cost']
 admin.site.register(Cost, CostAdmin)
+
+class SignupAdmin(admin.ModelAdmin):
+    list_display=['username', 'mobile_number', 'email', 'membership_number', 'password']
+admin.site.register(Signup, SignupAdmin)

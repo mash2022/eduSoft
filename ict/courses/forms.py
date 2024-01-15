@@ -106,17 +106,26 @@ class StudentInfoForm(forms.ModelForm):
             }),
         }
 
-class SignupForm(UserCreationForm):
-    name=models.CharField(max_length=255)
-    mobile_number=models.IntegerField()
-    email=models.EmailField()
-    membership_number=models.ForeignKey(StudentInfo, on_delete=models.CASCADE)
-    class Meta:
-        model = Sign_up
-        fields = ['username', 'mobile_number', 'email', 'membership_number', 'password1', 'password2']
+# class SignupForm(UserCreationForm):
+#     username=models.CharField(max_length=55)
+#     mobile_number=models.IntegerField()
+#     email=models.EmailField()
+#     membership_number=models.ForeignKey(StudentInfo, on_delete=models.CASCADE)
+#     password=models.CharField(max_length=30)
+#     class Meta:
+#         model = Signup
+#         fields = ['username', 'mobile_number', 'email', 'membership_number', 'password']
 
-
-class LoginForm(forms.ModelForm):
+class UserRegisterForm(UserCreationForm):
+    email = forms.EmailField()
+    phone_no = forms.CharField(max_length = 20)
+    first_name = forms.CharField(max_length = 20)
+    last_name = forms.CharField(max_length = 20)
     class Meta:
-        model=Login
-        fields=['membership_number', 'password']
+        model = User
+        fields = ['username', 'email', 'phone_no', 'password1', 'password2']
+
+# class LoginForm(forms.ModelForm):
+#     class Meta:
+#         model=Login
+#         fields=['membership_number', 'password']
