@@ -1,6 +1,7 @@
 from django import forms
 from .models import *
 from django.forms import DateInput, FileInput, ModelForm, DateField, NumberInput, Select, SelectMultiple, TextInput,EmailInput, Textarea, DateInput
+from django.contrib.auth.forms import UserCreationForm
 
 class ImageUploadForm(forms.ModelForm):
     class Meta:
@@ -33,7 +34,6 @@ class ContactForm(forms.ModelForm):
             'placeholder':'Message'
             })
         }
-
 
 class StudentInfoForm(forms.ModelForm):
     class Meta:
@@ -106,3 +106,17 @@ class StudentInfoForm(forms.ModelForm):
             }),
         }
 
+class SignupForm(UserCreationForm):
+    name=models.CharField(max_length=255)
+    mobile_number=models.IntegerField()
+    email=models.EmailField()
+    membership_number=models.ForeignKey(StudentInfo, on_delete=models.CASCADE)
+    class Meta:
+        model = Sign_up
+        fields = ['username', 'mobile_number', 'email', 'membership_number', 'password1', 'password2']
+
+
+class LoginForm(forms.ModelForm):
+    class Meta:
+        model=Login
+        fields=['membership_number', 'password']

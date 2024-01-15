@@ -145,7 +145,12 @@ class StudentInfo(models.Model):
     membership_number=models.CharField(max_length=255, null=True)
     
     def __str__(self):
-        return f'{self.name}|{self.father_name}'
+        return f'{self.name}|{self.mobile_number}'
+    
+    def student_image_tag(self):
+        return mark_safe('<img src="/../../media/%s" width="150" height="150"/>' % (self.student_pic))
+    def cirtificate_image_tag(self):
+        return mark_safe('<img src="/../../media/%s" width="150" height="150"/>' % (self.edu_cirtificate))
 
 class MyVideo(models.Model):
     title = models.CharField(max_length=20)
@@ -205,9 +210,14 @@ class Committee(models.Model):
             img.thumbnail(output_size)
             img.save(self.member_pic.path)
 
-# class Sign_up(models.Model):
-#     name=models.CharField(max_length=255)
-#     mobile_number=models.IntegerField()
-#     email=models.EmailField()
-#     membership_number=models.CharField(max_length=255)
-#     password=models.CharField(max_length=200)
+class Sign_up(models.Model):
+    name=models.CharField(max_length=255)
+    mobile_number=models.IntegerField()
+    email=models.EmailField()
+    membership_number=models.ForeignKey(StudentInfo, on_delete=models.CASCADE)
+    password=models.CharField(max_length=200)
+
+class Login(models.Model):
+    membership_number=models.CharField(max_length=50)
+    password=models.CharField(max_length=50)
+            

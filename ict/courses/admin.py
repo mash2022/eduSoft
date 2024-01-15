@@ -39,14 +39,9 @@ class CustomSettingsAdmin(admin.ModelAdmin):
 admin.site.register(CustomSettings, CustomSettingsAdmin)
 
 class StudentInfoAdmin(admin.ModelAdmin):
-    list_display=['name', 'father_name', 'mobile_number', 'email','village','post_office','upozilla','district','nid','date_of_birth','student_pic','edu_qualification','edu_cirtificate','pharmacy','pharmacy_address','course_name','payment_amount', 'payment_agent', 'taxInId', 'admission_date', 'is_active', 'is_approved', 'membership_number']
-    search_fields=['name', 'mobile']
+    list_display=['name', 'father_name', 'mobile_number', 'email','village','post_office','upozilla','district','nid','date_of_birth','student_image_tag','edu_qualification','cirtificate_image_tag','pharmacy','pharmacy_address','course_name','payment_amount', 'payment_agent', 'taxInId', 'admission_date', 'is_active', 'is_approved', 'membership_number']
+    search_fields=['name', 'mobile_number']
 admin.site.register(StudentInfo, StudentInfoAdmin)
-
-# class PaymentAdmissionAdmin(admin.ModelAdmin):
-#     model=PaymentAdmission
-#     list_display=['name', 'paymentAgent', 'taxInId', 'date']
-# admin.site.register(PaymentAdmission, PaymentAdmissionAdmin)
 
 class MyVideoAdmin(admin.ModelAdmin):
     list_display = ["title","video","details"]
@@ -62,6 +57,7 @@ admin.site.register(PaymentAgent, PaymentAgentAdmin)
 
 class PaymentAdmin(admin.ModelAdmin):
     list_display=['student_info', 'payment_date', 'total_cost', 'payment_amount', 'due']
+    search_fields=['student_info__name','student_info__mobile_number']
 admin.site.register(Payment, PaymentAdmin)
 
 class CommitteeAdmin(admin.ModelAdmin):
