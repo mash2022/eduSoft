@@ -1,18 +1,67 @@
 {% extends "master.html" %}
-{% load crispy_forms_tags %}
 {% block content %}
+{% include 'header.html' %}
+<div class="container">
+	<div class="row" style="margin-top: 80px; ">
+		<h3 class="card-title text-center" style="margin-bottom: 50px; font-family: Agbalumo;">Sign up</h3>
+	  <div class="col-5 mx-auto border" style="padding: 30px;">
+		
+		{% if errormessage %}
+		<div class="alert alert-warning" role="alert" style="padding-bottom: 0px;">
+		  <p>{{errormessage}}</p>
+		</div>
+		{% endif %}
+		
 
-<div class="content-section col-md-8 col-md-offset-2">
-<form method="POST" style="border: 1px solid black; margin: 4%; padding:10%; border-radius:1%;">
-	{% csrf_token %}
-	<fieldset class="form-group">
-	{{ form|crispy}}
-	</fieldset>
-	<center>
-	<button style="background: black; padding:2%; font-size: 2rem; color:white;" class="btn btn-outline-info" type="submit"><span class="glyphicon glyphicon-check"></span>  sign up</button>
-	</center>
-	<br />
-	<sub><a href="{% url "login" %}" style="text-decoration: none; color: blue; padding:3%; cursor:pointer;">Already have an account ?</a></sub>
-</form>
+		<form action="signup" method="POST">
+		  {% csrf_token %}
+			<div class="mb-3">
+			  <label for="exampleInputEmail1" class="form-label">First Name:</label>
+			  <input type="text" class="form-control" name="fname" >
+			  <div class="form-text"></div>
+			</div>
+			<div class="mb-3">
+			  <label for="exampleInputEmail1" class="form-label">Last Name:</label>
+			  <input type="text" class="form-control" name="lname">
+			  <div  class="form-text"></div>
+			</div>
+			
+			<div class="mb-3">
+			  <label for="exampleInputEmail1" class="form-label">Email address</label>
+			  <input type="email" class="form-control" id="exampleInputEmail1" name="email" aria-describedby="emailHelp">
+			  <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+			</div>
+
+			<div class="mb-3">
+			  <label for="exampleInputPassword1" class="form-label">Password</label>
+			  <input type="password" class="form-control" id="exampleInputPassword1" name="psswrd">
+			</div>
+
+			<div class="mb-3">
+			  <label for="exampleInputPassword2" class="form-label">Confirm Password</label>
+			  <input type="password" class="form-control" id="exampleInputPassword2" name="compasswrd">
+			</div>
+
+			<div class="mb-3">
+			  <select class="form-select" aria-label="Default select example" name="utype">
+				<option value="T">Teacher</option>
+				<option value="S">Student</option>
+			  </select>
+			</div>
+
+
+			<div class="mb-3 form-check">
+			  <input type="checkbox" class="form-check-input" id="exampleCheck1">
+			  <label class="form-check-label" for="exampleCheck1">Check me out</label>
+			  <div id="emailHelp" class="form-text text-end">Allready Have Account Click <a href="{% url 'login' %}" style="font-family: Agbalumo;">Sign IN</a></div>
+			</div>
+
+			<button type="submit" class="btn btn-primary">Submit</button>
+		  </form>
+		  
+	  </div>
+	  
+	</div>
 </div>
+{% include 'footer.html' %}
 {% endblock %}

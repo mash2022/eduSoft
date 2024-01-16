@@ -1,20 +1,49 @@
 {% extends "master.html" %}
-{% load crispy_forms_tags %}
 {% block content %}
+{% include 'header.html' %}
+<div class="container">
+	<div class="row" style="margin-top: 80px; ">
+		<h3 class="card-title text-center" style="margin-bottom: 50px; font-family: Agbalumo;">Login</h3>
+	  <div class="col-5 mx-auto border" style="padding: 30px;">
 
-<div class="content-section col-md-8 col-md-offset-2">
-<center>
-<form method="POST" style="border: 1px solid black; margin: 4%; padding:10%; border-radius:1%;">
-	{% csrf_token %}
-	<fieldset class="form-group">
-	{{ form|crispy}}
-	</fieldset>
-<center>
-	<button style="background: black; font-size: 2rem; padding:1%;" class="btn btn-outline-info" type="submit"><span class="glyphicon glyphicon-log-in"></span>  login</button>
-</center>
-<br/>
-<sub style="text-align: left;"><a href="{% url 'register' %}" style="text-decoration: none; color: blue; padding:2%; cursor:pointer; margin-right:2%;">don't have account,sign up</a></sub>
-</form>
-</center>
+		{% for message in messages%}
+		<div class="alert alert-success" role="alert" style="padding-bottom: 0px;">
+		  <p>{{message}}</p>
+		</div>
+		
+		{% endfor%}
+		
+		<form action="login" method="POST">
+		  {% csrf_token %}
+			<div class="mb-3">
+			  <label for="exampleInputEmail1" class="form-label">Email address</label>
+			  <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="uname">
+			  <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+			</div>
+
+			<div class="mb-3">
+			  <label for="exampleInputPassword1" class="form-label">Password</label>
+			  <input type="password" class="form-control" id="exampleInputPassword1" name="password">
+			</div>
+
+			<div class="mb-3">
+			  <select class="form-select" aria-label="Default select example" name="utype">
+				<option value="1">Teacher</option>
+				<option value="2">Student</option>
+			  </select>
+			</div>
+
+			<div class="mb-3 form-check">
+			  <input type="checkbox" class="form-check-input" id="exampleCheck1">
+			  <label class="form-check-label" for="exampleCheck1">Check me out</label>
+			  <div id="emailHelp" class="form-text text-end">Create a New Account Click <a href="{% url 'signup' %}" style="font-family: Agbalumo;">Sign UP</a></div>
+			</div>
+
+			<button type="submit" class="btn btn-primary">Submit</button>
+		  </form>
+	  </div>
+	  
+	</div>
 </div>
+{% include 'footer.html' %}
 {% endblock %}

@@ -24,9 +24,9 @@ from django.contrib.auth import views as auth
 urlpatterns = [
     path('', include('courses.urls')),
     path('admin/', admin.site.urls),
-    path('login/', courses_view.Login, name ='login'),
-    path('logout/', auth.LogoutView.as_view(template_name ='index.html'), name ='logout'),
-    path('signup/', courses_view.signup, name ='signup'),
+    # path('login/', courses_view.Login, name ='login'),
+    # path('logout/', auth.LogoutView.as_view(template_name ='index.html'), name ='logout'),
+    # path('signup/', courses_view.signup, name ='signup'),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 

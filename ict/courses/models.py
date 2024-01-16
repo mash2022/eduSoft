@@ -217,14 +217,33 @@ class Committee(models.Model):
 #     membership_number=models.ForeignKey(StudentInfo, on_delete=models.CASCADE)
 #     password=models.CharField(max_length=30)
 
-class User(models.Model):
-    username=models.CharField(max_length=50)
-    email = models.EmailField()
-    phone_no = models.CharField(max_length = 20)
-    password1=models.CharField(max_length=20)
-    password2=models.CharField(max_length=20)
+# class User(models.Model):
+#     username=models.CharField(max_length=50)
+#     email = models.EmailField()
+#     phone_no = models.CharField(max_length = 20)
+#     password1=models.CharField(max_length=20)
+#     password2=models.CharField(max_length=20)
 
 # class Login(models.Model):
 #     membership_number=models.CharField(max_length=50)
 #     password=models.CharField(max_length=50)
-            
+class Custom_User(models.Model):
+    first_name = models.CharField(max_length=50, default="First Name")
+    last_name = models.CharField(max_length=50)
+    user_name = models.CharField(max_length=100)
+    email = models.CharField(max_length=100)
+    password = models.CharField(max_length=100)
+    user_type = models.CharField(max_length=100)
+    is_active = models.BooleanField(default=False)
+    is_staff = models.BooleanField(default=False)
+
+
+    register_on = models.DateField(auto_now=False, auto_now_add=True)
+    update_on = models.DateTimeField(auto_now=True, auto_now_add=False)
+    
+    def __str__(self):
+        return f'{self.id} - {self.first_name} {self.last_name}'
+
+    class Meta:
+        verbose_name = 'UserRegistration'
+        verbose_name_plural = 'Registration'

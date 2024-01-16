@@ -116,14 +116,14 @@ class StudentInfoForm(forms.ModelForm):
 #         model = Signup
 #         fields = ['username', 'mobile_number', 'email', 'membership_number', 'password']
 
-class UserRegisterForm(UserCreationForm):
-    email = forms.EmailField()
-    phone_no = forms.CharField(max_length = 20)
-    first_name = forms.CharField(max_length = 20)
-    last_name = forms.CharField(max_length = 20)
-    class Meta:
-        model = User
-        fields = ['username', 'email', 'phone_no', 'password1', 'password2']
+# class UserRegisterForm(UserCreationForm):
+#     email = forms.EmailField()
+#     phone_no = forms.CharField(max_length = 20)
+#     first_name = forms.CharField(max_length = 20)
+#     last_name = forms.CharField(max_length = 20)
+#     class Meta:
+#         model = User
+#         fields = ['username', 'email', 'phone_no', 'password1', 'password2']
 
 # class LoginForm(forms.ModelForm):
 #     class Meta:
