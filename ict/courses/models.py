@@ -210,23 +210,7 @@ class Committee(models.Model):
             img.thumbnail(output_size)
             img.save(self.member_pic.path)
 
-# class Signup(models.Model):
-#     username=models.CharField(max_length=55, default=1)
-#     mobile_number=models.IntegerField()
-#     email=models.EmailField()
-#     membership_number=models.ForeignKey(StudentInfo, on_delete=models.CASCADE)
-#     password=models.CharField(max_length=30)
 
-# class User(models.Model):
-#     username=models.CharField(max_length=50)
-#     email = models.EmailField()
-#     phone_no = models.CharField(max_length = 20)
-#     password1=models.CharField(max_length=20)
-#     password2=models.CharField(max_length=20)
-
-# class Login(models.Model):
-#     membership_number=models.CharField(max_length=50)
-#     password=models.CharField(max_length=50)
 class Custom_User(models.Model):
     first_name = models.CharField(max_length=50, default="First Name")
     last_name = models.CharField(max_length=50)

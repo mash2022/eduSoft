@@ -56,6 +56,7 @@ def about(request):
    event_count=Event.objects.all().count()
    trainer_count=Teacher.objects.all().count()
    student_count=StudentInfo.objects.all().count()
+   committee=Committee.objects.all()
    context = {
       'about': about,
       'custom_settings':custom_settings,
@@ -63,6 +64,7 @@ def about(request):
       'event_count':event_count,
       'trainer_count':trainer_count,
       'student_count':student_count,
+      'committee':committee,
    }
    return HttpResponse(template.render(context, request))
 
@@ -260,22 +262,6 @@ def circular(request):
    }
    return render(request, 'circular.html', context)
 
-
-#  def login(request):
-#     if request.method == 'POST':
-#         # AuthenticationForm_can_also_be_used__ 
-#         username = request.POST['username']
-#         password = request.POST['password']
-#         user = authenticate(request, username = username, password = password)
-#         if user is not None:
-#             form = login(request, user)
-#             messages.success(request, f' welcome {username} !!')
-#             return redirect('index')
-#         else:
-#             messages.info(request, f'account done not exit plz sign in')
-#     form = AuthenticationForm()
-#     return render(request, 'login.html', {'form':form, 'title':'log in'})
-
 def signup(request):
     if request.user.is_authenticated:
         return redirect('dashboard')
@@ -365,5 +351,5 @@ def dashboard(request):
 
 def log_out(request):
     logout(request)
-    return redirect('home')
+    return redirect('index')
 

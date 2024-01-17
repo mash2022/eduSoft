@@ -69,5 +69,5 @@ class CostAdmin(admin.ModelAdmin):
 admin.site.register(Cost, CostAdmin)
 
 class Custom_UserAdmin(admin.ModelAdmin):
-    list_display=['first_name', 'last_name', 'email', 'user_type']
+    list_display=['first_name', 'last_name','user_name','email','user_type', 'is_active', 'is_staff','register_on', 'update_on']
 admin.site.register(Custom_User, Custom_UserAdmin) 
