@@ -17,8 +17,8 @@
 		  {% csrf_token %}
 			<div class="mb-3">
 			  <label for="exampleInputEmail1" class="form-label">Email address</label>
-			  <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="uname">
-			  <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+			  <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email">
+			  <div id="emailHelp" class="form-text">Use valid email !</div>
 			</div>
 
 			<div class="mb-3">
@@ -28,8 +28,8 @@
 
 			<div class="mb-3">
 			  <select class="form-select" aria-label="Default select example" name="utype">
-				<option value="1">Teacher</option>
-				<option value="2">Student</option>
+				<option value="m">Member</option>
+				<option value="s">Student</option>
 			  </select>
 			</div>
 

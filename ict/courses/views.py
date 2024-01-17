@@ -16,6 +16,7 @@ from django.contrib.auth.hashers import make_password, check_password
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.models import auth
+from django.contrib.auth import login as auth_login
 
 # Create your views here.
 def all_courses(request):
@@ -263,87 +264,50 @@ def circular(request):
    return render(request, 'circular.html', context)
 
 def signup(request):
-    if request.user.is_authenticated:
-        return redirect('dashboard')
-    else:
-        if request.method == 'POST':
-            fname = request.POST['fname']
-            lname = request.POST['lname']
+      if request.method == 'POST':
+         fname = request.POST['fname']
+         lname = request.POST['lname']
+         getname = fname +""+lname
+         joinname ="".join(getname)
+         repname = joinname.replace('.', '')
+         cleandata = re.sub(r"\s+", "", repname)
+         uname = cleandata
 
-            print()
-            getname = fname +""+lname
-            print("Concanate fname and lname: " + getname)
-            joinname ="".join(getname)
-            print("Use the join method: " +  joinname)
-            repname = joinname.replace('.', '')
-            print("Replease the .: " +  repname)
-            cleandata = re.sub(r"\s+", "", repname)
-            print("white space remove: " +  cleandata)
-            uname = cleandata
-            print(uname)
+         email = request.POST['email']
+         password = request.POST['psswrd']
+         compass = request.POST['compasswrd']
+         utype = request.POST['utype']
 
-            email = request.POST['email']
-            password = request.POST['psswrd']
-            compass = request.POST['compasswrd']
-            utype = request.POST['utype']
-
-            error_message = None
-            if not fname:
-                error_message = "First Name is Required!"
-            elif len(fname) < 4:
-                error_message = "First Name must be 4 char long or more"
-            elif len(uname) < 6:
-                error_message = "User Name must be 6 char long or more"
-            elif not email:
-                error_message = "Email is Required!"
-            elif len(email) < 4:
-                error_message = "Email must active account!"
-            elif not password:
-                error_message = "Password is Required!"
-            elif len(password) <6:
-                error_message = "Password must be 6 char long or more"
-            elif not compass:
-                error_message = "Password is Required!"
-            elif len(compass) <6:
-                error_message = "Password must be 6 char long or more"
-
-
-            if password == compass:
-                if User.objects.filter(email = email):
-                    error_message = "Email Address allready registered!"
-                    context = {
-                        'errormessage': error_message,
-                    }
-                    return render(request, 'signup.html', context)
-                else:
-                    if not error_message:
-                        adminuser = User.objects.create(first_name=fname, last_name=lname, username=uname, email=email, password=make_password(compass))
-                        adminuser.save()
-
-                        customuser = Custom_User(first_name=fname, last_name=lname, user_name=uname, email=email, password=make_password(compass), user_type=utype, is_active=True, is_staff=True)
-                        customuser.save()
-
-                        messages.success(request, f"User {adminuser.username} Registration Successfully!")
-
-                        return redirect('login')
-        return render(request, 'signup.html')
-
-
+         error_message = None
+         if password == compass:
+               if Custom_User.objects.filter(email = email):
+                  error_message = "Email Address already registered!"
+                  context = {
+                     'errormessage': error_message,
+                  }
+                  return render(request,'signup.html', context)
+               else:
+                  if not error_message:
+                     customuser = Custom_User.objects.create(first_name=fname, last_name=lname, user_name=uname, email=email, password=make_password(compass), user_type=utype, is_active=True, is_staff=True)
+                     customuser.save()
+                     messages.success(request, f"User {customuser.user_name} Registration Successfully!")
+                     return redirect('login')
+      return render(request, 'signup.html')
 
 def login(request):
-    if request.user.is_authenticated:
+    if request.customuser.is_authenticated:
         return redirect('dashboard')
     else:
         if request.method == 'POST':
-            uname = request.POST['uname']
-            upassword = request.POST['password']
-            user = authenticate(username=uname, password=upassword)
-
-            if user is not None:
-                login(request, user)
+            email = request.POST['email']
+            password = request.POST['password']
+            custom_user = authenticate(email=email, password=password)
+            if custom_user is not None:
+                auth_login(request, custom_user)
                 return redirect('dashboard')
             else:
-                return HttpResponse("User is not valid!")       
+                messages.error(request, f"Wrong username or password!")
+                return redirect('login')     
     return render(request, 'login.html')
 
 def dashboard(request):
@@ -353,3 +317,37 @@ def log_out(request):
     logout(request)
     return redirect('index')
 
+def register_request(request):
+	if request.method == "POST":
+		form = NewUserForm(request.POST)
+		if form.is_valid():
+			user = form.save()
+			auth_login(request, user)
+			messages.success(request, "Registration successful." )
+			return redirect("login")
+		messages.error(request, "Unsuccessful registration. Invalid information.")
+	form = NewUserForm()
+	return render (request=request, template_name="register.html", context={"register_form":form})
+
+def login_request(request):
+	if request.method == "POST":
+		form = AuthenticationForm(request, data=request.POST)
+		if form.is_valid():
+			username = form.cleaned_data.get('username')
+			password = form.cleaned_data.get('password')
+			user = authenticate(username=username, password=password)
+			if user is not None:
+				auth_login(request, user)
+				messages.info(request, f"You are now logged in as {username}.")
+				return redirect("dashboard")
+			else:
+				messages.error(request,"Invalid username or password.")
+		else:
+			messages.error(request,"Invalid username or password.")
+	form = AuthenticationForm()
+	return render(request=request, template_name="login1.html", context={"login_form":form})
+
+def logout_request(request):
+	logout(request)
+	messages.info(request, "You have successfully logged out.") 
+	return redirect("main:homepage")

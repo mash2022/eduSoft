@@ -24,7 +24,10 @@ urlpatterns = [
     path('generate_pdf_file/', views.generate_pdf_file, name='generate_pdf_file'),
     path('circular/', views.circular, name='circular'),
     path('signup', views.signup, name='signup'),
-    path('login', views.login, name='login'),
+    # path('login', views.login, name='login'),
     path('dashboard', views.dashboard, name='dashboard'),
     path('log_out', views.log_out, name='log_out'),
+    path("register", views.register_request, name="register"),
+    path("login", views.login_request, name="login"),
+    path("logout", views.logout_request, name= "logout"),
 ]

@@ -1,86 +1,312 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+{% extends 'master.html' %}
 
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+{% block title %}Student Profile{% endblock title %}
 
-    <title>Hello, world!</title>
-  </head>
-  <body>
-    <div class="container">
-        <div class="row">
-          <div class="col">
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <div class="container-fluid">
-                  <a class="navbar-brand" href="#">Navbar</a>
-                  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                  </button>
-                  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                      <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/">HOME</a>
-                      </li>
-                      <!--<li class="nav-item">
-                        <a class="nav-link" href="{% url 'signup' %}">SIGNUP</a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link" href="{% url 'login' %}">SIGNIN</a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link" href="{% url 'login' %}">SIGN OUT</a>
-                      </li>-->
-                    </ul>
+{% block content %}
+    {% include 'header.html' %}
 
-                    <ul class="nav justify-content-end">
-                      {% if user.is_authenticated %}
-                      <li class="nav-item">
-                        <a class="nav-link" href="{% url 'log_out' %}">SIGN OUT</a>
-                      </li>
-                      {% else %}
-                      <li class="nav-item">
-                        <a class="nav-link" href="{% url 'signup' %}">SIGNUP</a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link" href="{% url 'login' %}">SIGNIN</a>
-                      </li>
-                      {% endif %}
-                      
-                    </ul>
-                    
-                  </div>
-                </div>
-              </nav>
+    <main id="main" data-aos="fade-in">
+        <!-- ======= Breadcrumbs ======= -->
+        <div class="breadcrumbs">
+          <div class="container">
+            <h2>Student Profile</h2>
           </div>
         </div>
+        <!-- End Breadcrumbs -->
 
-        <div class="row">
-          <div class="col-3">
-            {{user.username}}
-          </div>
-          <div class="col-9">
-            col 9
-          </div>
-        </div>
+            <!--Navbar-->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="#">Navbar</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="False" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarText">
+        <ul class="navbar-nav mr-auto">
+          {% if user.is_authenticated %}
+          
+          <li class="nav-item">
+            <a class="nav-link" href="logout">Logout</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Welcome, {{user.username}}</a>
+          </li>
 
+          {% else %}
+
+          <li class="nav-item">
+            <a class="nav-link" href="/login">Login</a>
+          </li>
+
+          {% endif %}
+        </ul>
       </div>
+    </nav>
+
+
+        <div class="row panel panel-success" style="margin-top:2%;">
+            <div class="panel-heading lead">
+                <div class="row">
+                    <div class="col-lg-8 col-md-8"><i class="fa fa-users"></i> View Student Details</div>
+                    <div class="col-lg-4 col-md-4 text-right">
+                        <div class="btn-group text-center">
+                            <a href="student-view.php?sid=1&amp;id=68" class="btn btn-success btn-sm btn-default"><i class="fa fa-eye fa-1x"></i></a>
+                            <a href="student-modify.php?sid=1&amp;id=68" class="btn btn-success btn-sm btn-default"><i class="fa fa-edit fa-1x"></i></a>
+                            <a href="student-print.php?sid=1&amp;id=68" class="btn btn-success btn-sm btn-default"><i class="fa fa-print fa-1x"></i></a>
+                            <a href="student-delete.php?sid=1&amp;id=68" class="btn btn-success btn-sm btn-default"><i class="fa fa-trash-o fa-1x"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-body m-10px p-20px ">
+                                        
+                
+                                                        
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12">
+
+                            <div class="row">
+                                <div class="col-lg-3 col-md-3">
+                                    <center>
+                                        <span class="text-left">
+                                        <img src="https://lh5.googleusercontent.com/proxy/EkYugv9KzLUfAIpv-P4g6b0_mKxhcsfTvNmVueDn6XDHQp_SA0_hG2YFVAwB0Lbj_S-LrT-OtYsvxXMCrkZZMCmBfwelTQaAZW6GZwMQ8bRLwEvZonc0k0NxUpkhLBDuApx25K735rZfyHCIqA1RVpSdU84HF7U-j3xAwt3XLevAJtr5pwaVnRUC=w120-h120" class="img-responsive img-thumbnail">
+
+
+                                            <!-- Modal -->
+                                            <div class="modal fade" id="PhotoOption" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+                                                <div class="modal-dialog" style="width:30%;height:30%;">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                                            <h4 class="modal-title text-success" id="myModalLabel"><i class="fa fa-gear"></i> <span class="text-right">Viddhyut Mall</span></h4>
+                                                        </div>
+                                                        <div class="modal-body">
+        <center><img src="upload/profile_pic/701b4263f7d38604699b7c1f89a3e6a6.jpg" class="img-responsive img-thumbnail"></center>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <a href="upload/upload-view.php?id=68" class="btn btn-success"><i class="fa fa-photo"></i> Upload</a>
+                                                            <a href="upload/upload-view.php?id=68&amp;name=Viddhyut Mall&amp;src=view" class="btn btn-danger"><i class="fa fa-trash"></i> Delete</a>
+                                                        </div>
+                                                    </div>
+                                                    <!-- /.modal-content -->
+                                                </div>
+                                                <!-- /.modal-dialog -->
+                                            </div>
+                                            <!-- /.modal -->                    
+                                    </span></center>
+
+                                    <div class="table-responsive panel">
+                                        <table class="table">
+                                            <tbody>
+                                                        <tr>
+                                                        <td class="text-center">
+                                                            <span class="btn btn-danger text-success btn-block"><i class="fa fa-rupee"></i> Unpaid</span>
+                                                            <a href="#" class="btn btn-success btn-block" data-toggle="modal" data-target="#PhotoOption"><i class="fa fa-photo"></i> Change</a>
+                                                        </td>
+                                                    </tr>
+                                                                                        
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                    
+                                </div>
+                                <div class="col-lg-9 col-md-9">
+                                    <ul class="nav nav-tabs">
+                                        <li class="active"><a data-toggle="tab" href="#Summery" class="text-success"><i class="fa fa-indent"></i> Summery</a></li>
+                                        <li><a data-toggle="tab" href="#Contact" class="text-success"><i class="fa fa-bookmark-o"></i> Contact Info</a></li>
+                                        <li><a data-toggle="tab" href="#Address" class="text-success"><i class="fa fa-home"></i> Address</a></li>
+                                        <li><a data-toggle="tab" href="#General" class="text-success"><i class="fa fa-info"></i> General Info</a></li>	
+                                    </ul>
+
+                                    <div class="tab-content">
+                                        <div id="Summery" class="tab-pane fade in active">
+
+                                            <div class="table-responsive panel">
+                                                <table class="table">
+                                                    <tbody>
+
+                                                            <tr>
+                                                                <td class="text-success"><i class="fa fa-user"></i> Full Name</td>
+                                                                <td>Viddhyut Mall</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="text-success"><i class="fa fa-list-ol"></i> Scholar Number</td>
+                                                                <td>45</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="text-success"><i class="fa fa-book"></i> Medium</td>
+                                                                <td>English</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="text-success"><i class="fa fa-group"></i> Class &amp; Section</td>
+                                                                <td>12-F</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="text-success"><i class="fa fa-calendar"></i> Birthday</td>
+                                                                <td>December 2, 2011</td>
+                                                            </tr>
+
+                                                                                                                                    <tr>
+                                                                <td class="text-success"><i class="fa fa-university"></i> School</td>
+                                                                <td>
+                                                                Shyama Mall Girls Inter College                                                                 </td>
+                                                            </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+
+                                        <div id="Address" class="tab-pane fade">
+                                            <div class="table-responsive panel">
+                                                <table class="table">
+                                                    <tbody>
+                                        
+                                                            <tr>
+                                                                <td class="text-success"><i class="fa fa-home"></i> Address</td>
+                                                                <td>
+                                                                    <address>
+                                                                        <strong>
+        C-***, Amahiya </strong><br>
+        Kharobar, ****** <br>
+        Gorakhpur, Utter Pradesh, India<br>
+                                                                    </address>
+                                                                </td>
+                                                            </tr>
+                                                            </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        <div id="Contact" class="tab-pane fade">
+                                            <div class="table-responsive panel">
+                                                <table class="table">
+                                                    <tbody>
+                                            
+                                                            <tr>
+                                                                <td class="text-success"><i class="fa fa-envelope-o"></i> Email ID</td>
+                                                                <td><a href="mailto:****@pawanmall.net?subject=Email from &amp;body=Hello, Viddhyut Mall">****@pawanmall.net</a></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="text-success"><i class="glyphicon glyphicon-phone"></i> Mobile Number</td>
+                                                                <td>88********</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="text-success"><i class="fa fa-flag"></i> Nationality</td>
+                                                                <td>Indian</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="text-success"><i class="fa fa-user"></i> Father's Name</td>
+                                                                <td>Ajay Mall</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="text-success"><i class="glyphicon glyphicon-phone"></i> Father's Mobile</td>
+                                                                <td>+91 99********</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="text-success"><i class="fa fa-user"></i> Mother's Name</td>
+                                                                <td>Hemlata Mall</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="text-success"><i class="glyphicon glyphicon-phone"></i> Mother's Mobile</td>
+                                                                <td>+91 90********</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="text-success"><i class="fa fa-user"></i> Emergency Contact Person</td>
+                                                                <td>Pawan Mall</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="text-success"><i class="glyphicon glyphicon-phone"></i> Emergency Contact Person's Mobile</td>
+                                                                <td>+91 88********</td>
+                                                            </tr>
+                                                
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        <div id="General" class="tab-pane fade">
+                                            <div class="table-responsive panel">
+                                                <table class="table">
+                                                    <tbody>
+                                                                <tr>
+                                                                <td class="text-success"><i class="fa fa-university"></i> Last School</td>
+                                                                <td>Pawan Mall's School</td>
+                                                            </tr>                                        
+                                                            <tr>
+                                                                <td class="text-success"><i class="fa fa-calendar"></i> Date of Admission</td>
+                                                                <td>March 4, 2009</td>
+                                                            </tr>                                        
+                                                            <tr>
+                                                                <td class="text-success"><i class="fa fa-home"></i> Birth Place</td>
+                                                                <td>Delhi</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="text-success"><i class="fa fa-calendar"></i> Academic Year</td>
+                                                                <td>2015-2016</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="text-success"><i class="fa fa-medkit"></i> Medical Condition</td>
+                                                                <td>Normal</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="text-success"><i class="fa fa-thumbs-up"></i> Active/Inactive</td>
+                                                                <td>Student is Active</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="text-success"><i class="glyphicon glyphicon-time"></i> Last Editing</td>
+                                                                <td>2015-08-20 09:41:56</td>
+                                                            </tr>
+                                                    
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                <!-- /.table-responsive -->
+                
+            </div>
+        </div>
+
+         
+        <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap4.min.js"></script>
+ 
+        <script>
+            $(document).ready(function () {
+            $('#table_db').DataTable( {
+                "paging": true,
+                "searching": true,
+                "autoWidth": false,
+                "ordering": true,
+                "columnDefs": [
+                    {"width": "50px", "targets": 0},
+                    {"width": "250px", "targets": 1},
+                ],
+            }
+            );
+        } );
+        </script>
+ 
+        <!-- Added this script to see if the page would recognize the items within block -->
+        <script>
+        window.onload = function() {
+            if (window.jQuery) { 
+                // jQuery is loaded 
+                alert("successfull !");
+            } else {
+                // jQuery is not loaded
+                alert("Doesn't Work");
+            }
+        }
+        </script>     
+    </main><!-- End #main -->
+    {% include 'footer.html' %}
+{% endblock content %}
 
 
 
-
-    <!-- Optional JavaScript; choose one of the two! -->
-
-    <!-- Option 1: Bootstrap Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-
-    <!-- Option 2: Separate Popper and Bootstrap JS -->
-    <!--
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
-    -->
-  </body>
-</html>
