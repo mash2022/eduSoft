@@ -1,5 +1,6 @@
 from django.contrib import admin
 from .models import *
+from django.contrib.auth.admin import UserAdmin
 
 # Register your models here.
 class CourseAdmin(admin.ModelAdmin):
@@ -71,3 +72,11 @@ admin.site.register(Cost, CostAdmin)
 class Custom_UserAdmin(admin.ModelAdmin):
     list_display=['first_name', 'last_name','user_name','email','user_type', 'is_active', 'is_staff','register_on', 'update_on']
 admin.site.register(Custom_User, Custom_UserAdmin) 
+
+# class CustomUserAdmin(UserAdmin):
+#         list_display = (
+#         'username', 'email', 'first_name', 'last_name', 'is_staff',
+#         'is_teacher', 'is_student', 'mailing_address'
+#         )
+
+# admin.site.register(CustomUser, CustomUserAdmin)

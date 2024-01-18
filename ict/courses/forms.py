@@ -109,15 +109,15 @@ class StudentInfoForm(forms.ModelForm):
         }
 
 class NewUserForm(UserCreationForm):
-	email = forms.EmailField(required=True)
-
-	class Meta:
-		model = User
-		fields = ("username", "email", "password1", "password2")
-
-	def save(self, commit=True):
-		user = super(NewUserForm, self).save(commit=False)
-		user.email = self.cleaned_data['email']
-		if commit:
-			user.save()
-		return user
+    email = forms.EmailField(required=True)
+    membership_number=models.CharField(max_length=55)
+    class Meta:
+        model = User
+        fields = ("username", "email", "password1", "password2")
+    
+    def save(self, commit=True):
+        user = super(NewUserForm, self).save(commit=False)
+        user.email = self.cleaned_data['email']
+        if commit:
+            user.save()
+        return user

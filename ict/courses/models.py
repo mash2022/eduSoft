@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils.safestring import mark_safe
 from PIL import Image as Im
+# from django.contrib.auth.models import AbstractUser
 
 # Create your models here.
 class Teacher(models.Model):
@@ -142,7 +143,7 @@ class StudentInfo(models.Model):
     admission_date=models.DateField(auto_now=True, null=True)
     is_active=models.BooleanField(default=False)
     is_approved=models.BooleanField(default=False)
-    membership_number=models.CharField(max_length=255, null=True)
+    membership_number=models.CharField(max_length=55, null=True)
     
     def __str__(self):
         return f'{self.name}|{self.mobile_number}'
@@ -231,3 +232,8 @@ class Custom_User(models.Model):
     class Meta:
         verbose_name = 'UserRegistration'
         verbose_name_plural = 'Registration'
+
+# class CustomUser(AbstractUser):
+#     is_student = models.BooleanField(default=False)
+#     is_teacher = models.BooleanField(default=False)
+#     mailing_address = models.CharField(max_length=200, blank=True)
