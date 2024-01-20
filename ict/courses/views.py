@@ -117,7 +117,7 @@ def index(request):
   trainer_count=Teacher.objects.all().count()
   trainer_data=Teacher.objects.all()
   student_count=StudentInfo.objects.all().count()
-  custom_settings_data=CustomSettings.objects.all()[1:]
+  custom_settings_data=CustomSettings.objects.all()[:1]
   my_video=MyVideo.objects.all()
   committee_member=Committee.objects.all()
   context={
